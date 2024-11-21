@@ -1,0 +1,145 @@
+@font-face {
+    font-family: Lexend;
+    src: url(assets/Lexend-VariableFont_wght.ttf);
+}
+
+:root{
+    --accent-color: #1B7FBf;
+    --background-color: #FFFFFF;
+    --surface-color: #d5e4f6;
+    --text-color: #000000;
+    --surface-color-primary: #cde5ff;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url(assets/office.jpg);
+    background-position: center;
+    background-size:cover;
+    backdrop-filter: blur(5px);
+    font-family: Lexend;
+    color: var(--text-color);
+}
+
+body.dark{
+    --background-color: #1a1c1e;
+    --surface-color: #3a4857;
+    --text-color: #FFFFFF;
+    --surface-color-primary: #004a75;
+}
+
+a{
+    all: unset;
+}
+
+h1, h3{
+    margin: 0;
+}
+
+button{
+    all: unset;
+    margin: 5px;
+    padding: 5px;
+    display: block;
+     height: 35px;
+   text-align: center;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.container{
+    padding: 15px;
+    border-radius: 10px;
+    height: auto;
+    width: min(75vh, 768px);
+    background-color: var(--surface-color);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.container h1, h3{
+    text-align: center;
+}
+
+.container h3{
+    color: darkgray;
+}
+
+.message{
+    height: 35px;
+    padding: 3px;
+    display: none;
+    border-radius: 5px;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 10px;
+}
+
+.container #error-message{
+  
+    background-color: #d34419b3;
+   
+}
+
+.container #success-message{
+    background-color: #4119d3b3;
+}
+
+.container input{
+    display: block;
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.container label{
+    margin-block: 5px;
+}
+
+.signin-btn{
+    
+    width: 350px;
+   
+    margin-inline: auto;
+}
+
+.container button:hover{
+    outline: var(--accent-color) 3px solid;
+    outline-offset: 2px;
+}
+
+.container ul{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container ul li{
+    list-style-type: none;
+}
+
+.container ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.container ul li a:hover{
+    color: var(--accent-color);
+}
+
+.info{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}

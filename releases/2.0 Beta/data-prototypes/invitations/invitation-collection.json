@@ -1,0 +1,80 @@
+[
+  {
+    "code": [
+      "D",
+      "A",
+      "H",
+      "L",
+      "A",
+      "P"
+    ],
+    "destination": "OKbkh0poQuTNbIhV8INhe8Lksjj1-group",
+    "expirement": {
+      "data": "12",
+      "type": "counter"
+    },
+    "pin": [
+      1,
+      6,
+      0,
+      8
+    ],
+    "rights": {
+      "read": true,
+      "write": false
+    },
+    "usersJoinedCounter": 0
+  },
+  {
+    "code": [
+      "N",
+      "N",
+      "E",
+      "Q",
+      "Y",
+      "S"
+    ],
+    "destination": "OKbkh0poQuTNbIhV8INhe8Lksjj1-group",
+    "expirement": {
+      "data": "23",
+      "type": "counter"
+    },
+    "pin": [
+      4,
+      7,
+      7,
+      4
+    ],
+    "rights": {
+      "read": true,
+      "write": false
+    },
+    "usersJoinedCounter": 0
+  },
+  {
+    "code": [
+      "X",
+      "E",
+      "E",
+      "Z",
+      "X",
+      "J"
+    ],
+    "destination": "OKbkh0poQuTNbIhV8INhe8Lksjj1-group",
+    "expirement": {
+      "data": "13",
+      "type": "counter"
+    },
+    "pin": [
+      7,
+      2,
+      9,
+      3
+    ],
+    "rights": {
+      "read": true,
+      "write": false
+    },
+    "usersJoinedCounter": 0
+  }
+]

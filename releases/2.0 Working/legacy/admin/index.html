@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Organizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/icons/fontawesome-free-6.4.0-web/css/all.css">
+    <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
+    <link rel="manifest" href="../manifest.json">
+
+</head>
+
+<body onload="">
+    <div class=" app">
+
+        <div class="heading">
+            <h1 id="heading">Room Organizer</h1>
+            <p>Admin</p>
+        </div>
+
+
+        <section class="tab item" id="version-tab">
+            <div class="versions-div">
+                <div class="version">
+                    <div class="space-between">
+                        <h2>1.2</h2><span id="release-dt">01.09.23</span>
+                    </div>
+
+                    <ul id="new-features">
+                        <li>Kontaktanfragen auch per Formular direkt auf der Website möglich</li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <span class="add-btn">+</span>
+        </section>
+        <section class="tab item" id="contact-requests-tab">
+            <div class="requests" id="contact-requests">
+              
+            </div>
+        </section>
+        <section class="tab item" id="license-tab">
+            Lizenzen
+        </section>
+
+
+        <div class="tab settings item" id="settings">
+
+            Hallo
+        </div>
+        <nav class="navbar" id="navbar" onclick="">
+
+            <label class="nav-el" for="version-input" id="-label" onclick="">
+                <input type="radio" name="nav" class="nav-tab-radio" data-target="version-tab" id="version-input"
+                    checked>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <p>Versionen</p>
+            </label>
+            <label class="nav-el" for="request-input" id="-label" onclick="">
+                <input type="radio" name="nav" class="nav-tab-radio" data-target="contact-requests-tab"
+                    id="request-input">
+                <i class="fa-solid fa-comment"></i>
+                <p>Kontaktanfragen</p>
+            </label>
+            <label class="nav-el" for="license-input" id="-label" onclick="">
+                <input type="radio" name="nav" class="nav-tab-radio" data-target="license-tab" id="license-input">
+                <i class="fa-solid fa-key"></i>
+                <p>Lizenzen</p>
+            </label>
+            <label class="nav-el" for="nav-settings" id="nav-settings-label">
+                <input type="radio" name="nav" class="nav-tab-radio" data-target="settings" id="nav-settings">
+                <i class="fa-solid fa-gear round"></i>
+                <p>Einstellungen</p>
+            </label>
+
+            <div class="spacer fifty"></div>
+
+            <label for="toggle-sidebar" class="nav-el" id="toggle-sidebar-label">
+                <input type="checkbox" name="toggle-sidebar" id="toggle-sidebar">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+
+                <p>Sidebar einfahren</p>
+            </label>
+        </nav>
+
+        <!-- Modals -->
+
+
+    </div>
+    <div class="info">
+        <img src="" alt="">
+        <h1>Room Organizer</h1>
+        <h3>by Smart Codelab</h3>
+    </div>
+
+
+</body>
+
+<script src="navigation.js"></script>
+<script type="module" src="app.js"></script>
+
+</html>

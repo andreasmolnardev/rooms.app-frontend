@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hCaptcha</title>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+
+<body>
+    <form action="" method="POST">
+        <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <div class="h-captcha" data-sitekey="05549979-a44e-4693-8f99-3f2404d46fb4"></div>
+        <br />
+        <input type="submit" value="Submit" />
+    </form>
+    <script>
+
+
+        SECRET_KEY = "ES_c464e446da7f48d99ae26987e54ff161"
+        VERIFY_URL = "https://api.hcaptcha.com/siteverify"
+
+        token = request.POST_DATA['h-captcha-response']
+
+        data = { 'secret': SECRET_KEY, 'response': token }
+
+        response = http.post(url = VERIFY_URL, data = data)
+
+        response_json = JSON.parse(response.content)
+        success = response_json['success']
+
+        if (sucess == true) {
+            alert("true")
+        }
+    </script>
+</body>
+
+</html>

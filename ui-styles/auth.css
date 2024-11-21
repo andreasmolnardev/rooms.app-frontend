@@ -1,0 +1,150 @@
+.container {
+    display: flex;
+    padding: 0px;
+    overflow: scroll;
+}
+
+.container.login .main {
+    flex-direction: column;
+}
+
+.container .decoration {
+    display: flex;
+    min-height: 150px;
+    align-items: center;
+    padding-inline: 15px;
+    margin: 10px;
+}
+
+.container:is(.login, .signup) img.logo {
+    width: 80px;
+    padding-block: -10px;
+    z-index: 1;
+}
+
+.container>ul {
+    grid-column: span 2;
+    margin: 0;
+    padding: 0;
+    align-self: self-end;
+    font-size: 16px;
+}
+
+.blob {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+}
+
+.blob#main {
+    position: absolute;
+    z-index: 0;
+    width: 250px;
+    height: 250px;
+    left: -150px;
+    bottom: -150px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.blob#secondary {
+    position: absolute;
+    z-index: 0;
+    width: 180px;
+    height: 120px;
+    right: -100px;
+    top: -60px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.container:is(.login, .signup) .text {
+    z-index: 1;
+    flex-direction: column;
+}
+
+.container .main {
+    padding-inline: 15px;
+    height: calc(100% - 20px);
+}
+
+.container:is(.login, .signup) :is(input, button) {
+    width: calc(100% - 10px) !important;
+    grid-column: span 2;
+    align-self: center;
+}
+
+
+.container .increase-tab-index {
+    width: calc(100% - 50px) !important;
+}
+
+.container.signup .message {
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+}
+
+
+@media screen and (min-width: 700px) {
+    .container:is(.signup) {
+        height: 470px;
+        padding-block: 5px;
+    }
+
+    .container:is(.signup)> :is(div, form) {
+        height: 450px;
+
+    }
+
+    .container {
+        width: 600px;
+        display: grid;
+        grid-template-columns: 295px 295px;
+    }
+
+    .container .decoration {
+        justify-content: center;
+    }
+
+    .container>div:not(.top-bar) {
+        min-height: 250px;
+    }
+
+    :is(.container.login) .blob#main {
+        width: 200px;
+        height: 200px;
+    }
+
+    .blob#main {
+        bottom: -50px;
+        left: -50px;
+    }
+
+    :is(.container.login) .blob#secondary{
+        width: 250px;
+        height: 165px;
+    }
+
+    .blob#secondary {
+        top: -50px;
+        right: -90px;
+        width: 300px;
+        height: 200px;
+    }
+
+    .container:is(.login, .signup) img.logo {
+        position: absolute;
+    }
+
+
+    .container:is(.login, .signup) .text {
+        position: absolute;
+        left: 50px;
+        bottom: 10%;
+    }
+
+    .container:is(.login, .signup) .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

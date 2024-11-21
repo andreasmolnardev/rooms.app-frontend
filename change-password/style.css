@@ -1,0 +1,126 @@
+.container.change-password {
+    grid-template-columns: 1fr 2fr;
+}
+
+.container .top-bar {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    grid-column: 1 / -1;
+    height: fit-content;
+}
+
+.container .top-bar img {
+    height: 45px;
+}
+
+.container .top-bar span.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    background-color: darkgray;
+}
+
+.container .top-bar a {
+    height: 100%;
+}
+
+.container .top-bar a:hover {
+color: var(--accent-color)
+}
+
+.container .top-bar h1 {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.wrapper.center{
+    height: 100%;
+}
+
+img#change-password-icon{
+    height: 120px;
+}
+
+.main {
+    border-radius: 0px !important;
+}
+
+form#change-password-form {
+    width: 100%;
+    display: block;
+}
+
+form#change-password-form section#select-change-password-account-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+ul#select-method li {
+    width: 115px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--surface-color-inactive);
+}
+
+ul#select-method li input{
+    display: none;
+}
+
+ul#select-method li label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+ul#select-method li:has(input:checked) {
+    background-color: var(--surface-color-primary);
+}
+
+ul#select-method li :is(i, img:not(#img-email-incoming)) {
+    height: 55px;
+}
+
+img#img-email-incoming {
+    height: 45px;
+}
+
+ul.bottom-links {
+    width: calc(100% - 32px);
+    grid-column: span 2;
+}
+
+.method-info {
+    display: none;
+    gap: 10px;
+    padding-inline: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+}
+
+.method-info.active{
+    display: flex;
+}
+
+#controls-section{
+    padding-inline: 10px;
+    gap: 5px;
+    display: flex;
+}
+
+#controls-section #cancel-button{
+    width: 35px;
+    background: var(--surface-color-inactive);
+    color: var(--text-color);
+    outline: 2px solid var(--text-color);
+    outline-offset: -2px;
+}
+
+#controls-section #cancel-button:hover{
+    background: var(--surface-color-primary);
+}

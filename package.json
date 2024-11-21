@@ -1,0 +1,19 @@
+{
+  "name": "rooms.app",
+  "version": "1.0.0",
+  "description": "An app for organizing appointment schedules, grouped into different rooms",
+  "main": "service-worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreasmolnardev/rooms.app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreasmolnardev/rooms.app/issues"
+  },
+  "homepage": "https://github.com/andreasmolnardev/rooms.app#readme"
+}

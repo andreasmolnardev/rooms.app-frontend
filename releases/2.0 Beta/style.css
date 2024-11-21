@@ -1,0 +1,422 @@
+@font-face {
+    font-family: Lexend;
+    src: url(assets/Lexend-VariableFont_wght.ttf);
+}
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+
+:root {
+    --accent-color: #1B7FBf;
+    --background-color: #FFFFFF;
+    --surface-color: #d5e4f6;
+    --text-color: #000000;
+    --surface-color-primary: #cde5ff;
+    --surface-color-error: #E4572E;
+    --surface-color-inactive: #dee3eb;
+    --advice-color: #FFBA08;
+    --border-radius: 5px;
+}
+
+body {
+    height: 100dvh;
+    width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url(assets/office.jpg);
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    font-family: Lexend, Helvetica, sans-serif;
+    color: var(--text-color);
+}
+
+body.dark {
+    --background-color: #1a1c1e;
+    --surface-color: #3a4857;
+    --text-color: #FFFFFF;
+    --surface-color-primary: #004a75;
+    --surface-color-inactive: #42474e;
+}
+
+a {
+    all: unset;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+.spacer.fifty {
+    height: 50px;
+}
+
+.spacer.hungred {
+    height: 100px;
+}
+
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unclickable {
+    pointer-events: none;
+}
+
+:where(input[type="submit"], button) {
+    all: unset;
+    margin: 5px;
+    padding: 5px;
+    display: block;
+    height: 35px;
+    text-align: center;
+    border-radius: 10px;
+    background: linear-gradient(270deg, #005d99, #1b7fbf, #018aa6);
+    color: white;
+    width: calc(100% - 5px);
+
+    margin-inline: auto;
+}
+
+:where(input[type="submit"], button).secondary {
+    
+    outline: 2px solid  var(--accent-color);
+   outline-offset: -3px;
+   background: #00000000;
+   color: var(--text-color);
+
+}
+
+:where(input[type="submit"], button):hover {
+    background: linear-gradient(var(--rotate), #005d99, #1b7fbf, #018aa6);
+
+    -webkit-animation: rotateGradient 5s ease infinite;
+    -moz-animation: rotateGradient 5s ease infinite;
+    animation: rotateGradient 5s ease infinite;
+}
+
+:where(input[type="submit"], button).secondary:hover {
+    background: var(--accent-color);
+color: var(--background-color)
+}
+
+@keyframes rotateGradient {
+    0% {
+        --rotate: 0deg
+    }
+
+    100% {
+        --rotate: 360deg
+    }
+}
+
+
+.notifications {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 5;
+}
+
+.notifications .item {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    position: relative;
+    border: var(--advice-color) 5px solid;
+    margin: 5px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+}
+
+.notifications .item p {
+    margin: 10px 5px;
+
+}
+
+.notifications .item .icon-wrapper {
+    background-color: var(--advice-color);
+    height: 100%;
+    width: 25px;
+    padding-right: 5px;
+}
+
+dialog {
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 250px;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    border-color: transparent;
+}
+
+dialog::backdrop {
+    background-color: black;
+    opacity: 0.5;
+}
+
+dialog .dialog-header {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 5px;
+}
+
+dialog span i.fa-xmark {
+    height: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+dialog>span i.fa-xmark {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+
+header {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header span i {
+    font-size: 25px;
+
+}
+
+header div {
+    display: flex;
+    gap: 10px;
+}
+
+.container {
+    padding: 15px;
+    border-radius: 10px;
+    height: auto;
+    width: min(75vh, 768px);
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.container:is(.login, .signup) {
+    width: 600px;
+    display: grid;
+    grid-template-columns: 295px 295px;
+}
+
+.container.login .main {
+    flex-direction: column;
+}
+
+.container h1,
+h3 {
+    text-align: center;
+}
+
+.container h3 {
+    color: darkgray;
+}
+
+.container>div {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    min-height: 250px;
+}
+
+
+
+.container:is(.login, .signup) img.logo {
+    position: absolute;
+    width: 250px;
+    padding-block: -10px;
+    z-index: 1;
+}
+
+.container:is(.login, .signup) .text {
+    z-index: 1;
+    position: absolute;
+    left: 50px;
+    bottom: 75px;
+}
+
+.container:is(.login, .signup)>ul {
+    grid-column: span 2;
+    margin: 0;
+    padding: 0;
+    align-self: self-end;
+}
+
+.blob {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+}
+
+.blob#main {
+    position: absolute;
+    z-index: 0;
+    bottom: -50px;
+    left: -50px;
+    width: 250px;
+    height: 250px;
+
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.blob#secondary {
+    position: absolute;
+    z-index: 0;
+    top: -50px;
+    right: -90px;
+    width: 300px;
+    height: 200px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+
+
+}
+
+.container:is(.login, .signup) :is(input, button) {
+    width: calc(100% - 10px) !important;
+}
+
+
+.message {
+    padding: 5px 10px;
+    display: none;
+    border-radius: var(--border-radius);
+    align-items: center;
+    gap: 10px;
+    height: 35px;
+    background-color: var(--surface-color-inactive);
+
+}
+
+.message#test-version{
+    display: flex;
+font-size: 10px;
+}
+
+.message#test-version a{
+    color: var(--accent-color);
+}
+
+.message#test-version a:hover{
+    text-decoration: underline solid 2px var(--accent-color);
+}
+
+
+
+.container.signup .message {
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+}
+
+.message i {
+    font-size: 30px;
+
+}
+
+#error-message {
+    border: solid 3px #d34419b3;
+
+}
+
+#error-message i {
+    color: #d34419b3;
+}
+
+.container #success-message {
+    border: solid 5px #4119d3b3;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container form p {
+    margin-block: 0px;
+}
+
+.container input[type="text"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+}
+
+
+
+
+.container button:hover {
+    outline: var(--accent-color) 3px solid;
+    outline-offset: 2px;
+}
+
+.container ul {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container ul li {
+    list-style-type: none;
+}
+
+.container ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.container ul li a:hover {
+    color: var(--accent-color);
+}
+
+.info {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+
+@media screen and (max-width: 300px) {
+    .container ul {
+        flex-direction: column;
+    }
+}

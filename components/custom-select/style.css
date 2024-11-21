@@ -1,0 +1,74 @@
+.custom-select {
+    position: relative;
+    background-color: var(--surface-color-inactive);
+    border-radius: 5px;
+}
+
+.custom-select:is(:hover, :has(.select-box input:checked )){
+    background-color: var(--surface-color)
+}
+
+
+.custom-select .select-box{
+    display: flex;
+    gap: 5px; 
+    padding: 5px 10px;
+    outline: 1.5px solid black;
+    outline-offset: -1.5px;
+    border-radius: var(--border-radius);
+    height: 25px;
+    align-items: center;
+}
+
+.custom-select .select-box input{
+    display: none;
+}
+
+.custom-select .select-box i{
+    transition: rotate 300ms ease;
+    height: min-content;
+}
+
+.custom-select .select-box:has(input:checked) i {
+    rotate: 180deg;
+}
+
+.custom-select label p{
+    user-select: none; 
+}
+
+.custom-select .select-items {
+    position: absolute;
+    top: 32px;
+    outline-offset: -1.5px;
+    outline: 1.5px solid black;
+    border-radius: 0px 0px 5px 5px;
+    width: 100%;
+    background-color: var(--background-color);
+    display: none;
+    height: max-content;
+}
+
+.custom-select .select-items label:hover {
+    background-color: var(--surface-color-inactive);
+}
+
+
+
+.custom-select:has(.select-box input:checked) .select-items {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.custom-select .select-items input{
+    margin: 4px;
+}
+
+.custom-select .select-items label{
+    overflow: hidden;
+    padding-inline: 5px;
+}
+
+.custom-select .select-items label:has(input:checked){
+    background-color: var(--surface-color);
+}

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rooms.app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../ui-styles/loader.css">
+    <link rel="stylesheet" href="../assets/icons/fontawesome-free-6.4.0-web/css/all.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
+    <link rel="manifest" href="../manifest.json">
+
+</head>
+
+<body onload="">
+    <div class="loader">
+        <div class="placeholder">
+
+        </div>
+        <div class="loader-main center">
+            <img src="../assets/logo.png" alt="" class="logo">
+            <p>rooms.app wird geladen</p>
+            <div class="spinner">
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot" id="loader-foot">
+            by andreasmolnardev
+        </div>
+
+    </div>
+    <div class="notifications">
+        <div class="item" id="username-in-use-notification">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>der Benutzername ist bereits vergeben</p>
+        </div>
+        <div class="item" id="upload-invalid-notification">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>ungültiges Uploadformat!</p>
+        </div>
+        <div class="item" id="group-admission-failed">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>keine Einladung passend zu den eingebenen Daten gefunden</p>
+        </div>
+        <div class="item" id="group-admission-success">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>Beitritt zu
+            <p id="group-name-notification-p" style="margin: 0;"></p> erfolgreich </p>
+        </div>
+
+    </div>
+    <div class=" app">
+        <header>
+            <h1 id="heading">rooms.app</h1>
+            <div>
+                <section>
+                    <label for="messages-toggle" title="Nachrichten">
+                        <input type="checkbox" name="top-bar" id="messages-toggle" data-target="messages">
+                        <i class="fa-solid fa-comment"></i>
+                    </label>
+                </section>
+                <section>
+                    <label for="notifications-toggle" title="Benachrichtigungen">
+                        <input type="checkbox" name="top-bar" id="notifications-toggle" data-target="notifications">
+                        <i class="fa-solid fa-bell"></i>
+                    </label>
+
+                </section>
+                <section>
+                    <label for="all-apps-toggle">
+                        <input type="checkbox" id="all-apps-toggle" name="top-bar" data-target="launcher">
+                        <i class='bx bxs-grid-alt'></i>
+                    </label>
+                </section>
+            </div>
+        </header>
+
+
+        <main id="administration" class="item">
+
+            <div class="top-bar">
+                <div class="chips">
+                    <h3>Raumgruppe</h3>
+                    <select name="select-group" id="select-group">
+                        <option selected disabled>Raumgruppe auswählen</option>
+                    </select>
+
+                </div>
+                <div class="date">
+                    <input type="date" id="date">
+                </div>
+
+            </div>
+            <div id="rooms-div">
+                <section class="initial center">
+                    <img src="../assets/confused.png" alt="verwirrter Mensch">
+                    <p>keine Raumgruppe ausgewählt</p>
+                </section>
+            </div>
+        </main>
+
+        <span class="add-btn">
+            +
+        </span>
+
+        <div class="settings item" id="settings">
+
+            <section>
+                <h3>Mein Account</h3>
+                <div class="surface ">
+                    <div class="account menu header-item">
+                        <div class="img">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+
+                        <h2 id="username-output"></h2>
+                        <i class="fa-solid fa-pen-to-square" id="change-username-btn"></i>
+                    </div>
+                    <div class="header-item" data-target="personal-data" id="expand-data">
+                        <a><i id="user-info"><i class="fa-solid fa-user"></i><i class="fa-solid fa-circle-info"></i></i>
+                            Persönliche Daten</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="item personal-data">Name <p class="val" id="name-output"></p>
+                    </div>
+                    <div class="item personal-data">E-Mail <p class="val" id="email-output"></p>
+                    </div>
+                    <div class="item personal-data">Passwort <p class="val">
+                            &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</p>
+                    </div>
+
+                    <hr class="room-menu">
+                    <div class="header-item" id="expand-groups" data-target="groups">
+                        <a>
+                            <i class="fa-solid fa-people-group"></i>
+                            Meine Raumgruppen
+                        </a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="wrapper">
+                        <div class="item groups" id="settings-groups">
+
+                            <div class="group"><i>Icon</i>
+                                <p class="max">Gruppenname</p>
+                                <p>Administrator</p>
+                                <p>Aktionen</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="item groups" id="join-group">
+                        <a>
+                            <i class="fa-solid fa-plus"></i>
+                            Raumgruppe hinzufügen
+                        </a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <hr class="groups">
+                    <div class="header-item" id="logout">
+                        <a><i class="fa-solid fa-right-from-bracket"></i>Abmelden </a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Darstellung</h3>
+                <div class="surface appereance">
+                    <div class="header-item">Design
+                        <div class="options" id="select-theme">
+
+                            <label class="option" for="theme-light">
+                                <input type="radio" name="theme-switcher" id="theme-light">🌞 Hell
+                            </label>
+
+                            <label class="option" for="theme-dark">
+                                <input type="radio" name="theme-switcher" id="theme-dark">🌛 Dunkel
+                            </label>
+                        </div>
+                    </div>
+                    <div class="header-item">Akzentfarbe
+                        <div class="options">
+                            <input type="color" name="" id="select-accent-color">
+                        </div>
+                    </div>
+            </section>
+
+            <section>
+                <h3>Über rooms.app</h3>
+                <div class="surface general">
+                    <div class="app-info menu header-item">
+                        <img src="../assets/logo.png" alt="">
+                        <h2>rooms.app</h2>
+                        <p>Version:
+                            <span id="room-organizer-version-text"></span>
+                        </p>
+                    </div>
+
+
+                    <a href="../kontakt/index.html" id="open-contact-modal" class="header-item">
+
+                        Kontakt
+
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                    <a href="../nutzungsbedingungen/index.html" class="header-item">
+                        Nutzungsbedingungen
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                    <a class="header-item">
+                        Hilfe
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </div>
+
+            </section>
+            <div class="spacer fifty"></div>
+        </div>
+        <nav class="navbar" id="navbar">
+
+            <label class="nav-el" for="nav-administration" id="nav-administration-label">
+                <input type="radio" name="nav" id="nav-administration" class="nav-tab-radio"
+                    data-target="administration" checked>
+                <i class="fa-solid fa-list-check"></i>
+                <p>Dashboard</p>
+            </label>
+
+            <label class="nav-el" for="nav-settings" id="nav-settings-label" class="nav-tab-radio">
+                <input type="radio" name="nav" id="nav-settings" data-target="settings" class="nav-tab-radio">
+                <i class="fa-solid fa-gear round"></i>
+                <p>Einstellungen</p>
+            </label>
+
+            <label for="toggle-sidebar" class="nav-el" id="toggle-sidebar-label">
+                <input type="checkbox" name="toggle-sidebar" id="toggle-sidebar">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+
+                <p>Sidebar einfahren</p>
+            </label>
+        </nav>
+
+        <!-- Modals -->
+
+
+
+        <!--  <dialog id="add-modal">
+            <h2 id="add-modal-title">$value hinzufügen</h2>
+            <form id="add-form" action="" method="dialog" return false;>
+                <label for="new-value" id="new-value-label"></label>
+                <input type="text" name="new-value" id="new-value" placeholder="Beispieltext">
+                <button id="close-value-dialog">Abbrechen</button>
+                <input type="submit" value="Hinzufügen" id="submit-value">
+            </form>
+
+        </dialog> -->
+
+        <dialog id="join-group-modal">
+            <h2>Einer neuen Raumgruppe beitreten</h2>
+            <span class="close-modal" data-target="join-group-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <section>
+
+                <form id="invitation-details">
+                    <section class="surface">
+                        <h3>Bitte die Einladungsdetails eingeben</h3>
+                        <div class="wrapper">
+                            <i class="fa-solid fa-key"> </i>
+                            <input type="text" name="" id="code-input" placeholder="Code">
+                        </div>
+                        <div class="wrapper">
+                            <i class="fa-solid fa-lock"> </i>
+                            <input type="number" name="" id="pin-code-input" placeholder="Pin">
+                        </div>
+                        <div class="actions">
+                            <button class="secondary" id="upload-invitation-text" type="button"><i
+                                    class="fa-solid fa-file-arrow-up"></i>
+                                <p>Hochladen</p>
+                            </button>
+
+                            <input type="file" name="invitation-fileupload" id="invitation-fileupload"
+                                style="display: none;" accept="txt">
+
+                            <button class="secondary" id="paste-invitation-text" type="button"><i
+                                    class="fa-solid fa-paste"></i>
+                                <p>Einfügen</p>
+                            </button>
+                        </div>
+                    </section>
+
+                    <input type="submit" value="Abschicken!">
+                </form>
+            </section>
+        </dialog>
+
+        <dialog id="new-room-occ">
+            <h2>Neue Raumbesetzung</h2>
+            <span class="close-modal" data-target="new-room-occ">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <section class="message" id="room-occ-overlap">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p id="room-occ-overlap-output">Zum gewählten Zeitraum ist der Raum <span id="overlap-room-name"></span>
+                    bereits besetzt</p>
+            </section>
+            <form id="new-room-occ-form" method="dialog" return false;>
+                <label for="event-title">Titel:</label>
+                <input type="text" name="event-title" id="event-title" placeholder="eindeutiger Titel" class="full">
+
+
+                <label for="rooms">Raum</label>
+                <div class="full center">
+                    <select name="" id="select-group-for-add-form">
+                        <option disabled selected>Raumgruppe</option>
+                    </select>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <select name="rooms" id="select-room-for-add-form" class="">
+                        <option disabled selected>Raum</option>
+                    </select>
+                </div>
+
+
+
+                <label for="pick-date">Datum</label>
+                <input type="date" class="full" name="pick-date" id="pick-date" required>
+
+                <label for="time">Uhrzeit</label>
+
+                <label for="time-from" class="time-label">von</label>
+                <input type="time" name="time" id="time-from" required>
+
+                <label for="time-to" class="time-label">bis</label>
+                <input type="time" name="time" id="time-to" required>
+
+                <label for="members" title="außer mir">Teilhabende</label>
+                <div class="people-select full">
+                    <div class="search">
+                        <div class="wrapper">
+                            <div id="invited-users">
+                            </div>
+                            <input type="text" placeholder="z.B. Max Mustermann" id="search-group-member">
+
+                        </div>
+                        <div class="results" id="people-select-results">
+
+                            <p><i class="fa-solid fa-plus"></i>Per E-Mail einladen</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <label for="notes">Notiz</label>
+                <textarea name="notes" class="full" id="notes" cols="30" rows="10"></textarea>
+
+                <div class="center" style="grid-column: 1 / -1; height: 45px;"><input type="submit" value="Hinzufügen"
+                        id="add-room-occ" style="width: 250px;"></div>
+            </form>
+        </dialog>
+
+        <dialog id="initial-setup">
+
+            <div class="static">
+                <div class="tabs">
+                    <section class="tab" id="tutorial-welcome" data-tab-order="1">
+                        <h2>Wilkommen bei rooms.app!</h2>
+                        <p>Ihrem digitalen Assistenten, wenn es darum geht, digital Raumbesetzungen einzuspeichern und
+                            abzurufen.
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-add-rooms" data-tab-order="2">
+                        <h2>Treten sie einer ersten Raumgruppe bei</h2>
+
+                        <p>
+                            Sie können Raumgruppen unter <i class="fa-solid fa-gear"></i>Einstellungen > Raum hinzufügen
+                            beitreten
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-add-signatures" data-tab-order="3">
+                        <h2>Fügen sie Raumbelegungen hinzu</h2>
+                        <p>Mit ihrer Signatur können Raumbelegungen später erstellt werden. Im Nachhinein können sie
+                            noch nicht verändert werden.</p>
+
+                    </section>
+                    <section class="tab" id="tutorial-finish" data-tab-order="4">
+                        <h2>Sie sind startklar!</h2>
+                        <p>Viel Spaß mit der App!</p>
+                    </section>
+                </div>
+            </div>
+            <nav>
+                <span class="dot" data-indicator="tutorial-welcome"></span>
+                <span class="dot" data-indicator="tutorial-add-rooms"></span>
+                <span class="dot" data-indicator="tutorial-add-signatur"></span>
+                <span class="dot" data-indicator="tutorial-finish"></span>
+                <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
+            </nav>
+        </dialog>
+        <dialog id="first-login-modal">
+            <h2>Es ist kein Beutzer angemeldet</h2>
+            <p>Sie werden nun zur Anmeldeseite weierleitet</p>
+        </dialog>
+
+
+        <!--     <dialog id="select-date-modal">
+            <span class="close-modal" data-target="select-date-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Datum auswählen</h2>
+            <form action="" method="dialog" id="" return false;>
+                <label for="date">Datum:</label>
+                <input type="date" name="date" id="date" required>
+                <br>
+                <input type="submit" value="Weiter" id="submit-date">
+            </form>
+
+        </dialog> -->
+
+        <dialog id="messages">
+            <header class="dialog-header">
+                <h2>Nachrichten</h2>
+                <span class="close-topbar-modal" data-target="messages-toggle"><i class="fa-solid fa-xmark"></i></span>
+            </header>
+            <div class="initial center">
+                <h3>Noch keine Chats</h3>
+                <a id="start-new-chat"><i class="fa-solid fa-plus"></i> Neuen Chat anfangen</a>
+            </div>
+            <div class="dialog-body">
+                <section id="recent-chats">
+                    
+                </section>
+                <section></section>
+            </div>
+        </dialog>
+        <dialog id="notifications">
+            <h2>Benachrichtigungen</h2>
+            <span class="close-topbar-modal" data-target="notifications-toggle"><i class="fa-solid fa-xmark"></i></span>
+            <section id="notificarion-container" class="center">
+                <p>Keine Benachrichtigungen</p>
+            </section>
+        </dialog>
+
+        <dialog id="launcher">
+            <h2>Alle Apps</h2>
+            <span class="close-topbar-modal" data-target="all-apps-toggle"><i class="fa-solid fa-xmark"></i></span>
+        </dialog>
+
+        <dialog id="offline-modal">
+            <img src="../assets/lighthouse.gif" alt="Leutturm, der sich dreht, in der Nacht">
+            <h2>Du bist offline</h2>
+            <p>Bitte stelle eine stabile Internetverbindung her</p>
+        </dialog>
+        <dialog id="changelog-modal">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i>Changelog</h2>
+                <span class="close-modal" data-target="changelog-modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+
+            </div>
+            <div class="version">
+                <p>geupdatete Version:</p>
+                <p id="version-database">X.XX</p>
+            </div>
+
+            <h3>Das ist neu seit dem letzten Update:</h3>
+            <ul id="changes-ul">
+
+            </ul>
+
+        </dialog>
+    </div>
+    <script type="module" src="../ui-scripts/page-loading.js"></script>
+    <script type="module" src="../db-scripts/config.js"></script>
+    <script src="modals.js" type="module"></script>
+    <script src="nav.js"></script>
+    <script src="../ui-scripts/darkmode.js" type="module"></script>
+    <script src="modals/changelog.js" type="module"></script>
+    <script src="min-app.js" type="module"></script>
+    <script type="module" src="../ui-scripts/expand-setting.js"></script>
+    <script src="../admin/tabs/group-management/section-expand.js" type="module"></script>
+    <script src="modals/join-group-modal.js" type="module"></script>
+    <script src="modals/top-bar-modal.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .container form {
+            display: block;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .row-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .counter {
+            margin: 3px;
+            padding: 3px;
+            border-radius: 5px;
+            background-color: var(--surface-color-inactive);
+            display: flex;
+        }
+
+        form textarea {
+            width: 100%;
+        }
+
+        select{
+            display: block;
+            height: max-content;
+        }
+
+        .wrapper{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3><a href="../index.html">Zurück zum Login </a></h3>
+        <h1>Kontaktformular</h1>
+
+        <form id="request-form" onsubmit="return false;">
+            <label for="request-name">Ihr Name</label>
+            <input type="text" placeholder="Max Mustermann" id="request-name">
+            <label for="request-email">Ihre E-Mail-Adresse</label>
+            <input type="text" placeholder="max.mustermann@mail.com" id="request-email">
+            <div class="wrapper">
+
+                <div class="item"><label for="request-title">Betreff</label>
+                    <input type="text" placeholder="Wichtiges Anliegen" id="request-title">
+                </div>
+                <div class="item"> <label for="label">Typ der Anfrage</label>
+                    <select name="label" id="label">
+                        <option value="">Problem</option>
+                        <option value="">Feedback</option>
+                        <option value="">neue Funktion</option>
+                        <option value="">etwas anderes</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row-wrapper">
+                <label for="request-text">bitte das Anliegen schildern </label>
+                <div class="counter">
+
+
+                    <p id="textarea-length">0</p>/600
+                </div>
+            </div>
+
+            <textarea name="" id="request-text" cols="30" rows="10" maxlength="600"
+                placeholder="Schildern Sie den Grund zu ihrer Anfrage so genau, wie möglich, damit wir es am besten nachvollziehen können"></textarea>
+            <input type="checkbox" id="publish-checkbox" name="publish-checkbox">
+            <label for="publish-checkbox">Die Kontaktanfrage darf im Forum veröffentlicht werden</label>
+            <input type="submit" value="Abschicken">
+        </form>
+
+    </div>
+    <div class="info">
+        <img src="" alt="">
+        <h1>rooms.app</h1>
+        <h3>by Smart Codelab</h3>
+    </div>
+</body>
+<script type="module" src="script.js">
+
+
+
+
+</script>
+
+</html>

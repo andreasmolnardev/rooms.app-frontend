@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | rooms.app</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="ui-styles/auth.css">
+  <link rel="shortcut icon" href="assets/favico.ico" type="image/x-icon">
+  <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+</head>
+
+<body onload="">
+  <div class="notifications">
+    <div class="wrapper center">
+      <div id="template-notification" class="item glass">
+        <div class="icon-wrapper center">
+          <i></i>
+        </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="container login">
+    <div class="decoration center">
+      <img src="assets/logo.png" alt="logo" class="logo">
+      <div class="text center">
+        <h1 id="heading">Anmelden</h1>
+        <h3>Wilkommen zurück!</h3>
+      </div>
+
+      <div class="blob" id="main"></div>
+      <div class="blob" id="secondary"></div>
+
+    </div>
+
+
+    <div class="main">
+      <section class="output">
+        <!--<div id="test-version" class="message">
+          <i class="fa-solid fa-person-digging"></i>
+          <p>Dies ist eine nicht komplett funktionierende Testversion. <a href="legacy/">Hier geht's zur App</a></p>
+        </div>-->
+      </section>
+      <form id="login-form">
+        <label for="username-input">Benutzername oder E-Mail-Adresse</label>
+        <input type="text" placeholder="Foo Bar's Team" id="username-input" autocomplete="username" required>
+        <label for="pw-input">Passwort</label>
+        <input type="password" placeholder="min. 8 Zeichen" id="pw-input" autocomplete="current-password" required>
+        <div>
+          <a class="link" id="reset-password">Passwort vergessen?</a>
+        </div>
+        <!--  <button id="login" class="signin-btn">Überprüfen</button> -->
+        <input type="submit" value="Überprüfen" class="signin-btn">
+      </form>
+    </div>
+    <ul>
+      <li><a href="sign-up.html">Registrieren</a></li>
+      <li><a href="kontakt/index.html">Kontakt</a></li>
+      <li><a href="nutzungsbedingungen/index.html">Nutzungsbedingungen</a></li>
+    </ul>
+
+
+  </div>
+  <div class="info">
+    <img src="" alt="">
+    <h1>rooms.app</h1>
+    <h3>by andreasmolnardev</h3>
+  </div>
+  <script src="scripts/auth/login.js" type="module"></script>
+  <script src="ui-scripts/darkmode.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

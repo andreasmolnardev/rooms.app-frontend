@@ -1,0 +1,37 @@
+{
+  "background_color": "#ffffff",
+  "description": "Manage your Rooms with Room Occupations",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "rooms.app",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/app/index.html",
+  "theme_color": "#1b7fbf",
+  "categories": ["business"],
+  "icons": [
+    {
+      "src": "assets/logo.png", 
+      "sizes": "512x512", 
+      "type": "image/png" 
+    },
+      {
+          "src": "assets/favico.ico",
+          "type": "image/x-icon",
+          "sizes": "64x64"
+      }
+  ],
+  "shortcuts": [
+      {
+          "name": "rooms.app by Smart Codelab",
+          "url": "/site/",
+          "description": "the portfolio"
+      }
+  ],
+  "lang": "de",
+  "iarc_rating_id": "0 - 99",
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+      "preferred_width": 50
+  }
+}

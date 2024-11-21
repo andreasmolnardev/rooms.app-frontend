@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admindashboard | rooms.app</title>
+    <!--  <link rel="stylesheet" href="../app/style.css"> -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../ui-styles/loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
+    <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
+
+</head>
+
+<body onload="">
+    <div class="loader">
+        <div class="placeholder">
+
+        </div>
+        <div class="loader-main center">
+            <img src="../assets/logo.png" alt="" class="logo">
+            <p>Admindashboard wird geladen</p>
+            <div class="spinner">
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot" id="loader-foot">
+            by andreasmolnardev
+        </div>
+
+    </div>
+    <div class="notifications">
+        <div class="item" id="username-in-use-notification">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>der Benutzername ist bereits vergeben</p>
+        </div>
+        <div class="item" id="upload-invalid-notification">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>ungültiges Uploadformat!</p>
+        </div>
+        <div class="item" id="group-admission-failed">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>keine Einladung passend zu den eingebenen Daten gefunden</p>
+        </div>
+        <div class="item" id="group-admission-success">
+            <div class=" icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>Beitritt zu
+            <p id="group-name-notification-p" style="margin: 0;"></p> erfolgreich </p>
+        </div>
+
+        <div class="item" id="form-not-completely-filled-out">
+            <div class="icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>Bitte alle Felder ausfüllen (außer Notizen)</p>
+        </div>
+
+        <div class="item" id="cancelled">
+            <div class="icon-wrapper center">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <p>Vorgang abgebrochen</p>
+        </div>
+        <div id="template-notification" class="item glass">
+            <div class="icon-wrapper center">
+                <i></i>
+            </div>
+            <p></p>
+        </div>
+    </div>
+    <div class="app includes-gap vertical">
+        <header>
+            <div class="heading">
+                <h1 id="heading">rooms.app</h1>
+                <p>Admin</p>
+            </div>
+            <div>
+                <section>
+                    <label for="notifications-toggle" title="Benachrichtigungen">
+                        <input type="checkbox" name="top-bar" id="notifications-toggle" data-target="notifications">
+                        <i class="fa-solid fa-bell"></i>
+                    </label>
+
+                </section>
+                <section>
+                    <label for="profile-toggle" title="Account verwalten">
+                        <input type="checkbox" name="top-bar" id="profile-toggle" data-target="profile">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </label>
+                </section>
+                <section>
+                    <label for="all-apps-toggle">
+                        <input type="checkbox" id="all-apps-toggle" name="top-bar" data-target="launcher">
+                        <i class='bx bxs-grid-alt'></i>
+                    </label>
+                </section>
+            </div>
+        </header>
+
+        <main class="tab item" id="main-div">
+
+
+
+            <label for="group-select" class="includes-gap">
+                <i class="fa-solid fa-layer-group"></i>
+                <h2>Meine Raumgruppen</h2>
+            </label>
+            <div class="group-select includes-gap vertical" id="main-group-select">
+                <label class="item" id="add-group" for="add-group-select">
+                    <input type="radio" name="select-room-group" id="add-group-select" data-target="add-group-section">
+                    <i class="fa-solid fa-plus"></i>
+                    <div class="text">
+                        <p>Raumgruppe hinzufügen</p>
+                    </div>
+                </label>
+            </div>
+            <label for="group-management" id="title-bar" class="includes-gap">
+                <i class="fa-solid fa-user-group"></i>
+                <h2 id="room-group-name">Keine Raumgruppe ausgewählt</h2>
+            </label>
+
+            <div class="group-management" id="group-management-section">
+                <section id="room-management-section">
+                    <div class="top-bar includes-gap">
+                        <h3>Räume</h3>
+                        <span title="Raum hinzufügen" class="center" id="add-room-button">
+                            <i class="fa-solid fa-plus">
+                            </i>
+                        </span>
+                    </div>
+
+                    <div class="content">
+
+                    </div>
+                </section>
+                <section id="usergroup-management-section">
+                    <div class="top-bar includes-gap">
+                        <h3>Nutzergruppen</h3> <span title="Eine neue Nutzergruppe erstellen" class="center"
+                            id="create-usergroup-button">
+                            <i class="fa-solid fa-plus">
+                            </i>
+                        </span>
+                    </div>
+                    <div class="content">
+
+                    </div>
+                </section>
+                <section id="member-management-section">
+                    <div class="top-bar includes-gap">
+                        <h3>Mitglieder</h3>
+                        <div class="expand"></div>
+                            <span title="laufende Einladungen" class="center" id="view-invitations-button">
+                                <i class="fa-solid fa-envelopes-bulk"></i>
+                            </span>
+                            <span title="Mitglied(er) hinzufügen" class="center" id="add-members-button">
+                                <i class="fa-solid fa-plus">
+                                </i>
+                            </span>
+                        
+                    </div>
+                    <div class="content">
+
+                    </div>
+                </section>
+                <section id="license-management-section">
+                    <h3>Lizenz</h3>
+                    <div class="stack includes-gap">
+                        <div class="item center">
+                            <div class="center"><i class="fa-solid fa-bullseye"></i>
+                                <p>Status</p>
+                            </div>
+                            <div class="center">
+                                <p>gültig</p>
+                            </div>
+                        </div>
+                        <div class="item center">
+                            <div class="center"><i class="fa-solid fa-calendar-plus"></i>
+                                <p>Lizenz verlängern</p>
+                            </div>
+                            <div class="center"><i class="fa-solid fa-caret-right"></i></div>
+                        </div>
+                        <div class="item center">
+                            <div class="center">
+                                <i class="change-license-key">
+                                    <i class="fa-solid fa-key"></i>
+                                    <i class="fa-solid fa-rotate"></i>
+                                </i>
+                                <p>Lizenz ändern</p>
+                            </div>
+                            <div class="center">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="group-loader center">
+                    <p>Raumgruppe wird geöffnet</p>
+                </div>
+            </div>
+            <div class="add-group" id="add-group-section">
+                <section class="fieldset">
+                    <h4>Schritt 1: Methode auswählen</h4>
+                    <label for="method-tabs">Methode</label>
+                    <ul id="method-tabs">
+                        <li class="item">
+                            <label for="join-existing">
+                                <input type="radio" name="method-tabs" id="join-existing">
+                                <i class="fa-solid fa-envelope-open-text"></i>
+                                <p>Einer Raumgruppe beitreten</p>
+                            </label>
+                        </li>
+                        <li class="item">
+                            <label for="create-new">
+                                <input type="radio" name="method-tabs" id="create-new">
+                                <i class="new-group-icon center">
+                                    <i class="fa-solid fa-users"></i>
+                                    <div class="plus center">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </div>
+                                </i>
+                                <p>Neue Raumgruppe erstellen</p>
+                            </label>
+                        </li>
+                    </ul>
+                </section>
+                <section id="join-existing-group">
+                    <form id="invitation-details">
+                        <section class="surface">
+                            <h3>Bitte die Einladungsdetails eingeben</h3>
+                            <div class="wrapper ">
+                                <i class="fa-solid fa-key"> </i>
+                                <input type="text" name="" id="code-input" placeholder="Code">
+                            </div>
+                            <div class="wrapper">
+                                <i class="fa-solid fa-lock"> </i>
+                                <input type="number" name="" id="pin-code-input" placeholder="Pin">
+                            </div>
+                            <div class="actions">
+                                <button class="secondary" id="upload-invitation-text" type="button"><i
+                                        class="fa-solid fa-file-arrow-up"></i>
+                                    <p>Hochladen</p>
+                                </button>
+
+                                <input type="file" name="invitation-fileupload" id="invitation-fileupload"
+                                    style="display: none;" accept="txt">
+
+                                <button class="secondary" id="paste-invitation-text" type="button"><i
+                                        class="fa-solid fa-paste"></i>
+                                    <p>Einfügen</p>
+                                </button>
+                            </div>
+                        </section>
+
+                        <input type="submit" value="Abschicken!">
+                    </form>
+                </section>
+                <section id="create-new-group">
+                    <div class="group-management" id="group-management">
+                        <section id="add-room-management-section">
+                            <div class="top-bar includes-gap">
+                                <h3>Räume</h3>
+                                <span title="Raum hinzufügen" class="center">
+                                    <i class="fa-solid fa-plus">
+                                    </i>
+                                </span>
+                            </div>
+                            <div class="content">
+                                <div class="item">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <p>Raum hinzufügen</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+                <section class="controls">
+                    <button>Zurück</button>
+                    <button>Weiter</button>
+                </section>
+            </div>
+        </main>
+
+        <div class="settings item" id="settings">
+
+            <section>
+                <h3>Mein Account</h3>
+                <div class="surface ">
+                    <div class="account menu header-item">
+                        <div class="img">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+
+                        <h2 id="username-output"></h2>
+                        <i class="fa-solid fa-pen-to-square" id="change-username-btn"></i>
+                    </div>
+                    <div class="header-item" data-target="personal-data" id="expand-data">
+                        <a><i id="user-info"><i class="fa-solid fa-user"></i><i class="fa-solid fa-circle-info"></i></i>
+                            Persönliche Daten</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="item personal-data">Name <p class="val" id="name-output"></p>
+                    </div>
+                    <div class="item personal-data">E-Mail <p class="val" id="email-output"></p>
+                    </div>
+                    <div class="item personal-data">Passwort <p class="val">
+                            &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</p>
+                    </div>
+
+                    <hr class="room-menu">
+
+                    <div class="item groups" id="join-group">
+
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <hr class="groups">
+                    <div class="header-item" id="logout">
+                        <a><i class="fa-solid fa-right-from-bracket"></i>Abmelden </a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Darstellung</h3>
+                <div class="surface appereance">
+                    <div class="header-item">Design
+                        <div class="options" id="select-theme">
+
+                            <label class="option" for="theme-light">
+                                <input type="radio" name="theme-switcher" id="theme-light">🌞 Hell
+                            </label>
+
+                            <label class="option" for="theme-dark">
+                                <input type="radio" name="theme-switcher" id="theme-dark">🌛 Dunkel
+                            </label>
+                        </div>
+                    </div>
+                    <div class="header-item">Akzentfarbe
+                        <div class="options">
+                            <input type="color" name="" id="select-accent-color">
+                        </div>
+                    </div>
+                    <div class="header-item">
+                        Ansicht
+                        <div class="options">
+                            <select name="select-container-view" id="select-container-view">
+                                <option value="compact">Kompakt</option>
+                                <option value="full">Vollbild</option>
+                            </select>
+                        </div>
+                    </div>
+            </section>
+
+            <section>
+                <h3>Über rooms.app</h3>
+                <div class="surface general">
+                    <div class="app-info menu header-item">
+                        <img src="../assets/logo.png" alt="">
+                        <h2>rooms.app</h2>
+                        <p>Version:
+                            <span id="room-organizer-version-text"></span>
+                        </p>
+                    </div>
+
+
+                    <a href="../kontakt/index.html" id="open-contact-modal" class="header-item">
+
+                        Kontakt
+
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                    <a href="../nutzungsbedingungen/index.html" class="header-item">
+                        Nutzungsbedingungen
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                    <a class="header-item">
+                        Hilfe
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </div>
+
+            </section>
+            <div class="spacer fifty"></div>
+        </div>
+
+        <footer>
+            <ul class="center">
+                <li> <a class="includes-gap" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa-solid fa-circle-question"></i>
+                        <p>Hilfe</p>
+                    </a></li>
+                <li><a class="includes-gap" id="change-theme-toggle"><i class="fa-solid fa-moon"></i>
+                        <p>Zu dunklem Design wechseln</p>
+                    </a></li>
+                <li> <a class="includes-gap"><i class="fa-solid fa-ellipsis"></i>
+                        <p>Mehr</p>
+                    </a></li>
+            </ul>
+        </footer>
+
+
+        <!-- Modals -->
+
+        <dialog id="initial-setup">
+
+            <div class="static">
+                <div class="tabs">
+                    <section class="tab" id="tutorial-welcome" data-tab-order="1">
+                        <h2>Wilkommen im Admindashboard!</h2>
+                        <p>Hier werden Raumgruppen verwaltet, Benutzer eingeladen, Räume hinzugefügt, etc..
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-room-group" data-tab-order="2">
+                        <h2>Zum Erstellen einer neuen Raumgruppe:</h2>
+                        <p>Sie können eine neue Raumgruppe unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe
+                            hinzufügen" -> "Neu erstellen" hinzufügen</p>
+
+                        <h2>Zum Beitreten zu einer bestehenden Raumgruppe</h2>
+                        <p>
+                            Sie können Raumgruppen unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe hinzufügen" ->
+                            "Einer Raumgruppe beitreten"
+                            beitreten
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-help" data-tab-order="3">
+                        <h2>Brauchen Sie Hilfe?</h2>
+                        <p>Anleitungen und Tipps finden sie jederzeit beim Fragezeichen</p>
+
+                    </section>
+                    <section class="tab" id="tutorial-finish" data-tab-order="4">
+                        <h2>Sie sind startklar!</h2>
+                        <p>Viel Spaß 🥳</p>
+                    </section>
+                </div>
+            </div>
+            <nav>
+                <span class="dot" data-indicator="tutorial-welcome"></span>
+                <span class="dot" data-indicator="tutorial-add-rooms"></span>
+                <span class="dot" data-indicator="tutorial-add-signatur"></span>
+                <span class="dot" data-indicator="tutorial-finish"></span>
+                <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
+            </nav>
+        </dialog>
+
+        <dialog id="first-login-modal">
+            <h2>Es ist kein Beutzer angemeldet</h2>
+            <p>Sie werden nun zur Anmeldeseite weierleitet</p>
+        </dialog>
+
+
+        <!--     <dialog id="select-date-modal">
+            <span class="close-modal" data-target="select-date-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Datum auswählen</h2>
+            <form action="" method="dialog" id="" return false;>
+                <label for="date">Datum:</label>
+                <input type="date" name="date" id="date" required>
+                <br>
+                <input type="submit" value="Weiter" id="submit-date">
+            </form>
+
+        </dialog> -->
+       
+        <dialog id="change-group-name">
+            <h2>Gruppenname ändern</h2>
+        </dialog>
+
+        <dialog id="change-license-modal">
+            <span class="close-modal" data-target="change-license-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Lizenz ändern</h2>
+            <section class="output">
+                <div id="error-message" class="message">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p id="output-txt"></p>
+                </div>
+                <div id="success-message" class="message">
+
+                    <i class="fa-solid fa-list-check"></i>
+                    <p>Sie werden in Kürze weitergeleitet</p>
+                </div>
+            </section>
+            <p>Die neue Lizenz wird sofort übernommen und damit (falls vorhanden) die vorherige überschrieben</p>
+            <p id="error-output"></p>
+            <form id="change-license-form">
+                <div class="grid-wrapper">
+                    <label for="license-inputfield">Lizenzcode</label>
+                    <input type="text" id="license-inputfield" placeholder="XXX-XXX">
+                    <label for="expireing-date">Ablaufdatum</label>
+                    <input type="text" id="expireing-date" placeholder="MM-JJ">
+                </div>
+
+                <input type="checkbox" name="overwrite-checkbox" id="overwrite-checkbox">
+                <label for="overwrite-checkbox">Ich bin mir des oben beschriebenen bewusst</label>
+                <input type="submit" value="Abschicken">
+                <div class="progress-bar">
+                    <i class="fa-solid fa-check" id="progress-check"></i>
+                    <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p id="state-output">wird ausgeführt</p>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog id="group-invitations-modal">
+            <h2>Einladungen</h2>
+            <span class="close-modal" data-target="group-invitations-modal"><i class="fa-solid fa-xmark"></i></span>
+            <section id="active-invitations">
+                <h3>Aktiv</h3>
+            </section>
+            <section id="inactive-invitations">
+                <h3>Inaktiv</h3>
+            </section>
+        </dialog>
+
+        <dialog id="main-info-edit-modal" data-type="">
+            <span class="close-modal" data-target="main-info-edit-modal"><i class="fa-solid fa-xmark"></i></span>
+            <section id="info-section"></section>
+            <section id="add-section">
+            </section>
+            <div class="toolbar">
+                <button class="option editor-mode proceed center tertiary" id="info-add-modal-submit-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <p>Weiter</p>
+                </button>
+                <button class="option item-details delete-button center tertiary" title="Element bearbeiten">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="option item-details delete-button center tertiary" title="Element löschen">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </dialog>
+
+        <dialog id="notifications">
+            <h2>Benachrichtigungen</h2>
+            <span class="close-modal" data-target="notifications-toggle"><i class="fa-solid fa-xmark"></i></span>
+            <section id="system-notification-container" class="center">
+                <p>Keine Benachrichtigungen</p>
+            </section>
+        </dialog>
+
+        <dialog id="launcher">
+            <h2>Alle Apps</h2>
+            <span class="close-modal" data-target="all-apps-toggle"><i class="fa-solid fa-xmark"></i></span>
+            <div class="apps includes-gap">
+                <a href="../admin" class="app-shortcut"><i class="fa-solid fa-user-tie"></i>
+                    <p>Admin-Dashboard</p>
+                </a>
+                <a href="" class="app-shortcut">
+                    <p>Raumdashboard</p>
+                </a>
+            </div>
+        </dialog>
+
+        <dialog id="offline-modal">
+            <img src="../assets/lighthouse.gif" alt="Leutturm, der sich dreht, in der Nacht">
+            <h2>Du bist offline</h2>
+            <p>Bitte stelle eine stabile Internetverbindung her</p>
+        </dialog>
+
+
+        <!--<script src="tabs/group-management/section-expand.js" type="module"></script>-->
+
+        <!--Main App's Script-->
+        <script type="module" src="app.js"></script>
+
+        <!--Site Navigation-->
+        <!--<script src="navigation.js"></script>-->
+
+        <!--Modals-->
+        <script type="module" src="modals/modal-controls.js"></script>
+        <script src="modals/top-bar-modal.js"></script>
+
+        <!--Settings-->
+        <script src="../ui-scripts/darkmode.js" type="module"></script>
+
+        <!--Components-->
+        <script type="module" src="../components/components.js"></script>
+
+        <!--Other Stuff-->
+        <script src="../testing-scripts/admin.js" type="module"></script>
+        <!--<script type="module" src="tabs/group-management/section-expand.js"></script>-->
+        <script src="modals/change-license-modal.js" type="module"></script>
+        <script type="module" src="../ui-scripts/expand-setting.js"></script>
+
+
+
+</body>
+
+</html>

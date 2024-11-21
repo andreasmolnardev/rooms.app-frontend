@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rooms.app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/icons/fontawesome-free-6.4.0-web/css/all.css">
+    <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
+    <link rel="manifest" href="../manifest.json">
+    
+</head>
+
+<body onload="">
+    <div class=" app">
+
+        <h1 id="heading">rooms.app</h1>
+
+        <main id="administration" class="item">
+
+            <div class="top-bar">
+                <p id="date-output" data-date="">Samstag, den 23. Juli 2022</p>
+                <input type="date" id="date-input" style="display: none;">
+                <i class="fa-regular fa-calendar" id="open-date-modal"></i>
+            </div>
+            <div id="rooms-div">
+
+            </div>
+        </main>
+
+        <span class="add-btn">
+            +
+        </span>
+
+        <div class="settings item" id="settings">
+
+            <section>
+                <h3>Mein Account</h3>
+                <div class="surface ">
+                    <div class="account header-item">
+                        <div class="img">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+
+                        <h2 id="username-output"></h2>
+                        <i class="fa-solid fa-pen-to-square" id="change-username-btn"></i>
+                    </div>
+                    <div class="header-item" data-target="personal-data" id="expand-data">
+                        <a><i id="user-info"><i class="fa-solid fa-user"></i><i class="fa-solid fa-circle-info"></i></i>
+                            Persönliche Daten</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="item personal-data">Name <p class="val"></p></div>
+                    <div class="item personal-data">E-Mail <p class="val" id="email-output"></p></div>
+                    <div class="item personal-data">Passwort <p class="val">&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</p></div>
+                    <div class="header-item" data-target="signature-menu" id="expand-signatures">
+                        <a><i class="fa-solid fa-signature"></i> Signaturen</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="wrapper">
+                        <div class="signatures">
+
+                        </div>
+                    </div>
+                    <div class="item signature-menu" id="add-signature">
+                        <a> <i class="fa-solid fa-pen"></i> Signatur hinzufügen</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <hr class="signature-menu">
+                    <div class="header-item" data-target="room-menu" id="expand-rooms">
+                        <a><i class="fa-solid fa-grip"></i> Räume</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <div class="rooms">
+
+                    </div>
+                    <div class="item room-menu" id="add-room">
+                        <a> <i class="fa-solid fa-plus"></i> Raum hinzufügen</a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                    <hr class="room-menu">
+                    <div class="header-item" id="logout">
+                        <a><i class="fa-solid fa-right-from-bracket"></i>Abmelden </a>
+                        <i class="fa-solid fa-caret-right"></i>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Darstellung</h3>
+                <div class="surface appereance">
+                    <div class="header-item">Design
+                        <div class="options" id="select-theme">
+
+                            <label class="option" for="theme-light">
+                                <input type="radio" name="theme-switcher" id="theme-light">🌞 Hell</label>
+
+                            <label class="option" for="theme-dark">
+                                <input type="radio" name="theme-switcher" id="theme-dark">🌛 Dunkel</label>
+                        </div>
+                    </div>
+                    <div class="header-item">Akzentfarbe
+                        <div class="options">
+                            <input type="color" name="" id="select-accent-color">
+                        </div>
+                    </div>
+            </section>
+            <section class="app-info">
+                <a id="open-info-modal">Smart Codelabs, Juli 2023</a>
+                <a id="open-contact-modal">Kontakt</a>
+                <a>Hilfe</a>
+            </section>
+        </div>
+        <nav class="navbar" id="navbar">
+
+            <label class="nav-el" for="nav-administration" id="nav-administration-label" onclick="ShowAdminWin()">
+                <input type="radio" name="nav" id="nav-administration" checked>
+                <i class="fa-solid fa-list-check"></i>
+                <p>Verwaltung</p>
+            </label>
+
+            <label class="nav-el" for="nav-settings" id="nav-settings-label" onclick="ShowSettingsWin()">
+                <input type="radio" name="nav" id="nav-settings">
+                <i class="fa-solid fa-gear round"></i>
+                <p>Einstellungen</p>
+            </label>
+
+            <label for="toggle-sidebar" class="nav-el" id="toggle-sidebar-label">
+                <input type="checkbox" name="toggle-sidebar" id="toggle-sidebar">
+                
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                
+                <p>Sidebar einfahren</p>
+            </label>
+        </nav>
+
+        <!-- Modals -->
+
+        <dialog id="add-modal">
+            <h2 id="add-modal-title">$value hinzufügen</h2>
+            <form action="" method="dialog" return false;>
+                <input type="text" name="new-value" id="new-value">
+                <button id="close-value-dialog">Abbrechen</button>
+                <input type="submit" value="Hinzufügen" id="submit-value">
+            </form>
+
+        </dialog>
+
+
+        <dialog id="new-room-occ">
+            <h2>Neue Raumbesetzung</h2>
+            <span class="close-modal" data-target="new-room-occ">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <form id="new-room-occ-form" method="dialog" return false;>
+                <label for="signatures">Signatur</label>
+                <select name="signatures" id="signatures" class="full">
+
+                </select>
+
+                <label for="rooms">Raum</label>
+                <select name="rooms" id="rooms" class="full"></select>
+
+
+                <label for="pick-date">Datum</label>
+                <input type="date" class="full" name="pick-date" id="pick-date" required>
+
+                <label for="time">Uhrzeit</label>
+
+                <label for="time-from" class="time-label">von</label>
+                <input type="time" name="time" id="time-from" required>
+
+                <label for="time-to" class="time-label">bis</label>
+                <input type="time" name="time" id="time-to" required>
+
+
+                <label for="notes">Notiz</label>
+                <textarea name="notes" class="full" id="notes" cols="30" rows="10"></textarea>
+
+                <input type="submit" value="Hinzufügen" id="add-room-occ">
+            </form>
+        </dialog>
+
+        <dialog id="initial-setup">
+
+            <div class="static">
+                <div class="tabs">
+                    <section class="tab" id="tutorial-welcome" data-tab-order="1">
+                        <h2>Wilkommen bei rooms.app!</h2>
+                        <p>Ihrem digitalen Assistenten, wenn es darum geht, digital Raumbesetzungen einzuspeichern und
+                            abzurufen.
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-add-rooms" data-tab-order="2">
+                        <h2>Fügen Sie ihre Räume hinzu</h2>
+                        <p>Dies sind die Räume, die später verwaltet werden. Im Nachhinein können sie auch jederzeit
+                            verändert
+                            werden.
+                            werden
+                        </p>
+                        <p>
+                            Sie können Räume unter <i class="fa-solid fa-gear"></i>Einstellungen > Raum hinzufügen
+                            hinzufügen
+                        </p>
+                    </section>
+                    <section class="tab" id="tutorial-add-signatures" data-tab-order="3">
+                        <h2>Fügen sie Signaturen hinzu</h2>
+                        <p>Mit den Signaturen können Raumbelegungen später erstellt werden. Im Nachhinein können sie
+                            auch
+                            jederzeit verändert werden.</p>
+
+                    </section>
+                    <section class="tab" id="tutorial-finish" data-tab-order="4">
+                        <h2>Sie sind startklar!</h2>
+                        <p>Viel Spaß mit der App!</p>
+                    </section>
+                </div>
+            </div>
+            <nav>
+                <span class="dot" data-indicator="tutorial-welcome"></span>
+                <span class="dot" data-indicator="tutorial-add-rooms"></span>
+                <span class="dot" data-indicator="tutorial-add-signatur"></span>
+                <span class="dot" data-indicator="tutorial-finish"></span>
+                <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
+            </nav>
+        </dialog>
+        <dialog id="first-login-modal">
+            <h2>Es ist kein Beutzer angemeldet</h2>
+            <p>Sie werden nun zur Anmeldeseite weierleitet</p>
+        </dialog>
+        <dialog id="change-username-modal">
+            <span class="close-username-modal close-modal" data-target="change-username-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Gruppennamen ändern</h2>
+            <label for="new-username">neuer Gruppenname: </label>
+            <input type="text" name="new-username" id="new-username">
+            <input type="submit" id="upgrade-username" value="Aktualisieren" return false;>
+            
+        </dialog>
+        <dialog id="feedback-modal">
+            <span class="close-modal" data-target="feedback-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Kontakt aufnehmen</h2>
+            <p>Bitte fülle alle Felder auf dich zutreffend aus, damit wir dein Anliegen schnellstmöglich bearbeiten
+                können.</p>
+            <label for="feedback-name"> Name: </label>
+            <input type="text" id="feedback-name" name="feedback-name">
+            <label for="feedback-brief">Betreff:</label>
+            <input type="text" id="feedback-brief" name="feedback-brief">
+            <label for="feedback-email">E-Mail-Adresse</label>
+            <input type="email" id="feedback-email" name="feedback-email">
+            <label for="feedback-text">Dein Anliegen</label>
+            <textarea name="feedback-text" id="feedback-text" cols="30" rows="10"></textarea>
+
+        </dialog>
+        <dialog id="select-date-modal">
+            <span class="close-modal" data-target="select-date-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2>Datum auswählen</h2>
+            <form action="" method="dialog" id="" return false;>
+                <label for="date">Datum:</label>
+                <input type="date" name="date" id="date" required>
+                <br>
+                <input type="submit" value="Weiter" id="submit-date">
+            </form>
+
+        </dialog>
+        <dialog id="offline-modal">
+            <img src="../assets/lighthouse.gif" alt="Leutturm, der sich dreht, in der Nacht">
+            <h2>Du bist offline</h2>
+            <p>Bitte stelle eine stabile Internetverbindung her</p>
+        </dialog>
+        <dialog id="changelog-modal">
+            <span class="close-modal" data-target="changelog-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h2><i class="fa-solid fa-clock-rotate-left"></i>Changelog</h2>
+            <p>geupdatete Version:</p><p id="version-database">X.XX</p>
+            <h3>Das ist neu seit dem letzten Update:</h3>
+            <ul id="changes-ul">
+
+            </ul>
+          
+        </dialog>
+    </div>
+    <div class="info">
+        <img src="" alt="">
+        <h1>rooms.app</h1>
+        <h3>by Smart Codelab</h3>
+    </div>
+    <script type="module" src="../db-scripts/config.js"></script>
+    <script src="modals.js" type="module"></script>
+    <script src="nav.js"></script>
+    <script src="../ui-scripts/darkmode.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+    <script src="modals/changelog.js" type="module"></script>
+
+</body>
+
+</html>

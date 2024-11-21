@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passwort ändern | rooms.app</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../ui-styles/loader.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="shortcut icon" href="assets/favico.ico" type="image/x-icon">
+</head>
+
+<body onload="">
+  <div class="loader">
+    <div class="placeholder">
+
+    </div>
+    <div class="loader-main center">
+      <img src="../assets/logo.png" alt="" class="logo">
+      <p>rooms.app wird geladen</p>
+      <div class="spinner">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot" id="loader-foot">
+      by andreasmolnardev
+    </div>
+
+  </div>
+  <div class="notifications">
+    <div class="wrapper center">
+      <div id="template-notification" class="item glass">
+        <div class="icon-wrapper center">
+          <i></i>
+        </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="app container change-password">
+
+    <div class="top-bar">
+      <img src="../assets/logo.png" alt="logo" class="logo">
+      <span class="dot"></span>
+      <a href="../app/" title="Zurück zur App"><i class="fa-solid fa-arrow-left"></i></a>
+      <h1 id="heading">Passwort ändern</h1>
+    </div>
+
+    <div>
+
+      <div class="wrapper center"><img src="../assets/change-password.png" alt="" id="change-password-icon"></div>
+
+      <div class="blob" id="main">
+
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <section class="output">
+
+      </section>
+      <form id="change-password-form">
+
+        <section id="select-change-password-account-section">
+          <label for="select-account">Account:</label>
+
+          <div class="custom-select" id="select-account" data-item-div="logged-in-accounts">
+            <label class="select-box" for="select-account-visible">
+              <i class="fa-solid fa-caret-down center"></i>
+              <input type="checkbox" name="" id="select-account-visible">
+              <p class="select-label">Account auswählen</p>
+            </label>
+            <div class="select-items" id="logged-in-accounts">
+            </div>
+          </div>
+        </section>
+
+        <section id="select-method-section" class="inactive">
+          <label for="select-method">Schritt 1: Methode auswählen</label>
+          <ul id="select-method">
+            <li>
+              <input type="radio" name="select-reset-method" id="reauthenticate" data-description="Sie werden aus rooms.app ausgeloggt und können nach erfolgreichem Einloggen ihr Passwort zurücksetzen">
+              <label for="reauthenticate">
+                <i><img src="../assets/reauthenticate.png" alt=""></i>
+                <p class="text">Neu einloggen</p>
+              </label>
+            </li>
+            <li>
+              <input type="radio" name="select-reset-method" id="email-link" data-description="Ihnen wird eine E-Mail zurückgesetzt, mit der sie ihr Passwort zurücksetzen können">
+              <label for="email-link">
+                <i class="incoming-email-icon"><img src="../assets/email-incoming.png" alt=""
+                    id="img-email-incoming"></i>
+                <p class="text">per E-Mail</p>
+              </label>
+            </li>
+          </ul>
+          <div class="method-info">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </section>
+        <section id="controls-section">
+          <button id="cancel-button" title="Zurück zur App"><i class="fa-solid fa-xmark"></i></button>
+          <button id="next-button"><i class="fa-solid fa-arrow-right"></i>Weiter</button>
+        </section>
+      </form>
+    </div>
+    <ul class="bottom-links">
+      <li><a href="sign-up.html">Registrieren</a></li>
+      <li><a href="kontakt/index.html">Kontakt</a></li>
+      <li><a href="nutzungsbedingungen/index.html">Hilfe</a></li>
+    </ul>
+
+
+  </div>
+  <div class="info">
+    <img src="" alt="">
+    <h1>rooms.app</h1>
+    <h3>by andreasmolnardev</h3>
+  </div>
+  <script type="module" src="./script.js"></script>
+  <script type="module" src="../db-scripts/config.js"></script>
+  <script src="../components/components.js" type="module"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

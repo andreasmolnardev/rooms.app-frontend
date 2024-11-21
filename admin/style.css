@@ -1,0 +1,947 @@
+body {
+    box-sizing: border-box;
+}
+
+header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+header input[type="checkbox"] {
+    display: none;
+}
+
+header i {
+    font-size: 25px;
+}
+
+header i:hover {
+    color: var(--accent-color);
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.app {
+    padding: 15px;
+    border-radius: 10px;
+    height: calc(100vh - 30px);
+    width: calc(100vw - 30px);
+    background-color: var(--background-color);
+    border: rgba(255, 255, 255, 0.416) solid 4px;
+    overflow: hidden;
+}
+
+.app .heading {
+    display: flex;
+    align-items: center;
+}
+
+.app .heading p {
+    background-color: var(--surface-color-primary);
+    border-radius: var(--border-radius);
+    padding: 5px;
+}
+
+
+.app>.item {
+    overflow: scroll;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+#not-avialable {
+    margin: 2px;
+    padding: 2px 5px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    display: none;
+}
+
+#startup {
+    display: none;
+    height: 400px;
+    width: 100%;
+    flex-direction: column;
+}
+
+#startup img {
+    height: 50px;
+}
+
+i.change-license-key {
+    position: relative;
+}
+
+i.change-license-key .fa-rotate {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--surface-color-primary);
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+.request {
+    width: 100%;
+    border: 2px dashed lightslategray;
+    padding-inline: 5px;
+    margin-block: 5px;
+}
+
+.request h2 {
+    grid-column: span 2;
+}
+
+#toggle-sidebar-label {
+    position: absolute;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    display: none;
+}
+
+.nav-el.active i {
+    color: var(--accent-color);
+}
+
+.nav-el.active {
+    font-weight: bold;
+}
+
+main#main-div {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 25px 1fr;
+    gap: 10px;
+}
+
+main#main-div :is(label[for="group-select"], label[for="group-management"]) {
+    grid-row: 1;
+    align-items: center;
+}
+
+main#main-div :is(label[for="group-select"], label[for="group-management"]) h2 {
+    font-size: 1.225rem;
+}
+
+.group-select {
+    grid-column: 1;
+}
+
+.group-select .item {
+    border-radius: 15px;
+    padding-inline: 15px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    justify-items: center;
+    background-color: var(--surface-color-inactive);
+    align-content: center;
+    align-items: center;
+    height: 65px;
+}
+
+.group-select .item:hover:not(:has(input:checked)) {
+    background-color: var(--surface-color-primary);
+}
+
+.group-select .item:has(input:checked) {
+    background-color: var(--surface-color-selected);
+}
+
+.group-select input[type="radio"] {
+    display: none;
+}
+
+
+.group-select .item .text {
+    max-width: 160px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+main#main-div :is(.group-management, .add-group):not(.active) {
+    display: none;
+}
+
+.group-management {
+    overflow-y: scroll;
+    padding-right: 5px;
+    position: relative;
+}
+
+.group-management.loading,
+.group-loader.center {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.group-management.loading .group-loader.center {
+    display: flex;
+}
+
+.group-management .group-loader.center {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--surface-color-inactive-glass);
+    backdrop-filter: blur(16px) saturate(180%);
+}
+
+.group-management section {
+    padding-block: 2.5px;
+}
+
+.group-management section .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 150px));
+    grid-auto-flow: row;
+    gap: 5px;
+}
+
+.group-management section .stack {
+    flex-direction: column;
+}
+
+.group-management section .top-bar {
+    align-items: center;
+    padding-right: 5px;
+    justify-content: space-between;
+}
+
+.group-management section .top-bar:has(.expand) {
+    justify-content: initial;
+}
+
+.group-management section .top-bar .expand {
+    width: 100%;
+}
+
+.group-management section .top-bar span:hover {
+    color: var(--accent-color);
+}
+
+.group-management section .item {
+    position: relative;
+    gap: 5px;
+    padding: 10px;
+    background-color: var(--surface-color-inactive);
+}
+
+.group-management section .content>.item {
+    flex-direction: column;
+    min-width: 85px;
+    height: 75px;
+    border-radius: 10px;
+
+}
+
+.group-management section .stack>.item {
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.group-management section .stack>.item .center {
+    gap: 5px;
+}
+
+.group-management section .stack>.item:nth-child(1) {
+    border-radius: 10px 10px 5px 5px;
+}
+
+.group-management section .stack>.item:nth-last-child(1) {
+    border-radius: 5px 5px 10px 10px;
+}
+
+.group-management section .item:hover {
+    background-color: var(--surface-color-primary);
+}
+
+.group-management section .item:hover>i {
+    color: var(--accent-color);
+}
+
+.group-management section .item:hover .toolbar {
+    display: flex;
+}
+
+.group-management section .item .toolbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+
+.group-management section .item .toolbar span {
+    width: 24px;
+    height: 24px;
+    background-color: var(--on-surface-color-primary);
+    border-radius: 100%;
+    font-size: 16px;
+}
+
+.group-management section .item .toolbar span:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color)
+}
+
+.group-management section .item>i {
+    font-size: 24px;
+}
+
+.group-management section .item>i.fa-circle-user {
+    font-size: 28px;
+}
+
+.group-management section .item:has(i.fa-circle-user)>p {
+    font-size: 14px;
+}
+
+.group-management section .item>p {
+    text-align: center;
+    overflow-wrap: break-word;
+    max-width: 135px;
+}
+
+
+
+.add-group :is(ul, li, .fieldset) {
+    display: flex;
+}
+
+.add-group section {
+    display: none;
+}
+
+.add-group section:is(.fieldset, .controls) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.add-group section :is(h4, label[for="method-tabs"], #method-tabs) {
+    grid-column: -1 / 1;
+}
+
+
+.add-group section.controls {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: 15px;
+    gap: 10px;
+}
+
+.add-group section.controls button {
+    width: min-content;
+    margin-inline: 0;
+}
+
+.add-group ul#method-tabs {
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.add-group ul#method-tabs li label {
+    width: calc(100% - 65px);
+    height: 75px;
+    background-color: var(--surface-color-inactive);
+    border-radius: 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-inline: 15px;
+    gap: 10px;
+}
+
+.add-group ul#method-tabs li label:has(input:checked) {
+    background-color: var(--surface-color-selected);
+}
+
+.add-group ul#method-tabs li label:hover {
+    background-color: var(--surface-color-primary);
+}
+
+.add-group ul#method-tabs li label:hover .plus {
+    background-color: var(--surface-color-primary);
+}
+
+.add-group ul#method-tabs li label:has(input:checked) .plus {
+    background-color: var(--surface-color-selected);
+}
+
+.add-group ul#method-tabs li label input {
+    display: none;
+}
+
+.add-group ul#method-tabs li label i {
+    font-size: 22px;
+}
+
+.new-group-icon {
+    position: relative;
+    width: min-content;
+}
+
+.add-group ul#method-tabs li label .plus {
+    width: 18px;
+    height: 18px;
+    background-color: var(--surface-color-inactive);
+    position: absolute;
+    bottom: -8px;
+    right: -3px;
+    border-radius: 100%;
+}
+
+.add-group ul#method-tabs li label .plus .fa-circle-plus {
+    padding-top: 2px;
+    font-size: 10px;
+}
+
+#settings {
+    display: none;
+    flex-direction: column;
+}
+
+section .surface,
+section.surface {
+
+    border: 2px solid #000000;
+    border-radius: var(--border-radius);
+
+    max-height: 500px;
+    padding: 5px;
+    background-color: var(--surface-color);
+
+}
+
+footer ul {
+    list-style-type: none;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+footer li a {
+    align-items: center;
+}
+
+footer ul li a:hover i {
+    color: var(--accent-color);
+}
+
+footer ul li a:hover p {
+    text-decoration: underline 2px var(--accent-color);
+}
+
+
+dialog#invite-users-modal {
+    overflow: visible;
+}
+
+dialog#invite-users-modal .card-div .card p.info-text {
+    display: none;
+}
+
+dialog#invite-users-modal .card-div .card .fa-circle-question:not(:active) {
+
+    pointer-events: all;
+
+}
+
+dialog#invite-users-modal .card-div .card .fa-circle-question:hover~p.info-text {
+    display: flex;
+    background-color: var(--surface-color-inactive);
+    font-size: 12px;
+    position: absolute;
+    left: -100px;
+    top: -30px;
+    margin: 0;
+    padding: 5px;
+    width: max-content;
+    height: 25px;
+    border-radius: var(--border-radius);
+}
+
+#invite-users-modal #invitation span {
+    display: none;
+    padding: 5px;
+    border: var(--accent-color) 5px solid;
+    border-radius: var(--border-radius);
+}
+
+#invite-users-modal #invitation {
+    display: flex;
+    gap: 10px;
+}
+
+.card-div {
+
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    padding: 5px;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.card input {
+    font-size: 20px;
+    margin-inline: 0;
+    accent-color: var(--accent-color);
+}
+
+
+.card:has(input:checked) {
+    background-color: var(--surface-color);
+
+}
+
+dialog#change-license-modal {
+    max-width: 500px;
+}
+
+dialog#change-license-modal p {
+    margin: 0;
+}
+
+dialog#change-license-modal p#error-output {
+    margin-top: 5p;
+}
+
+
+
+
+dialog#change-license-modal form .grid-wrapper {
+    display: grid;
+    grid-template-columns: 100px auto;
+    gap: 10px;
+    margin-block: 10px;
+}
+
+dialog#group-invitations-modal section.invitation-card {
+    background-color: var(--surface-color-group);
+    padding: 5px;
+    border-radius: 15px;
+}
+
+dialog#group-invitations-modal .credentials {
+    display: inline-flex;
+    margin-inline: auto;
+    width: fit-content;
+    position: relative;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--on-surface-color-group);
+    backdrop-filter: blur(16px) saturate(180%);
+}
+
+dialog#group-invitations-modal .credentials .output {
+    gap: 5px;
+}
+
+dialog#group-invitations-modal .credentials span {
+    font-size: 28px;
+}
+
+dialog#group-invitations-modal :is(.credentials button, button.secondary):hover {
+    background-color: var(--accent-color);
+    color: var(--on-accent-color-text);
+}
+
+dialog#group-invitations-modal i.pin-code-icon {
+    display: flex;
+    height: 24px;
+    aspect-ratio: 1;
+    background-color: var(--text-color);
+    -webkit-mask-image: url('../assets/svgs/password-lock.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('../assets/svgs/password-lock.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+}
+
+dialog#group-invitations-modal .detail-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+dialog#group-invitations-modal .detail-cards>.item {
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-template-rows: repeat(2, auto);
+    background-color: var(--on-surface-color-group);
+    backdrop-filter: blur(16px) saturate(180%);
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+    width: calc(100% - 10px);
+}
+
+dialog#group-invitations-modal .detail-cards>.item:hover i {
+    color: var(--accent-color);
+}
+
+dialog#group-invitations-modal .detail-cards>.item:hover i.pin-code-icon {
+    background-color: var(--accent-color);
+}
+
+dialog#group-invitations-modal .detail-cards>.item i {
+    grid-row: 1 / span 2;
+    padding-inline: 5px;
+}
+
+dialog#group-invitations-modal .detail-cards>.item h4 {
+    grid-row: 1;
+}
+
+dialog#group-invitations-modal .detail-cards>.item p {
+    grid-row: 2;
+}
+
+dialog#group-invitations-modal .actions {
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+dialog#main-info-edit-modal:has(section.active#add-section) {
+    min-height: 50dvh;
+}
+
+dialog#main-info-edit-modal label[for="info-modal-item-name"] {
+    padding: 2px;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+}
+
+dialog#main-info-edit-modal h2#info-modal-item-name {
+    margin-block: 5px;
+}
+
+dialog#main-info-edit-modal:modal {
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+
+dialog#main-info-edit-modal section {
+    display: none;
+}
+
+dialog#main-info-edit-modal section.active {
+    display: block;
+}
+
+dialog#main-info-edit-modal .outer-loader-wrapper {
+    height: 100%;
+}
+
+dialog#main-info-edit-modal .loader-wrapper {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 22px;
+}
+
+dialog#main-info-edit-modal .micro-loader {
+    height: 64px;
+    aspect-ratio: 1;
+    background-image: url(../assets/animations/spinning-line.svg);
+}
+
+dialog#main-info-edit-modal section.active#add-section form input[type="submit"]{
+    display: none;
+}
+
+dialog#main-info-edit-modal section.active#add-section form .field {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    width: 100%;
+}
+
+dialog#main-info-edit-modal section.active#add-section form .input-field {
+    width: 100%;
+    display: flex;
+}
+
+
+dialog#main-info-edit-modal section.active#add-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+dialog#main-info-edit-modal section.active#add-section:has(.tabs) form {
+    display: none;
+}
+
+dialog#main-info-edit-modal section.active#add-section:has(.tabs) form.active {
+    display: block;
+}
+
+dialog#main-info-edit-modal .tabs {
+    display: flex;
+    gap: 5px;
+    margin-block: 5px;
+}
+
+dialog#main-info-edit-modal .tabs .item {
+    padding: 5px;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color-inactive);
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog#main-info-edit-modal .tabs .item:hover:not(:has(input:checked)) i.fa-solid {
+    color: var(--accent-color);
+}
+
+dialog#main-info-edit-modal .tabs .item:has(input:checked) {
+    background-color: var(--surface-color-selected);
+}
+
+dialog#main-info-edit-modal .tabs .item input[type="radio"] {
+    display: none;
+}
+
+dialog#main-info-edit-modal :is(#add-users-manually-form, #invite-users-form) {
+    display: none;
+}
+
+dialog#main-info-edit-modal :is(#add-users-manually-form, #invite-users-form).active {
+    display: block;
+}
+
+dialog#main-info-edit-modal:has(.micro-loader) .toolbar {
+    display: none;
+}
+
+dialog#main-info-edit-modal .room-select ul {
+    list-style-type: none;
+}
+
+dialog#main-info-edit-modal .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+
+dialog#main-info-edit-modal .toolbar button.editor-mode {
+    padding-inline: 10px;
+    gap: 5px;
+    width: min-content;
+}
+
+dialog#main-info-edit-modal:has(section#info-section.active) .toolbar button.editor-mode {
+    display: none;
+}
+
+dialog#main-info-edit-modal:has(section#add-section.active) .toolbar button.editor-mode {
+    display: flex;
+}
+
+dialog#main-info-edit-modal:has(section#add-section.active) .toolbar button.item-details {
+    display: none;
+}
+
+dialog#main-info-edit-modal:has(section#info-section.active) .toolbar button.item-details {
+    display: flex;
+}
+
+
+dialog#main-info-edit-modal .toolbar button:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+}
+
+.progress-bar {
+    display: none;
+    height: 60px;
+    background-color: var(--surface-color);
+    grid-template-columns: 60px auto;
+    align-items: center;
+}
+
+.progress-bar i#progress-check {
+    display: none;
+    justify-self: center;
+    font-size: 25px;
+}
+
+
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+dialog#launcher .app-shortcut {
+    padding: 5px;
+    background: var(--surface-color-inactive);
+    height: 100px;
+    border-radius: var(--border-radius);
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+dialog#launcher .app-shortcut:hover {
+    background: var(--surface-color-primary);
+}
+
+
+@media screen and (max-width: 799px) {
+    nav {
+        background-color: var(--surface-color-inactive);
+        border: #000000 2px solid;
+        left: -5px;
+        bottom: -5px;
+    }
+
+    .nav-el {
+        flex-direction: column;
+    }
+
+    .nav-el p {
+        font-size: 10px
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .app {
+
+        padding: 15px;
+        position: relative;
+        height: max(55vh, 285px);
+        width: max(55vw, 768px);
+        grid-template-rows: 50px calc(max(50vh, 250px) - 80px);
+        grid-template-columns: 260px calc(max(50vw, 768px) - 270px);
+
+    }
+
+    .navbar {
+        width: 250px;
+        flex-direction: column;
+        grid-column: 1;
+        grid-row: 2;
+        border-radius: 10px;
+        justify-content: flex-start;
+        margin: -5px;
+    }
+
+
+
+
+    .nav-el#toggle-sidebar-label {
+        display: flex;
+    }
+
+    .app>.item {
+        grid-column: 2;
+        height: max(calc(45vh - 5px), 190px);
+    }
+
+
+
+    .app:has(.navbar.small) .item {
+        left: 110px;
+        width: calc(100% - 110px);
+    }
+
+    .nav-el {
+        flex-direction: row;
+        height: 55px;
+    }
+
+    .nav-el p {
+        margin: auto;
+    }
+
+    dialog {
+        max-width: 500px;
+    }
+
+
+
+
+}
