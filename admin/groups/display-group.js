@@ -3,6 +3,12 @@ import { fetchWord } from "../../scripts/syllable-seperation/scraper.js";
 
 const selectGroupNavigation = document.getElementById("main-group-select");
 
+const groupManagementSection = document.getElementById('group-management-section')
+const roomsSection = document.getElementById("room-management-section");
+const userGroupsSection = document.getElementById("usergroup-management-section")
+const groupMemberSection = document.getElementById("member-management-section")
+
+
 export function displayGroupInNavigation(adminPermissionBool, groupData, index) {
     let storedGroups = JSON.parse(sessionStorage.getItem("groups"));
 
@@ -12,99 +18,36 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
 
     const groupIdFrontendONLY = crypto.randomUUID();
 
-    let labelClassList;
-    let labelTextContent;
+    addRoomgroupToDOM(groupIdFrontendONLY, groupData.name, adminPermissionBool)
 
     if (adminPermissionBool) {
-        labelClassList = "group-label item"
-        labelTextContent = `<p>${groupData.name}</p>`
-    } else {
-        labelClassList = "group-label item inactive";
-        labelTextContent = `<p>${groupData.name}</p><p>Adminrechte nicht erteilt</p>`
-    }
 
-    selectGroupNavigation.insertAdjacentHTML("afterbegin", `  
-         <label class="${labelClassList}" id="${groupIdFrontendONLY}-group" for="${groupIdFrontendONLY}-group-select">
-                    <input type="radio" name="select-room-group" id="${groupIdFrontendONLY}-group-select"
-                        data-target="group-management-section" data-group-id="${groupIdFrontendONLY}">
-                    <i class="fa-solid fa-user-group"></i>
-                    <div class="text">
-                        ${labelTextContent}
-                    </div>
-                </label>
-        `
-    )
-
-    const groupManagementSection = document.getElementById('group-management-section')
-    const roomsSection = document.getElementById("room-management-section");
-    const userGroupsSection = document.getElementById("usergroup-management-section")
-    const groupMemberSection = document.getElementById("member-management-section")
-
-   
-    if (adminPermissionBool) {
-
+        // request further invitation data from the server
         if (groupData.invitations && Object.keys(groupData.invitations)) {
             Object.keys(groupData.invitations).forEach(invitation => {
                 sendAdminWsMessage({ type: 'invitation-data-request', invitationId: invitation, groupID_frontend: groupIdFrontendONLY });
             });
         }
 
-
+        // triggers when a roomgroup gets selected
         document.getElementById(groupIdFrontendONLY + '-group-select').addEventListener('change', () => {
 
-            groupManagementSection.classList.add('loading')
-
-            roomsSection.querySelector(".content").textContent = ""
-            userGroupsSection.querySelector(".content").textContent = ""
-            groupMemberSection.querySelector(".content").textContent = ""
-        
+    
+            emptyRoomgroupDataDOM();
 
             groupData.rooms.forEach(room => {
-                console.log(room)
-
                 if (room["name-seperated"]) {
-                    roomsSection.querySelector(".content").insertAdjacentHTML('beforeend', `
-                        <div class="item center" data-type="room" id="room-${room.id}">
-                        <div class="toolbar">
-                                            <span class="center" title="Raum bearbeiten">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </span>
-                                        </div>
-                                        <i class="fa-solid fa-cube"></i>
-                                        <p class="title">${room["name-seperated"]}</p>
-                                        </div>`)
+                    addRoomToDOM(room.id, room["name-seperated"])
                 } else {
                     fetchWord(room.name).then(result => {
                         const roomNameSeperated = result.replaceAll('<span class="hilight">-</span>', '&shy;')
-    
-                        roomsSection.querySelector(".content").insertAdjacentHTML('beforeend', `
-                    <div class="item center" data-type="room" id="room-${room.id}">
-                    <div class="toolbar">
-                                        <span class="center" title="Raum bearbeiten">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </span>
-                                    </div>
-                                    <i class="fa-solid fa-cube"></i>
-                                    <p class="title">${roomNameSeperated}</p>
-                                    </div>
-                    `)
-    
+
+                        addRoomToDOM(room.id, roomNameSeperated);
                     }).catch(error => {
-                        roomsSection.querySelector(".content").insertAdjacentHTML('beforeend', `
-                    <div class="item center" data-type="room" id="room-${room.id}">
-                    <div class="toolbar">
-                                        <span class="center" title="Raum bearbeiten">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </span>
-                                    </div>
-                                    <i class="fa-solid fa-cube"></i>
-                                    <p class="title">${room.name}</p>
-                                    </div>
-                    `)
+                        addRoomToDOM(room, room.name);
+                        console.error(error);
                     })
                 }
-
-               
             });
 
             let userGroupKeys = Object.keys(groupData["user-groups"]);
@@ -113,27 +56,14 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
                 fetchWord(usergroup).then(result => {
                     const userGroupNameSeperated = result.replaceAll('<span class="hilight">-</span>', '&shy;')
 
-                    if (result.replaceAll('<span class="hilight">-</span>', '' != usergroup)) {
-                        userGroupsSection.querySelector(".content").insertAdjacentHTML('beforeend', `      <div class="item center" data-type="user-group" id="user-group-${usergroup}">
-                    <div class="toolbar">
-                        <span class="center" title="Nutzergruppe bearbeiten">
-                            <i class="fa-solid fa-pen"></i>
-                        </span>
-                    </div>
-                    <i class="fa-solid fa-user-group"></i>
-                    <p class="title">${usergroup}</p>
-                </div>`)
+                    if (result.replaceAll('<span class="hilight">-</span>', '') != usergroup) {
+                        addUsergroupToDOM(usergroup);
                     } else {
-                        userGroupsSection.querySelector(".content").insertAdjacentHTML('beforeend', `      <div class="item center" data-type="user-group" id="user-group-${usergroup}">
-                            <div>
-                                <span class="center" title="Nutzergruppe bearbeiten">
-                                    <i class="fa-solid fa-pen"></i>
-                                </span>
-                            </div>
-                            <i class="fa-solid fa-user-group"></i>
-                            <p class="title">${userGroupNameSeperated}</p>
-                        </div>`)
+                       addUsergroupToDOM(userGroupNameSeperated);
                     }
+                }).catch(error => {
+                    addUsergroupToDOM(usergroup);
+                    console.error(error);
                 })
             })
 
@@ -166,4 +96,63 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
 
     sessionStorage.setItem("groups", JSON.stringify(storedGroups))
 
+}
+
+function addRoomgroupToDOM(groupID_frontend, groupName, adminPermissionBool) {
+    let labelClassList;
+    let labelTextContent;
+
+    if (adminPermissionBool) {
+        labelClassList = "group-label item"
+        labelTextContent = `<p>${groupName}</p>`
+    } else {
+        labelClassList = "group-label item inactive";
+        labelTextContent = `<p>${groupName}</p><p>Adminrechte nicht erteilt</p>`
+    }
+
+    selectGroupNavigation.insertAdjacentHTML("afterbegin", `  
+         <label class="${labelClassList}" id="${groupID_frontend}-group" for="${groupID_frontend}-group-select">
+                    <input type="radio" name="select-room-group" id="${groupID_frontend}-group-select"
+                        data-target="group-management-section" data-group-id="${groupID_frontend}">
+                    <i class="fa-solid fa-user-group"></i>
+                    <div class="text">
+                        ${labelTextContent}
+                    </div>
+                </label>
+        `
+    )
+}
+
+function emptyRoomgroupDataDOM(){
+    groupManagementSection.classList.add('loading')
+
+
+    roomsSection.querySelector(".content").textContent = ""
+    userGroupsSection.querySelector(".content").textContent = ""
+    groupMemberSection.querySelector(".content").textContent = ""
+}
+
+export function addRoomToDOM(roomId, roomName) {
+    roomsSection.querySelector(".content").insertAdjacentHTML('beforeend', `
+        <div class="item center" data-type="room" id="room-${roomId}">
+        <div class="toolbar">
+                            <span class="center" title="Raum bearbeiten">
+                                <i class="fa-solid fa-pen"></i>
+                            </span>
+                        </div>
+                        <i class="fa-solid fa-cube"></i>
+                        <p class="title">${roomName}</p>
+                        </div>`)
+}
+
+export function addUsergroupToDOM(usergroupName){
+    userGroupsSection.querySelector(".content").insertAdjacentHTML('beforeend', `      <div class="item center" data-type="user-group" id="user-group-${usergroupName}">
+        <div class="toolbar">
+            <span class="center" title="Nutzergruppe bearbeiten">
+                <i class="fa-solid fa-pen"></i>
+            </span>
+        </div>
+        <i class="fa-solid fa-user-group"></i>
+        <p class="title">${usergroupName}</p>
+    </div>`)
 }

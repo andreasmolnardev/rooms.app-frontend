@@ -3,6 +3,7 @@ import { addDelayedEventListener } from "../../shortcuts/dom-added-event-listene
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 import { applyTabControl } from "../tabs/tab-controls.js";
 import { addMembersFormSubmit } from "./add-members-modal.js";
+import { addRoomaddFormSubmit } from "./add-rooms-modal.js";
 import { addUsergroupFormSubmit } from "./add-usergroup.js";
 
 const comboModal = document.getElementById("main-info-edit-modal");
@@ -57,13 +58,13 @@ export function showComboModal(purpose, type, itemId) {
             <form action="" id="new-room-form">
     <div class="field">
         <label for="room-name">Name</label>
-        <input type="text" name="" id="room-name">
+        <input type="text" id="room-name" required>
     </div>
     <div class="field">
         <label for="room-name">max. Personenanzahl</label>
-        <input type="text" name="" id="room-name">
+        <input type="number" id="room-capacity" min="1" required>
     </div>
-    <ul id="room-details">
+    <ul id="room-details" class="tree-view">
         <li>
             <span class="caret">weitere Details (optional)</span>
             <ul class="nested">
@@ -76,6 +77,19 @@ export function showComboModal(purpose, type, itemId) {
 </form>
             `
     );
+
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+      toggler[i].addEventListener("click", function () {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+        this.classList.toggle("caret-down");
+      });
+    }
+
+    addRoomaddFormSubmit();
+
   } else if (purpose == "add" && type == "user-group") {
     addSection.classList.add("active");
     infoSection.classList.remove("active");

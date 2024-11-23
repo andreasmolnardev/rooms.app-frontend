@@ -1,4 +1,4 @@
-import { displayGroupInNavigation } from "../../admin/groups/display-group.js";
+import { addRoomToDOM, displayGroupInNavigation } from "../../admin/groups/display-group.js";
 import { addInvitationToModal } from "../../admin/modals/show-invitations-modal.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 import { showPage } from "../../ui-scripts/page-loading.js";
@@ -95,6 +95,11 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
         } else if (returnedData.type == "user-group-creation-status" && !returnedData.error){
             showNotificationByTemplate("Nutzergruppe wurde erstellt", "info")
             window.location.reload();
+        } else if (returnedData.type == "room-creation-status" && !returnedData.error){
+            showNotificationByTemplate(`Neuer Raum ${returnedData.data["name-seperated"]} wurde erstellt`, "info")
+            addRoomToDOM(returnedData.data.id)
+        } else if (returnedData.type == "room-creation-status" && returnedData.error){
+            console.error(error)
         }
 
 

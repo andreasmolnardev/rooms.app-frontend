@@ -16,7 +16,6 @@ export function addUsergroupFormSubmit(userGroupData){
       const createNewRoomsToggle = document.getElementById('create-new-rooms')
       const editExistingRoomsToggle = document.getElementById('edit-existing-rooms')
 
-      console.log(userGroupData)
 
       if (!usergroupNameInput.value || !checkedReadAccessPermissionRadio || !checkedWriteAccessPermissionRadio) {
         alert("bitte alle benötigten Felder ausfüllen/anklicken")
