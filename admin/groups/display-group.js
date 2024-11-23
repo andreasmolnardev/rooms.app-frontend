@@ -1,5 +1,4 @@
 import { sendAdminWsMessage } from "../../scripts/api/websocket-connection.js";
-import { fetchWord } from "../../scripts/syllable-seperation/scraper.js";
 
 const selectGroupNavigation = document.getElementById("main-group-select");
 
@@ -32,39 +31,21 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
         // triggers when a roomgroup gets selected
         document.getElementById(groupIdFrontendONLY + '-group-select').addEventListener('change', () => {
 
-    
+
             emptyRoomgroupDataDOM();
 
             groupData.rooms.forEach(room => {
                 if (room["name-seperated"]) {
                     addRoomToDOM(room.id, room["name-seperated"])
                 } else {
-                    fetchWord(room.name).then(result => {
-                        const roomNameSeperated = result.replaceAll('<span class="hilight">-</span>', '&shy;')
-
-                        addRoomToDOM(room.id, roomNameSeperated);
-                    }).catch(error => {
-                        addRoomToDOM(room, room.name);
-                        console.error(error);
-                    })
+                    addRoomToDOM(room.id, room.name)
                 }
             });
 
             let userGroupKeys = Object.keys(groupData["user-groups"]);
 
             userGroupKeys.forEach(usergroup => {
-                fetchWord(usergroup).then(result => {
-                    const userGroupNameSeperated = result.replaceAll('<span class="hilight">-</span>', '&shy;')
-
-                    if (result.replaceAll('<span class="hilight">-</span>', '') != usergroup) {
-                        addUsergroupToDOM(usergroup);
-                    } else {
-                       addUsergroupToDOM(userGroupNameSeperated);
-                    }
-                }).catch(error => {
-                    addUsergroupToDOM(usergroup);
-                    console.error(error);
-                })
+                addUsergroupToDOM(usergroup);
             })
 
 
@@ -123,7 +104,7 @@ function addRoomgroupToDOM(groupID_frontend, groupName, adminPermissionBool) {
     )
 }
 
-function emptyRoomgroupDataDOM(){
+function emptyRoomgroupDataDOM() {
     groupManagementSection.classList.add('loading')
 
 
@@ -145,7 +126,7 @@ export function addRoomToDOM(roomId, roomName) {
                         </div>`)
 }
 
-export function addUsergroupToDOM(usergroupName){
+export function addUsergroupToDOM(usergroupName) {
     userGroupsSection.querySelector(".content").insertAdjacentHTML('beforeend', `      <div class="item center" data-type="user-group" id="user-group-${usergroupName}">
         <div class="toolbar">
             <span class="center" title="Nutzergruppe bearbeiten">

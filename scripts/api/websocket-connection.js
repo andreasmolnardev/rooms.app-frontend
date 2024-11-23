@@ -65,7 +65,7 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
 
             for (let index = 0; index < Object.keys(groups).length; index++) {
                 const groupId = Object.keys(groups)[index];
-                adminWs.send(JSON.stringify({type: "get-group-data-request", groupId: groupId, sessionTokenId: sessionTokenId}))
+                adminWs.send(JSON.stringify({ type: "get-group-data-request", groupId: groupId, sessionTokenId: sessionTokenId }))
             }
 
             const ignoreAdminTutorialModalPreference = returnedData.data.preferences.ignoreAdminTutorialModal;
@@ -75,31 +75,33 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
             }
 
             showPage("admin");
-        } else if (returnedData.type == "group-admin-status" && returnedData.data){
+        } else if (returnedData.type == "group-admin-status" && returnedData.data) {
             const group = returnedData.data
 
-            if(returnedData.statuscode == "401"){
+            if (returnedData.statuscode == "401") {
                 displayGroupInNavigation(false, group, groupIndex)
-            } else if (returnedData.statuscode == 200){
-                displayGroupInNavigation(true, group, groupIndex )
+            } else if (returnedData.statuscode == 200) {
+                displayGroupInNavigation(true, group, groupIndex)
             }
 
             groupIndex++;
 
-        } else if (returnedData.type == "invitation-data"){
+        } else if (returnedData.type == "invitation-data") {
             addInvitationToModal(returnedData.data, JSON.parse(sessionStorage.getItem("groups"))[returnedData.groupID_frontend]['invitations'][returnedData.data.invitationId].active)
-        } else if (returnedData.type == "created-invitation-data"){
+        } else if (returnedData.type == "created-invitation-data") {
             const invitationData = returnedData.data;
 
             document.body.dispatchEvent(new CustomEvent("invitation-created", { detail: invitationData }))
-        } else if (returnedData.type == "user-group-creation-status" && !returnedData.error){
+        } else if (returnedData.type == "user-group-creation-status" && !returnedData.error) {
             showNotificationByTemplate("Nutzergruppe wurde erstellt", "info")
             window.location.reload();
-        } else if (returnedData.type == "room-creation-status" && !returnedData.error){
-            showNotificationByTemplate(`Neuer Raum ${returnedData.data["name-seperated"]} wurde erstellt`, "info")
+        } else if (returnedData.type == "room-creation-status" && !returnedData.error) {
+            showNotificationByTemplate(`Neuer Raum ${returnedData.data["name"]} wurde erstellt`, "info")
             addRoomToDOM(returnedData.data.id)
-        } else if (returnedData.type == "room-creation-status" && returnedData.error){
+        } else if (returnedData.type == "room-creation-status" && returnedData.error) {
             console.error(error)
+        } else {
+            console.log(returnedData)
         }
 
 
@@ -107,7 +109,7 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
     };
 }
 
-export function sendAdminWsMessage(msg){
+export function sendAdminWsMessage(msg) {
     if (adminWs && adminWs.readyState == WebSocket.OPEN) {
         try {
             adminWs.send(JSON.stringify(msg));
