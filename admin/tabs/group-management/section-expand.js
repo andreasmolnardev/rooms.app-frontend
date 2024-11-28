@@ -5,7 +5,7 @@ import { ExpandSetting } from "../../../ui-scripts/expand-setting.js";
 let expandsAdmin = ["expand-signatures", "expand-rooms", "expand-invitations"];
 let expandsApp = ["expand-data", "expand-groups"]
 
-let currentSession = sessionStorage.getItem("session");
+let currentSession = localStorage.getItem("session");
 
 
 if (currentSession == "admin") {

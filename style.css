@@ -180,7 +180,7 @@ ul {
     animation: rotateGradient 5s ease infinite;
 }
 
-:where(input[type="submit"], button).tertiary:hover {
+:where(input[type="submit"], button):is(.tertiary, .secondary):hover {
     background: var(--accent-color);
     color: var(--on-accent-color-text);
 }
@@ -246,7 +246,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 5;
+    z-index: 15;
     background-color: var(--surface-color);
 }
 

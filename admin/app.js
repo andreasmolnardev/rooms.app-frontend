@@ -5,8 +5,10 @@ import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickad
 import { getTheme, setTheme, switchTheme } from "../ui-scripts/darkmode.js";
 import { showComboModal } from "./modals/open-info-add-modal.js";
 
-sessionStorage.setItem("session", "admin");
+
 sessionStorage.clear();
+
+localStorage.setItem("session", "admin");
 
 const timestamp = new Date();
 let authTokenId = localStorage.getItem('api-authtoken')
@@ -93,11 +95,11 @@ const groupManagementSection = document.getElementById("group-management-section
 
 mutationObserverQuickadd(groupManagementSection, (mutationList, observer) => {
     for (const mutation of mutationList) {
-   
+
         let item = Object.values(mutation.addedNodes).find(entry => entry.classList && entry.classList.contains("item"))
-       if (!item) {
+        if (!item) {
             break;
-       }
+        }
         const itemType = item.dataset.type;
         item.addEventListener("click", () => { showComboModal("details", itemType, item.id) })
     }
@@ -107,3 +109,21 @@ document.getElementById('view-invitations-button').addEventListener('click', () 
     document.getElementById('group-invitations-modal').showModal();
 })
 
+
+//navigation for adding/creating a new room group
+
+const proceedBtn = document.getElementById("proceed-btn");
+
+proceedBtn.addEventListener('click', () => {
+    document.querySelector('#add-group-section > :is(form, section).active input[type="submit"]').click();
+})
+
+const selectMethodForm = document.getElementById("select-method");
+
+selectMethodForm.addEventListener('submit', (e) => {
+    const checkedAddRoomGroupMethodItem = document.querySelector("input[name='method-tabs']:checked")
+    e.preventDefault();
+    console.log(checkedAddRoomGroupMethodItem)
+    document.getElementById(checkedAddRoomGroupMethodItem.id + '-group').classList.toggle("active");
+    selectMethodForm.classList.remove("active")
+})

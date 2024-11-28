@@ -216,7 +216,8 @@
                 </div>
             </div>
             <div class="add-group" id="add-group-section">
-                <section class="fieldset">
+
+                <form class="fieldset active" id="select-method">
                     <h4>Schritt 1: Methode auswählen</h4>
                     <label for="method-tabs">Methode</label>
                     <ul id="method-tabs">
@@ -240,38 +241,38 @@
                             </label>
                         </li>
                     </ul>
-                </section>
-                <section id="join-existing-group">
-                    <form id="invitation-details">
-                        <section class="surface">
-                            <h3>Bitte die Einladungsdetails eingeben</h3>
-                            <div class="wrapper ">
-                                <i class="fa-solid fa-key"> </i>
-                                <input type="text" name="" id="code-input" placeholder="Code">
-                            </div>
-                            <div class="wrapper">
-                                <i class="fa-solid fa-lock"> </i>
-                                <input type="number" name="" id="pin-code-input" placeholder="Pin">
-                            </div>
-                            <div class="actions">
-                                <button class="secondary" id="upload-invitation-text" type="button"><i
-                                        class="fa-solid fa-file-arrow-up"></i>
-                                    <p>Hochladen</p>
-                                </button>
+                    <input type="submit" class="hidden">
+                </form>
 
-                                <input type="file" name="invitation-fileupload" id="invitation-fileupload"
-                                    style="display: none;" accept="txt">
+                <form id="join-existing-group" class="includes-gap vertical">
 
-                                <button class="secondary" id="paste-invitation-text" type="button"><i
-                                        class="fa-solid fa-paste"></i>
-                                    <p>Einfügen</p>
-                                </button>
-                            </div>
-                        </section>
+                    <h3>Bitte die Einladungsdetails eingeben</h3>
+                    <div class="manual-input-field includes-gap center">
+                        <i class="fa-solid fa-key"> </i>
+                        <input type="text" name="" id="code-input" placeholder="Code">
+                    </div>
+                    <div class="manual-input-field includes-gap center">
+                        <i class="fa-solid fa-lock"> </i>
+                        <input type="number" name="" id="pin-code-input" placeholder="Pin">
+                    </div>
+                    <div class="actions">
+                        <button class="secondary" id="upload-invitation-text" type="button"><i
+                                class="fa-solid fa-file-arrow-up"></i>
+                            <p>Hochladen</p>
+                        </button>
 
-                        <input type="submit" value="Abschicken!">
-                    </form>
-                </section>
+                        <input type="file" name="invitation-fileupload" id="invitation-fileupload" accept=".txt"
+                            class="hidden">
+
+                        <button class="secondary" id="paste-invitation-text" type="button"><i
+                                class="fa-solid fa-paste"></i>
+                            <p>Einfügen</p>
+                        </button>
+                    </div>
+
+
+                    <input type="submit" value="Abschicken!" class="hidden">
+                </form>
                 <section id="create-new-group">
                     <div class="group-management" id="group-management">
                         <section id="add-room-management-section">
@@ -292,8 +293,8 @@
                     </div>
                 </section>
                 <section class="controls">
-                    <button>Zurück</button>
-                    <button>Weiter</button>
+                    <button class="add-group-btn hidden" id="back-btn">Zurück</button>
+                    <button class="add-group-btn" id="proceed-btn">Weiter</button>
                 </section>
             </div>
         </main>
@@ -418,56 +419,56 @@
     <div class="modal-backdrop">
     </div>
 
-        <!-- Modals -->
+    <!-- Modals -->
 
-        <dialog id="initial-setup">
+    <dialog id="initial-setup">
 
-            <div class="static">
-                <div class="tabs">
-                    <section class="tab" id="tutorial-welcome" data-tab-order="1">
-                        <h2>Wilkommen im Admindashboard!</h2>
-                        <p>Hier werden Raumgruppen verwaltet, Benutzer eingeladen, Räume hinzugefügt, etc..
-                        </p>
-                    </section>
-                    <section class="tab" id="tutorial-room-group" data-tab-order="2">
-                        <h2>Zum Erstellen einer neuen Raumgruppe:</h2>
-                        <p>Sie können eine neue Raumgruppe unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe
-                            hinzufügen" -> "Neu erstellen" hinzufügen</p>
+        <div class="static">
+            <div class="tabs">
+                <section class="tab" id="tutorial-welcome" data-tab-order="1">
+                    <h2>Wilkommen im Admindashboard!</h2>
+                    <p>Hier werden Raumgruppen verwaltet, Benutzer eingeladen, Räume hinzugefügt, etc..
+                    </p>
+                </section>
+                <section class="tab" id="tutorial-room-group" data-tab-order="2">
+                    <h2>Zum Erstellen einer neuen Raumgruppe:</h2>
+                    <p>Sie können eine neue Raumgruppe unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe
+                        hinzufügen" -> "Neu erstellen" hinzufügen</p>
 
-                        <h2>Zum Beitreten zu einer bestehenden Raumgruppe</h2>
-                        <p>
-                            Sie können Raumgruppen unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe hinzufügen" ->
-                            "Einer Raumgruppe beitreten"
-                            beitreten
-                        </p>
-                    </section>
-                    <section class="tab" id="tutorial-help" data-tab-order="3">
-                        <h2>Brauchen Sie Hilfe?</h2>
-                        <p>Anleitungen und Tipps finden sie jederzeit beim Fragezeichen</p>
+                    <h2>Zum Beitreten zu einer bestehenden Raumgruppe</h2>
+                    <p>
+                        Sie können Raumgruppen unter dem Menüpunkt "Meine Raumgruppen" -> "Raumgruppe hinzufügen" ->
+                        "Einer Raumgruppe beitreten"
+                        beitreten
+                    </p>
+                </section>
+                <section class="tab" id="tutorial-help" data-tab-order="3">
+                    <h2>Brauchen Sie Hilfe?</h2>
+                    <p>Anleitungen und Tipps finden sie jederzeit beim Fragezeichen</p>
 
-                    </section>
-                    <section class="tab" id="tutorial-finish" data-tab-order="4">
-                        <h2>Sie sind startklar!</h2>
-                        <p>Viel Spaß 🥳</p>
-                    </section>
-                </div>
+                </section>
+                <section class="tab" id="tutorial-finish" data-tab-order="4">
+                    <h2>Sie sind startklar!</h2>
+                    <p>Viel Spaß 🥳</p>
+                </section>
             </div>
-            <nav>
-                <span class="dot" data-indicator="tutorial-welcome"></span>
-                <span class="dot" data-indicator="tutorial-add-rooms"></span>
-                <span class="dot" data-indicator="tutorial-add-signatur"></span>
-                <span class="dot" data-indicator="tutorial-finish"></span>
-                <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
-            </nav>
-        </dialog>
+        </div>
+        <nav>
+            <span class="dot" data-indicator="tutorial-welcome"></span>
+            <span class="dot" data-indicator="tutorial-add-rooms"></span>
+            <span class="dot" data-indicator="tutorial-add-signatur"></span>
+            <span class="dot" data-indicator="tutorial-finish"></span>
+            <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
+        </nav>
+    </dialog>
 
-        <dialog id="first-login-modal">
-            <h2>Es ist kein Beutzer angemeldet</h2>
-            <p>Sie werden nun zur Anmeldeseite weierleitet</p>
-        </dialog>
+    <dialog id="first-login-modal">
+        <h2>Es ist kein Beutzer angemeldet</h2>
+        <p>Sie werden nun zur Anmeldeseite weierleitet</p>
+    </dialog>
 
 
-        <!--     <dialog id="select-date-modal">
+    <!--     <dialog id="select-date-modal">
             <span class="close-modal" data-target="select-date-modal">
                 <i class="fa-solid fa-xmark"></i>
             </span>
@@ -481,108 +482,108 @@
 
         </dialog> -->
 
-        <dialog id="change-group-name">
-            <h2>Gruppenname ändern</h2>
-        </dialog>
+    <dialog id="change-group-name">
+        <h2>Gruppenname ändern</h2>
+    </dialog>
 
-        <dialog id="change-license-modal">
-            <span class="close-modal" data-target="change-license-modal">
-                <i class="fa-solid fa-xmark"></i>
-            </span>
-            <h2>Lizenz ändern</h2>
-            <section class="output">
-                <div id="error-message" class="message">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <p id="output-txt"></p>
-                </div>
-                <div id="success-message" class="message">
-
-                    <i class="fa-solid fa-list-check"></i>
-                    <p>Sie werden in Kürze weitergeleitet</p>
-                </div>
-            </section>
-            <p>Die neue Lizenz wird sofort übernommen und damit (falls vorhanden) die vorherige überschrieben</p>
-            <p id="error-output"></p>
-            <form id="change-license-form">
-                <div class="grid-wrapper">
-                    <label for="license-inputfield">Lizenzcode</label>
-                    <input type="text" id="license-inputfield" placeholder="XXX-XXX">
-                    <label for="expireing-date">Ablaufdatum</label>
-                    <input type="text" id="expireing-date" placeholder="MM-JJ">
-                </div>
-
-                <input type="checkbox" name="overwrite-checkbox" id="overwrite-checkbox">
-                <label for="overwrite-checkbox">Ich bin mir des oben beschriebenen bewusst</label>
-                <input type="submit" value="Abschicken">
-                <div class="progress-bar">
-                    <i class="fa-solid fa-check" id="progress-check"></i>
-                    <div class="lds-ellipsis">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <p id="state-output">wird ausgeführt</p>
-                </div>
-            </form>
-        </dialog>
-
-        <dialog id="group-invitations-modal">
-            <h2>Einladungen</h2>
-            <span class="close-modal" data-target="group-invitations-modal"><i class="fa-solid fa-xmark"></i></span>
-            <section id="active-invitations">
-                <h3>Aktiv</h3>
-            </section>
-            <section id="inactive-invitations">
-                <h3>Inaktiv</h3>
-            </section>
-        </dialog>
-
-        <dialog id="main-info-edit-modal" data-type="">
-            <span class="close-modal" data-target="main-info-edit-modal"><i class="fa-solid fa-xmark"></i></span>
-            <section id="info-section"></section>
-            <section id="add-section">
-            </section>
-            <div class="toolbar">
-                <button class="option editor-mode proceed center tertiary" id="info-add-modal-submit-btn">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    <p>Weiter</p>
-                </button>
-                <button class="option item-details delete-button center tertiary" title="Element bearbeiten">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-                <button class="option item-details delete-button center tertiary" title="Element löschen">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
+    <dialog id="change-license-modal">
+        <span class="close-modal" data-target="change-license-modal">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+        <h2>Lizenz ändern</h2>
+        <section class="output">
+            <div id="error-message" class="message">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p id="output-txt"></p>
             </div>
-        </dialog>
+            <div id="success-message" class="message">
 
-        <dialog id="notifications">
-            <h2>Benachrichtigungen</h2>
-            <span class="close-modal" data-target="notifications-toggle"><i class="fa-solid fa-xmark"></i></span>
-            <section id="system-notification-container" class="center">
-                <p>Keine Benachrichtigungen</p>
-            </section>
-        </dialog>
-
-        <dialog id="launcher">
-            <h2>Alle Apps</h2>
-            <span class="close-modal" data-target="all-apps-toggle"><i class="fa-solid fa-xmark"></i></span>
-            <div class="apps includes-gap">
-                <a href="../admin" class="app-shortcut"><i class="fa-solid fa-user-tie"></i>
-                    <p>Admin-Dashboard</p>
-                </a>
-                <a href="" class="app-shortcut">
-                    <p>Raumdashboard</p>
-                </a>
+                <i class="fa-solid fa-list-check"></i>
+                <p>Sie werden in Kürze weitergeleitet</p>
             </div>
-        </dialog>
+        </section>
+        <p>Die neue Lizenz wird sofort übernommen und damit (falls vorhanden) die vorherige überschrieben</p>
+        <p id="error-output"></p>
+        <form id="change-license-form">
+            <div class="grid-wrapper">
+                <label for="license-inputfield">Lizenzcode</label>
+                <input type="text" id="license-inputfield" placeholder="XXX-XXX">
+                <label for="expireing-date">Ablaufdatum</label>
+                <input type="text" id="expireing-date" placeholder="MM-JJ">
+            </div>
 
-        <dialog id="offline-modal">
-            <img src="../assets/lighthouse.gif" alt="Leutturm, der sich dreht, in der Nacht">
-            <h2>Du bist offline</h2>
-            <p>Bitte stelle eine stabile Internetverbindung her</p>
-        </dialog>
+            <input type="checkbox" name="overwrite-checkbox" id="overwrite-checkbox">
+            <label for="overwrite-checkbox">Ich bin mir des oben beschriebenen bewusst</label>
+            <input type="submit" value="Abschicken">
+            <div class="progress-bar">
+                <i class="fa-solid fa-check" id="progress-check"></i>
+                <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <p id="state-output">wird ausgeführt</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="group-invitations-modal">
+        <h2>Einladungen</h2>
+        <span class="close-modal" data-target="group-invitations-modal"><i class="fa-solid fa-xmark"></i></span>
+        <section id="active-invitations">
+            <h3>Aktiv</h3>
+        </section>
+        <section id="inactive-invitations">
+            <h3>Inaktiv</h3>
+        </section>
+    </dialog>
+
+    <dialog id="main-info-edit-modal" data-type="">
+        <span class="close-modal" data-target="main-info-edit-modal"><i class="fa-solid fa-xmark"></i></span>
+        <section id="info-section"></section>
+        <section id="add-section">
+        </section>
+        <div class="toolbar">
+            <button class="option editor-mode proceed center tertiary" id="info-add-modal-submit-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+                <p>Weiter</p>
+            </button>
+            <button class="option item-details delete-button center tertiary" title="Element bearbeiten">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="option item-details delete-button center tertiary" title="Element löschen">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    </dialog>
+
+    <dialog id="notifications">
+        <h2>Benachrichtigungen</h2>
+        <span class="close-modal" data-target="notifications"><i class="fa-solid fa-xmark"></i></span>
+        <section id="system-notification-container" class="center">
+            <p>Keine Benachrichtigungen</p>
+        </section>
+    </dialog>
+
+    <dialog id="launcher">
+        <h2>Alle Apps</h2>
+        <span class="close-modal" data-target="all-apps-toggle"><i class="fa-solid fa-xmark"></i></span>
+        <div class="apps includes-gap">
+            <a href="../admin" class="app-shortcut"><i class="fa-solid fa-user-tie"></i>
+                <p>Admin-Dashboard</p>
+            </a>
+            <a href="" class="app-shortcut">
+                <p>Raumdashboard</p>
+            </a>
+        </div>
+    </dialog>
+
+    <dialog id="offline-modal">
+        <img src="../assets/lighthouse.gif" alt="Leutturm, der sich dreht, in der Nacht">
+        <h2>Du bist offline</h2>
+        <p>Bitte stelle eine stabile Internetverbindung her</p>
+    </dialog>
 
 
     <!--<script src="tabs/group-management/section-expand.js" type="module"></script>-->
@@ -596,6 +597,8 @@
     <!--Modals-->
     <script type="module" src="modals/modal-controls.js"></script>
     <script src="modals/top-bar-modal.js"></script>
+    <script type="module" src="../scripts/download/txt-dl.js"></script>
+    <script type="module" src="../scripts/clipboard/copy-to-clipboard.js"></script>
 
     <!--Settings-->
     <script src="../ui-scripts/darkmode.js" type="module"></script>
@@ -604,6 +607,7 @@
     <script type="module" src="../components/components.js"></script>
 
     <!--Other Stuff-->
+    <script src="./tabs/group-management/join-group.js" type="module"></script>
     <script src="../testing-scripts/admin.js" type="module"></script>
     <!--<script type="module" src="tabs/group-management/section-expand.js"></script>-->
     <script src="modals/change-license-modal.js" type="module"></script>

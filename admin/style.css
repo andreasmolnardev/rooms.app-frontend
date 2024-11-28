@@ -311,34 +311,32 @@ main#main-div :is(.group-management, .add-group):not(.active) {
     max-width: 135px;
 }
 
-
-
-.add-group :is(ul, li, .fieldset) {
+.add-group :is(ul, li) {
     display: flex;
 }
 
-.add-group section {
+.add-group> :is(section, form) {
     display: none;
 }
 
-.add-group section:is(.fieldset, .controls) {
+.add-group> :is(section, form).active {
     display: grid;
     grid-template-columns: 2fr 3fr;
 }
 
-.add-group section :is(h4, label[for="method-tabs"], #method-tabs) {
+.add-group>form :is(h4, label[for="method-tabs"], #method-tabs) {
     grid-column: -1 / 1;
 }
 
 
-.add-group section.controls {
+.add-group>section.controls {
     display: flex;
     justify-content: flex-end;
     padding-inline: 15px;
     gap: 10px;
 }
 
-.add-group section.controls button {
+.add-group>section.controls button {
     width: min-content;
     margin-inline: 0;
 }
@@ -347,12 +345,11 @@ main#main-div :is(.group-management, .add-group):not(.active) {
     flex-direction: column;
     gap: 5px;
     padding: 10px;
-    width: 100%;
-
+    width: calc(100% - 20px);
 }
 
 .add-group ul#method-tabs li label {
-    width: calc(100% - 65px);
+    width: 100%;
     height: 75px;
     background-color: var(--surface-color-inactive);
     border-radius: 10px;
@@ -379,6 +376,10 @@ main#main-div :is(.group-management, .add-group):not(.active) {
     background-color: var(--surface-color-selected);
 }
 
+.add-group ul#method-tabs li label :is(p, i) {
+    text-align: center;
+}
+
 .add-group ul#method-tabs li label input {
     display: none;
 }
@@ -390,6 +391,7 @@ main#main-div :is(.group-management, .add-group):not(.active) {
 .new-group-icon {
     position: relative;
     width: min-content;
+    margin-inline: auto;
 }
 
 .add-group ul#method-tabs li label .plus {
@@ -407,13 +409,53 @@ main#main-div :is(.group-management, .add-group):not(.active) {
     font-size: 10px;
 }
 
+.add-group #join-existing-group {
+    grid-template-columns: 4fr 2fr;
+    margin: 5px;
+    column-gap: 10px;
+}
+
+.add-group #join-existing-group h3 {
+    grid-column: span 2;
+}
+
+.add-group #join-existing-group .manual-input-field {
+    grid-column: 1;
+    background-color: var(--surface-color-inactive);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    margin: 2.5px;
+}
+
+.add-group #join-existing-group .manual-input-field input {
+    width: 100%;
+    height: 100%;
+}
+
+.add-group #join-existing-group .actions {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    position: relative;
+}
+
+.add-group #join-existing-group .actions::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 65%;
+    background-color: var(--accent-color);
+}
+
 #settings {
     display: none;
     flex-direction: column;
 }
 
-section .surface,
-section.surface {
+#settings section .surface,
+#settings section.surface {
 
     border: 2px solid #000000;
     border-radius: var(--border-radius);
@@ -573,6 +615,26 @@ dialog#group-invitations-modal i.pin-code-icon {
     mask-repeat: no-repeat;
 }
 
+dialog#group-invitations-modal .credentials .share-panel {
+    position: absolute;
+    right: -60px;
+}
+
+dialog#group-invitations-modal .credentials .share-panel span{
+    background-color: var(--on-surface-color-group);
+    border-radius: 100%;
+    font-size: 16px;
+    outline: 2px solid var(--on-surface-color-group);
+    width: 25px;
+    height: 25px;
+}
+
+dialog#group-invitations-modal .credentials .share-panel span:hover{
+    background-color: var(--accent-color);
+    color: var(--on-accent-color-text);
+    outline-color: var(--accent-color);
+}
+
 dialog#group-invitations-modal .detail-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -660,7 +722,7 @@ dialog#main-info-edit-modal .micro-loader {
     background-image: url(../assets/animations/spinning-line.svg);
 }
 
-dialog#main-info-edit-modal section.active#add-section form input[type="submit"]{
+dialog#main-info-edit-modal section.active#add-section form input[type="submit"] {
     display: none;
 }
 

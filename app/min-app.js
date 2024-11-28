@@ -9,7 +9,7 @@
 import { initiateWsInitConnection } from "../scripts/api/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 
-sessionStorage.setItem("session", "app");
+localStorage.setItem("session", "app");
 
 const timestamp = new Date();
 let authTokenId = localStorage.getItem('api-authtoken')

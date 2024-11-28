@@ -8,9 +8,12 @@ if (!root_prefix) {
 }
 
 const apiAuthTokenId = localStorage.getItem('api-authtoken')
+const lastActiveSession = localStorage.getItem('session')
 
 pingAPIforInternalServerError(() => {
-    if (apiAuthTokenId) {
+    if (apiAuthTokenId && lastActiveSession) {
+        location.replace("./" + lastActiveSession);
+    } else if (authTokenId){
         location.replace("./app");
     }
 });
