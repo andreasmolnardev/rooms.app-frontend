@@ -1,5 +1,3 @@
-import { downloadAsTxt } from "../../scripts/download/txt-dl.js"
-
 const groupInvitationsModal = document.getElementById("group-invitations-modal")
 
 export function addInvitationToModal(invitation, state_active) {

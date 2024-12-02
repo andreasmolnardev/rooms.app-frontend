@@ -113,6 +113,7 @@ document.getElementById('view-invitations-button').addEventListener('click', () 
 //navigation for adding/creating a new room group
 
 const proceedBtn = document.getElementById("proceed-btn");
+window.proceedBtn = proceedBtn;
 
 proceedBtn.addEventListener('click', () => {
     document.querySelector('#add-group-section > :is(form, section).active input[type="submit"]').click();

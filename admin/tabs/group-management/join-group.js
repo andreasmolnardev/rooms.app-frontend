@@ -1,3 +1,4 @@
+import { sendAdminWsMessage } from "../../../scripts/api/websocket-connection.js";
 import { showNotification } from "../../../ui-scripts/notifications/notifications.js";
 
 let uploadInvitationFileBtn = document.getElementById('upload-invitation-text');
@@ -58,9 +59,9 @@ function fillInvitationFormOut(text){
 codeInput.addEventListener('keyup', () => {pinInput.dispatchEvent(new Event("keyup"))});
 
 pinInput.addEventListener('keyup', () => {
-    console.log(codeInput.value.length)
+    let date = new Date(); 
     if (codeInput.value.length == 6 && pinInput.value.length == 4) {
-        alert("Einladungsdaten werden überprüft")
+        sendAdminWsMessage({type: "validate-invitation", data: {code: codeInput.value, pin: pinInput.value}, date: date})
     } else {
         
     }

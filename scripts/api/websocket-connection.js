@@ -87,7 +87,8 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
             groupIndex++;
 
         } else if (returnedData.type == "invitation-data") {
-            addInvitationToModal(returnedData.data, JSON.parse(sessionStorage.getItem("groups"))[returnedData.groupID_frontend]['invitations'][returnedData.data.invitationId].active)
+            console.log(returnedData)
+            addInvitationToModal(returnedData.data, returnedData.data.active)
         } else if (returnedData.type == "created-invitation-data") {
             const invitationData = returnedData.data;
 
@@ -100,8 +101,14 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
             addRoomToDOM(returnedData.data.id)
         } else if (returnedData.type == "room-creation-status" && returnedData.error) {
             console.error(error)
+        } else if (returnedData.type == "invitation-lookup") {
+            if (returnedData.invitation) {
+                proceedBtn.innerHTML = `Zu "${returnedData.invitation.data.groupName}" beitreten` 
+            } else {
+                alert(returnedData.error)
+            }
         } else {
-            console.log(returnedData)
+           console.log(returnedData)
         }
 
 

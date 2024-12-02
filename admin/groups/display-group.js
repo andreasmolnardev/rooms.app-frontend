@@ -24,7 +24,7 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
         // request further invitation data from the server
         if (groupData.invitations && Object.keys(groupData.invitations)) {
             Object.keys(groupData.invitations).forEach(invitation => {
-                sendAdminWsMessage({ type: 'invitation-data-request', invitationId: invitation, groupID_frontend: groupIdFrontendONLY });
+                sendAdminWsMessage({ type: 'invitation-data-request', invitationId: invitation, groupID_frontend: groupIdFrontendONLY, date: new Date()});
             });
         }
 

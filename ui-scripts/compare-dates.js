@@ -3,8 +3,6 @@ export function isDate1Later(date1, date2) {
     const parsedDate1 = parseDateString(date1);
     const parsedDate2 = parseDateString(date2);
 
-    console.log(parsedDate1)
-
     return parsedDate1 > parsedDate2;
 }
 
