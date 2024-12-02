@@ -1277,6 +1277,9 @@ dialog#room-occupation-details #participants .item i:hover {
         height: 100%;
     }
 
+    .app:has(.navbar.small){
+        grid-template-columns: 95px calc(max(50vw, 768px) - 105px);
+    }
 
     #rooms-div {
         display: grid;
@@ -1346,20 +1349,9 @@ dialog#room-occupation-details #participants .item i:hover {
         height: max(calc(45vh - 5px), 190px);
     }
 
-
-
-
-    .app:has(.navbar.small) .item {
-        left: 110px;
-        width: calc(100% - 110px);
-    }
-
-
-
     dialog#messages ul#messenger-tabs li label i {
         font-size: 15px;
     }
-
 
 }
 

@@ -90,13 +90,6 @@
             <h1 id="heading">rooms.app</h1>
             <div>
                 <section>
-                    <label for="messages-toggle" title="Nachrichten">
-                        <input type="checkbox" name="top-bar" id="messages-toggle" data-target="messages">
-                        <i class="fa-solid fa-comment"></i>
-                        <div class="dot"></div>
-                    </label>
-                </section>
-                <section>
                     <label for="notifications-toggle" title="Benachrichtigungen">
                         <input type="checkbox" name="top-bar" id="notifications-toggle" data-target="notifications">
                         <i class="fa-solid fa-bell"></i>
@@ -532,70 +525,6 @@
 
         </dialog> -->
 
-        <dialog id="messages">
-            <!--<header class="dialog-header"></header>-->
-            <div class="dialog-body" id="messages-div">
-                <span class="close-topbar-modal" data-target="messages-toggle"><i class="fa-solid fa-xmark"></i></span>
-                <form id="recent-chats">
-                    <ul id="messenger-tabs">
-                        <h2 id="messages-modal-title">Nachrichten</h2>
-                        <li class="hidden">
-                            <input type="radio" data-target="chats-empty-section" name="messenger-nav">
-                        </li>
-                        <li class="hidden">
-                            <input type="radio" data-target="select-conversation-section" name="messenger-nav" checked>
-                        </li>
-                        <li>
-                            <label for="new-chat-section-radio" class="start-new-chat"> <input type="radio"
-                                    name="messenger-nav" data-target="new-chat-section" id="new-chat-section-radio">
-                                <i class="fa-solid fa-plus"></i>
-                                <p> Neuen Chat anfangen</p>
-                            </label>
-                        </li>
-                    </ul>
-                </form>
-                <section class="conversations">
-                    <div class="initial center item" id="chats-empty-section">
-                        <img src="../assets/messages-empty.png" alt="">
-                        <h3>Noch keine Chats</h3>
-                    </div>
-                    <div class="select-conversation center item" id="select-conversation-section">
-                        <img src="../assets/chat.png" alt="">
-                        <h3>Konversation auswählen</h3>
-                    </div>
-                    <div class="new-chat item" id="new-chat-section">
-                        <form class="info surface" id="dismiss-messenger-information-form">
-                            <i class="fa-solid fa-info"></i>
-                            <p>Nachrichten können an alle Mitglieder von gemeinsamen Gruppen geschickt werden</p>
-                            <div class="options">
-                                <input type="checkbox" id="dismiss-messenger-information"><label
-                                    for="dismiss-messenger-information" class="unselectable"> nicht mehr
-                                    anzeigen</label>
-                                <input type="submit" value="Ausblenden">
-                            </div>
-                        </form>
-                        <form id="new-conversation-form">
-                            <label for="select-message-destination" class="center">Empfänger</label>
-                            <div class="custom-select" id="select-receiver">
-                                <label class="select-box" for="select-message-destination-items-visible">
-                                    <i class="fa-solid fa-caret-down center"></i>
-                                    <input type="checkbox" name="" id="select-message-destination-items-visible">
-                                    <p class="select-label">Empfänger auswählen</p>
-                                </label>
-                                <div class="select-items" id="new-conversation-form-items">
-                                </div>
-                            </div>
-                            <label for="message-text">Text</label>
-                            <textarea name="message-text" id="message-text" cols="20" rows="5"
-                                placeholder="Text hier eingeben"></textarea>
-                            <input type="submit" value="Abschicken">
-                        </form>
-                    </div>
-
-                </section>
-            </div>
-
-        </dialog>
         <dialog id="notifications">
             <h2>Benachrichtigungen</h2>
             <span class="close-topbar-modal" data-target="notifications-toggle"><i class="fa-solid fa-xmark"></i></span>
