@@ -35,6 +35,22 @@ if (!authTokenId) {
                 sessionStorage.setItem("sessionToken", result.sessionTokenId)
                 initiateWsAdminConnection("start-admin-session", result.sessionTokenId, ip, apiRoot)
             }
+        }).catch(error => {
+            const loader = document.querySelector(".loader-main")
+            loader.querySelector("p").textContent = "Verbidung zum Server fehlgeschlagen"
+            loader.querySelector(".spinner").style.display = "none"
+            loader.querySelector("img").src = "../assets/custom-icons/server-error.png"
+            loader.insertAdjacentHTML(`beforeend`, /*html*/`
+                <p id="error-desciption"> dies ist nur ein temporärer Fehler. Mögliche Vorgehensweisen sind:`)
+            loader.insertAdjacentHTML(`beforeend`, /*html*/`
+                <ul class="measures">
+                    <li> <a href=""><i class="fa-solid fa-rotate-right"></i><p>Seite neu laden</p></a></li>
+                    <li><a href=""> <i class="fa-solid fa-user-tie"></i><p>Admin kontaktieren</p></a></li>
+                    <li><a href="https://github.com/andreasmolnardev/rooms.app-frontend/issues/new/choose"> <i class="fa-solid fa-bug"></i><p>Fehler melden</p></a></li>
+                </ul>
+                
+                `)
+            console.log(error)
         })
     })
 }
@@ -119,12 +135,26 @@ proceedBtn.addEventListener('click', () => {
     document.querySelector('#add-group-section > :is(form, section).active input[type="submit"]').click();
 })
 
+let checkedAddRoomGroupMethodItem
+
+const backBtn = document.getElementById("back-btn");
+
+backBtn.addEventListener("click", () => {
+    document.getElementById(checkedAddRoomGroupMethodItem.id + '-group').classList.toggle("active");
+    document.getElementById("select-method").classList.toggle("active")
+})
+
 const selectMethodForm = document.getElementById("select-method");
 
 selectMethodForm.addEventListener('submit', (e) => {
-    const checkedAddRoomGroupMethodItem = document.querySelector("input[name='method-tabs']:checked")
     e.preventDefault();
-    console.log(checkedAddRoomGroupMethodItem)
+    checkedAddRoomGroupMethodItem = document.querySelector("input[name='method-tabs']:checked")
+    if (checkedAddRoomGroupMethodItem.id == "create-new") {
+        //change titlebar text
+        document.getElementById("room-group-name").innerText = "neue Raumgruppe erstellen"
+    } else {
+        
+    }
     document.getElementById(checkedAddRoomGroupMethodItem.id + '-group').classList.toggle("active");
     selectMethodForm.classList.remove("active")
 })

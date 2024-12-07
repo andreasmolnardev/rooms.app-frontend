@@ -34,6 +34,10 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
 
             showPage("app");
 
+            Object.keys(accountInfo.groups).forEach(groupId => {
+                appWs.send(JSON.stringify({ type: "group-data-request", data: {groupId: groupId}}))
+            });
+
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "room-schedule") {
@@ -103,12 +107,29 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
             console.error(error)
         } else if (returnedData.type == "invitation-lookup") {
             if (returnedData.invitation) {
-                proceedBtn.innerHTML = `Zu "${returnedData.invitation.data.groupName}" beitreten` 
+                window.joinGroupName = returnedData.invitation.data.groupName
+                proceedBtn.innerHTML = `Zu "${window.joinGroupName}" beitreten`
+
+                document.getElementById("join-existing-group").addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    sendAdminWsMessage({ data: { invitationId: returnedData.invitation.id }, type: "join-group-request" })
+                })
             } else {
                 alert(returnedData.error)
             }
+        } else if (returnedData.type == "room-group-joined" && returnedData.status == "success") {
+            adminWs.send(JSON.stringify({ type: "get-group-data-request", groupId: returnedData.groupId, sessionTokenId: sessionTokenId }))
+        } else if (returnedData.type == "room-group-joined" && returnedData.error) {
+            switch (returnedData.error) {
+                case "user is already part of this group":
+                    showNotificationByTemplate(`Ein Beitritt zu "${window.joinGroupName}" ist nicht erforderlich, da du bereits Mitglied bist.`, 'error')
+                    break;
+            
+                default:
+                    break;
+            }
         } else {
-           console.log(returnedData)
+            console.log(returnedData)
         }
 
 
@@ -117,7 +138,11 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
 }
 
 export function sendAdminWsMessage(msg) {
-    if (adminWs && adminWs.readyState == WebSocket.OPEN) {
+    const sessionTokenId = sessionStorage.getItem("sessionToken");
+
+    if (adminWs && adminWs.readyState == WebSocket.OPEN && sessionTokenId) {
+        msg.sessionTokenId = sessionTokenId;
+
         try {
             adminWs.send(JSON.stringify(msg));
         } catch (error) {

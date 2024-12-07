@@ -13,7 +13,7 @@ const lastActiveSession = localStorage.getItem('session')
 pingAPIforInternalServerError(() => {
     if (apiAuthTokenId && lastActiveSession) {
         location.replace("./" + lastActiveSession);
-    } else if (authTokenId){
+    } else if (apiAuthTokenId){
         location.replace("./app");
     }
 });
