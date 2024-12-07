@@ -18,7 +18,6 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
     };
 
     appWs.onmessage = function (event) {
-        console.log('Message received from server:', event.data);
 
         const returnedData = JSON.parse(event.data);
 
@@ -35,11 +34,16 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             showPage("app");
 
             Object.keys(accountInfo.groups).forEach(groupId => {
-                appWs.send(JSON.stringify({ type: "group-data-request", data: {groupId: groupId}}))
+                appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId } }))
             });
 
         } else if (returnedData.type == "app-info") {
             // fill out app details
+        } else if (returnedData.type == "group-data-response" && !returnedData.error) {
+            console.log(returnedData)
+            returnedData.data
+        } else if (returnedData.type == "group-data-response" && returnedData.error) {
+
         } else if (returnedData.type == "room-schedule") {
             const roomSchedule = returnedData.data;
         } else if (returnedData.type == "invitations") {
@@ -124,7 +128,7 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
                 case "user is already part of this group":
                     showNotificationByTemplate(`Ein Beitritt zu "${window.joinGroupName}" ist nicht erforderlich, da du bereits Mitglied bist.`, 'error')
                     break;
-            
+
                 default:
                     break;
             }
