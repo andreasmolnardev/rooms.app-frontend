@@ -42,12 +42,12 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: url(assets/office.jpg);
     background-position: center;
     background-size: cover;
     backdrop-filter: blur(5px);
     font-family: Lexend, Helvetica, sans-serif;
     color: var(--text-color);
+    background-color: #ae927c;
 }
 
 body.dark {

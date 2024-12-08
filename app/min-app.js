@@ -17,6 +17,7 @@ let authTokenId = localStorage.getItem('api-authtoken')
 const apiRoot = localStorage.getItem("apiRoot") ?? "urban-space-barnacle-v56xj9q7vp7cw95v-3000.app.github.dev"
 
 if (!authTokenId) {
+    alert("Login erforderlich")
     window.location.replace("../")
 } else {
     savePublicIpV4().then(ip => {
@@ -44,4 +45,21 @@ if (!authTokenId) {
 
     });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const body = document.body;
+    const backgroundSrc = body.dataset.backgroundSrc;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                body.style.backgroundImage = `url(${backgroundSrc})`;
+                observer.unobserve(body);
+            }
+        });
+    });
+
+    observer.observe(body);
+});
+
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

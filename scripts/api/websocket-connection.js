@@ -1,5 +1,6 @@
 import { addRoomToDOM, displayGroupInNavigation } from "../../admin/groups/display-group.js";
 import { addInvitationToModal } from "../../admin/modals/show-invitations-modal.js";
+import { displayGroup } from "../../app/groups/display-group.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 import { showPage } from "../../ui-scripts/page-loading.js";
 import { setFrontendInfo } from "../../ui-scripts/set-info.js";
@@ -34,14 +35,14 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             showPage("app");
 
             Object.keys(accountInfo.groups).forEach(groupId => {
-                appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId } }))
+                appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId, userGroup: accountInfo.groups[groupId]["user-group"] } }))
             });
 
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
             console.log(returnedData)
-            returnedData.data
+            displayGroup(returnedData.groupId, returnedData.data)
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
 
         } else if (returnedData.type == "room-schedule") {

@@ -2,29 +2,27 @@ const navItems = document.getElementsByClassName('nav-tab-radio');
 
 tabSwitcher();
 
-function tabSwitcher(){
-    for(let i = 0; i < navItems.length; i++){
-        if(navItems[i].checked == true){
-          
+function tabSwitcher() {
+    for (let i = 0; i < navItems.length; i++) {
+        if (navItems[i].checked == true) {
+
             document.getElementById(navItems[i].dataset.target).style.display = "flex"
-       navItems[i].parentElement.classList.add('active');
-        } else if(navItems[i].checked == false){
+            navItems[i].parentElement.classList.add('active');
+        } else if (navItems[i].checked == false) {
             navItems[i].parentElement.classList.remove('active');
             document.getElementById(navItems[i].dataset.target).style.display = "none"
         }
-    
+
     };
-  
+
 }
 
 document.getElementById('navbar').addEventListener('click', () => {
+    tabSwitcher();
 
-tabSwitcher();
-if(navItems[1].checked == true){
-    document.getElementsByClassName('add-btn')[0].style.display = "none";
-} else {
-    document.getElementsByClassName('add-btn')[0].style.display = "flex";
-}
+    if (navItems[1].checked == true) {
+        document.getElementsByClassName('add-btn')[0].classList.remove("active");
+    }
 
 })
 

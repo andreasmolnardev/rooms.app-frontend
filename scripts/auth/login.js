@@ -11,10 +11,14 @@ const apiAuthTokenId = localStorage.getItem('api-authtoken')
 const lastActiveSession = localStorage.getItem('session')
 
 pingAPIforInternalServerError(() => {
-    if (apiAuthTokenId && lastActiveSession) {
-        location.replace("./" + lastActiveSession);
-    } else if (apiAuthTokenId){
-        location.replace("./app");
+    if (apiAuthTokenId) {
+        showNotificationByTemplate("Bereits eingeloggt - Leite nun weiter...", "info")
+
+        if (lastActiveSession) {
+            location.replace("./" + lastActiveSession);
+        } else {
+            location.replace("./app");
+        }
     }
 });
 
@@ -97,3 +101,4 @@ resetPasswordLink.addEventListener('click', () => {
 
 
 })
+
