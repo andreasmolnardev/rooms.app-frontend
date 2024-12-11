@@ -6,13 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | rooms.app</title>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="ui-styles/auth.css">
   <link rel="shortcut icon" href="assets/favico.ico" type="image/x-icon">
   <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
 </head>
 
-<body onload="" data-background-src="assets/office.jpg">
+<body onload="" data-background-src="assets/office.webp">
   <div class="notifications">
     <div class="wrapper center">
       <div id="template-notification" class="item glass">
@@ -71,9 +70,17 @@
   </div>
   <script src="scripts/auth/login.js" type="module"></script>
   <script src="ui-scripts/darkmode.js"></script>
-  <script src="ui-scripts/lazy-load-background.js"></script>
+  <script src="ui-scripts/lazyload/lazy-load-background.js"></script>
   <script>
+    function lazyLoadCSS(href) {
+      const link = document.createElement('link');
+      link.href = href;
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      document.head.appendChild(link);
+    }
 
+    lazyLoadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css')
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

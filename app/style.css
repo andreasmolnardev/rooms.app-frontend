@@ -575,7 +575,7 @@ dialog#new-room-occ {
 dialog#new-room-occ form {
     display: grid;
     grid-template-columns: repeat(5, min-content);
-    grid-template-rows: repeat(5, 25px) min-content min-content;
+    grid-template-rows: repeat(4, 25px) max-content repeat(2, min-content);
     gap: 5px;
 }
 
@@ -592,74 +592,11 @@ dialog#new-room-occ form input {
     height: 20px;
 }
 
-dialog#new-room-occ form .people-select {
+dialog#new-room-occ form .custom-multi-select {
     position: relative;
+    grid-column: -1 / 2;
+    width: calc(100% - 10px);
 
-}
-
-dialog#new-room-occ form .people-select .search {
-    display: flex;
-    flex-direction: column;
-    outline: 1px solid var(--text-color);
-    border-radius: 5px;
-    width: 100%;
-}
-
-dialog#new-room-occ form .people-select .search .wrapper {
-    overflow: scroll;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-dialog#new-room-occ form .people-select .search .wrapper .invited-user {
-    padding-inline: 5px;
-    border-radius: var(--border-radius);
-    font-size: 15px;
-    background: var(--surface-color);
-    white-space: nowrap;
-}
-
-dialog#new-room-occ form .people-select .search input {
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 100%;
-}
-
-dialog#new-room-occ form .people-select .search .wrapper:has(input:focus) {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-bottom: 1.875px grey solid;
-}
-
-dialog#new-room-occ form .people-select .results {
-    font-size: 15px;
-    display: none;
-    padding-block: 5px;
-}
-
-dialog#new-room-occ form .people-select .results p {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 0px 5px;
-    height: 35px;
-    border-radius: 5px;
-}
-
-dialog#new-room-occ form .people-select .results p i {
-    margin: 0px 5px;
-}
-
-dialog#new-room-occ form .people-select .results p:hover {
-    background-color: var(--accent-color);
-}
-
-dialog#new-room-occ form .search:has(input:focus) {
-    position: absolute;
-    outline-width: 1.875px;
 }
 
 dialog#new-room-occ form :is(.search:has(input:focus) .results, .results:hover) {

@@ -15,7 +15,7 @@
 
 </head>
 
-<body data-background-src="../assets/office.jpg">
+<body data-background-src="../assets/office.webp">
     <div class="loader">
         <div class="placeholder">
 
@@ -222,8 +222,8 @@
                     <div class="item personal-data">Passwort
                         <div class="wrapper horizontal">
                             <p class="val center"> &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</p>
-                            <a class="glass center" id="pen-circle" href="../change-password/" title="Passwort ändern"><i
-                                    class="fa-solid fa-pen pen-circle-icon"></i></a>
+                            <a class="glass center" id="pen-circle" href="../change-password/"
+                                title="Passwort ändern"><i class="fa-solid fa-pen pen-circle-icon"></i></a>
                         </div>
                     </div>
 
@@ -350,7 +350,7 @@
 
         <div class="modal-backdrop">
         </div>
-    
+
 
         <!-- Modals -->
 
@@ -446,22 +446,25 @@
                 <input type="time" name="time" id="time-to">
 
                 <label for="members" title="außer mir">Teilhabende</label>
-                <div class="people-select full">
+
+                <div class="invited-members-select custom-multi-select" id="invited-members-select">
                     <div class="search">
-                        <div class="wrapper">
-                            <div id="invited-users">
-                            </div>
-                            <input type="text" placeholder="z.B. Max Mustermann" id="search-group-member">
-
+                        <div class="wrapper center">
+                            <ul class="selected">
+                            </ul>
+                            <input type="text" placeholder="z.B. Max Mustermann"
+                                id="invited-members-select-search-item">
+                            <label for="invited-members-select-show-items-checkbox" class="center">
+                                <input type="checkbox" id="invited-members-select-show-items-checkbox">
+                                <span class="caret-round center"><i class="fa-solid fa-caret-down"></i></span>
+                            </label>
                         </div>
-                        <div class="results" id="people-select-results">
-
-                            <p><i class="fa-solid fa-plus"></i>Per E-Mail einladen</p>
-                        </div>
+                        <ul class="results" data-multi-select-id="invite-members-select">
+                           
+                        </ul>
                     </div>
-
-
                 </div>
+
 
                 <label for="notes">Notiz</label>
                 <textarea name="notes" class="full" id="notes" cols="30" rows="10"></textarea>
@@ -619,6 +622,8 @@
     <script src="modals/top-bar-modal.js"></script>
     <script src="../ui-scripts/container-view/container-view.js"></script>
     <script src="../ui-scripts/scroll.js"></script>
+    <script type="module" src="../components/components.js"></script>
+    <script src="../testing-scripts/app.js" type="module"></script>
 
 </body>
 

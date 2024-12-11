@@ -1,0 +1,85 @@
+.custom-multi-select {
+    width: fit-content;
+    position: relative;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: var(--background-color);
+    border: 1px solid var(--text-color);
+}
+
+
+.custom-multi-select ul {
+    list-style-type: none;
+}
+
+.custom-multi-select .search .wrapper {
+    flex-direction: row;
+}
+
+.custom-multi-select .search ul.selected li {
+    margin-inline: 5px;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color-primary);
+}
+
+.custom-multi-select .search input[type="checkbox"] {
+    display: none;
+}
+
+.custom-multi-select .search input[type="text"] {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.custom-multi-select .results {
+    z-index: 5;
+    position: absolute;
+    left: -0.5px;
+    display: none;
+    background-color: var(--surface-color-group);
+    width: calc(100% - 10px);
+    padding: 5px;
+    border: 1px solid var(--text-color);
+    border-radius: 0px 0px 5px 5px;
+}
+
+.custom-multi-select span.caret-round {
+    height: 16px;
+    transition: transform 200ms ease-in-out;
+    border-radius: 100%;
+    color: var(--text-color);
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+    aspect-ratio: 1;
+}
+
+.custom-multi-select span.caret-round:hover {
+    background-color: var(--accent-color);
+    color: var(--on-accent-color-text);
+}
+
+.custom-multi-select:has(input[type="text"]:focus, input[type="checkbox"]:checked, .results:hover) span.caret-round {
+    transform: rotate(180deg);
+}
+
+.custom-multi-select:has(input[type="text"]:focus, input[type="checkbox"]:checked) .results,
+.results:hover {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.custom-multi-select:has(input[type="text"]:focus, input[type="checkbox"]:checked) {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.custom-multi-select .results li {
+    width: calc(100% - 10px);
+    padding: 5px;
+    border-radius: var(--border-radius);
+}
+
+.custom-multi-select .results li:hover {
+    background-color: var(--on-surface-color-group);
+}

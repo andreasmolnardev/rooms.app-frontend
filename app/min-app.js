@@ -11,6 +11,8 @@ import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 
 localStorage.setItem("session", "app");
 
+sessionStorage.clear();
+
 const timestamp = new Date();
 let authTokenId = localStorage.getItem('api-authtoken')
 
@@ -36,6 +38,7 @@ if (!authTokenId) {
                 window.location.replace("../")
             } else if (result.sessionTokenId) {
                 //session initiated
+                sessionStorage.setItem("sessionToken", result.sessionTokenId)
                 initiateWsInitConnection("start-session", result.sessionTokenId, ip, apiRoot)
             }
         }).catch(error => {
@@ -61,5 +64,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     observer.observe(body);
 });
+
+const addRoomOccupationForm = document.getElementById("new-room-occ-form")
+
+addRoomOccupationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    //add Room Occupation
+    const roomOccupationTitle = document.getElementById('event-title').value
+
+
+})
+
+
 
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

@@ -26,7 +26,7 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             // fill out account details
             const accountInfo = returnedData.data;
 
-            console.log(accountInfo)
+            window.groups = [];
 
             setFrontendInfo("username-output", accountInfo.username)
             setFrontendInfo("name-output", accountInfo.name)
@@ -35,20 +35,35 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             showPage("app");
 
             Object.keys(accountInfo.groups).forEach(groupId => {
+                window.groups.push(groupId)
                 appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId, userGroup: accountInfo.groups[groupId]["user-group"] } }))
             });
+
+            const dateInput = document.getElementById("date")
+            let date = new Date();
+            const today = date.toISOString().substring(0, 10);
+            dateInput.value = today;
+
+            window.dateInput = dateInput;
 
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
             console.log(returnedData)
             displayGroup(returnedData.groupId, returnedData.data)
+
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
 
-        } else if (returnedData.type == "room-schedule") {
+        } else if (returnedData.type == "room-schedule-response") {
             const roomSchedule = returnedData.data;
-        } else if (returnedData.type == "invitations") {
 
+            console.log(roomSchedule)
+
+            if (roomSchedule) {
+                //display room schedule
+            } else {
+                document.querySelector("#rooms-div .initial.center p").textContent = "Für das eingegebene Datum wurden noch keine Raumbesetzungen gespeichert"
+            }
         }
     };
 }
@@ -140,6 +155,22 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
 
 
     };
+}
+
+export function sendWsClientMessage(msg) {
+    console.log("sending msg " + msg)
+
+    const sessionTokenId = sessionStorage.getItem("sessionToken");
+
+    if (appWs && appWs.readyState == WebSocket.OPEN && sessionTokenId) {
+        msg.sessionTokenId = sessionTokenId;
+
+        try {
+            appWs.send(JSON.stringify(msg));
+        } catch (error) {
+            console.error('Error sending message to admin WebSocket:', error);
+        }
+    }
 }
 
 export function sendAdminWsMessage(msg) {
