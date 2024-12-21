@@ -14,7 +14,6 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
     //open the connection
 
     appWs.onopen = function () {
-        console.log('WebSocket connection opened');
         appWs.send(JSON.stringify({ type: "connect-request", clientIp: ip, sessionTokenId: sessionTokenId }));
     };
 
@@ -35,7 +34,7 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             showPage("app");
 
             Object.keys(accountInfo.groups).forEach(groupId => {
-                window.groups.push(groupId)
+                window.groups[groupId] = accountInfo.groups[groupId]
                 appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId, userGroup: accountInfo.groups[groupId]["user-group"] } }))
             });
 
@@ -49,7 +48,6 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
-            console.log(returnedData)
             displayGroup(returnedData.groupId, returnedData.data)
 
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
@@ -64,6 +62,8 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             } else {
                 document.querySelector("#rooms-div .initial.center p").textContent = "Für das eingegebene Datum wurden noch keine Raumbesetzungen gespeichert"
             }
+        } else if (returnedData.type == "room-occupation-registered"){
+            console.log(returnedData)
         }
     };
 }

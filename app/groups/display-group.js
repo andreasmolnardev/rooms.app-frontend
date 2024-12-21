@@ -73,7 +73,10 @@ export function displayGroup(groupId, groupData) {
             const inviteUsersSelect = components["custom-multi-select"].find(element => element.id == "invited-members-select")
 
             selectedGroup.members.forEach(member => {
-                inviteUsersSelect.addOption(member.name, member.memberId, "invite-members")
+                console.log([member.memberId, window.groups[groupId].memberId])
+                if (member.memberId != window.groups[groupId].memberId) {
+                    inviteUsersSelect.addOption(member.name, member.memberId, "invite-members")                    
+                }
             });
 
 

@@ -15,6 +15,8 @@ export class customMultiSelect {
             childList: true
         };
 
+        this.selectedItems = [];
+
         const callback = function (mutationsList, observer) {
             for (const mutation of mutationsList) {
 
@@ -41,6 +43,10 @@ export class customMultiSelect {
 
                             //push option to selectedItems
                             selectedOption.select();
+
+                            self.selectedItems.push(selectedOption)
+
+                            console.log(selectedOption + "selected")
                         })
 
 
