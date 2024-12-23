@@ -1,10 +1,13 @@
 import { components } from "../../components/components.js";
-import { sendWsClientMessage } from "../../scripts/api/websocket-connection.js";
+import { sendWsClientMessage } from "../../scripts/api/app/websocket-connection.js";
+import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
+import { emptyRoomOccSpaces } from "../sidescroll-roomsdiv.js";
+
+const groupSelect = document.getElementById("select-group")
+window.groupSelect = groupSelect;
 
 export function displayGroup(groupId, groupData) {
 
-    const groupSelect = document.getElementById("select-group")
-    window.groupSelect = groupSelect;
     groupSelect.innerHTML += `<option value="${groupId}">${groupData.name}<option>`;
 
     // verify whether the group with id groupId is set as standard
@@ -36,11 +39,31 @@ export function displayGroup(groupId, groupData) {
                 document.querySelector(".add-btn").classList.add("active")
             }
 
+            const roomsDivDOM = document.getElementById("rooms-div")
+
+            groupsStorage[groupSelect.value].rooms.forEach(room => {
+                roomsDivDOM.insertAdjacentHTML(`beforeend`, /*html*/ `
+                    <div class="room" data-name="${room.id}">
+                     <h3 class="room-name" id="room-name-${room.id}">${room.name}</h3>
+                        <p class="room-occ-space">Keine Besetzungen</p>
+                      </div>
+                `)
+            })
+
 
             if (dateInput.value) {
                 sendWsClientMessage({ type: "room-schedule-request", data: { groupId: groupId, date: dateInput.value } })
             }
 
+        })
+
+        dateInput.addEventListener('change', () => {
+            if (groupSelect.value) {
+                emptyRoomOccSpaces();
+                sendWsClientMessage({ type: "room-schedule-request", data: { groupId: groupId, date: dateInput.value } })
+            } else {
+                showNotificationByTemplate('bitte eine Raumgruppe auswählen', 'warning')
+            }
         })
 
         addRoomOccupationGroupSelect.addEventListener('change', () => {
@@ -75,7 +98,7 @@ export function displayGroup(groupId, groupData) {
             selectedGroup.members.forEach(member => {
                 console.log([member.memberId, window.groups[groupId].memberId])
                 if (member.memberId != window.groups[groupId].memberId) {
-                    inviteUsersSelect.addOption(member.name, member.memberId, "invite-members")                    
+                    inviteUsersSelect.addOption(member.name, member.memberId, "invite-members")
                 }
             });
 
@@ -87,4 +110,35 @@ export function displayGroup(groupId, groupData) {
 
 
 
+}
+
+export function displayGroupSchedule(schedule) {
+    document.querySelector("#rooms-div section.initial").style.display = "none";
+
+    schedule.sort((a, b) => {
+        const timeA = a.timespan[0];
+        const timeB = b.timespan[0];
+        return timeA.localeCompare(timeB);
+    });
+
+    schedule.forEach(occupation => {
+
+        console.log(occupation)
+
+        const targetRoom = document.querySelector(`.room[data-name="${occupation.targetRoom}"]`)
+
+        targetRoom.style.display = 'flex';
+
+        if (targetRoom.querySelector("p.room-occ-space").textContent == "Keine Besetzungen") {
+            targetRoom.querySelector("p.room-occ-space").textContent = ""
+        }
+
+        const creatorName = JSON.parse(sessionStorage.getItem('groups'))[groupSelect.value]["members"].find(member => (member.memberId == occupation.creatorId)).name
+
+        targetRoom.querySelector("p.room-occ-space").insertAdjacentHTML(`beforeend`, /*html*/`
+            <div class="room-occupation" data-title="${occupation.title}" data-room-id="${occupation.targetRoom}" data-date="${occupation.date}" data-time-from="${occupation.timespan[0]}" data-time-to="${occupation.timespan[1]}" data-notes="${occupation.notes}" data-creator="${occupation.creatorId}"> 
+            ${occupation.timespan[0]} bis ${occupation.timespan[1]} : ${creatorName} <span class="invited-users-scheduled center" title="Eingeladene Nutzer: ${"invited user names"}"><p class="center">+${"invitedUsersCount"}</p>
+            <span class="center"> <i class="fa-solid fa-user"></i></span></span>  ${occupation.title} </div>
+        `)
+    })
 }

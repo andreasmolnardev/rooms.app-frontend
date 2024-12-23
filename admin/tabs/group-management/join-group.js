@@ -1,4 +1,4 @@
-import { sendAdminWsMessage } from "../../../scripts/api/websocket-connection.js";
+import { sendAdminWsMessage } from "../../../scripts/api/admin/websocket-connection.js";
 import { showNotification } from "../../../ui-scripts/notifications/notifications.js";
 
 let uploadInvitationFileBtn = document.getElementById('upload-invitation-text');

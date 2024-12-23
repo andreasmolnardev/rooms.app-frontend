@@ -1,4 +1,4 @@
-import { sendAdminWsMessage } from "../../scripts/api/websocket-connection.js";
+import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 
 const comboModal = document.getElementById("main-info-edit-modal");

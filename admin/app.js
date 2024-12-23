@@ -1,4 +1,4 @@
-import { initiateWsAdminConnection } from "../scripts/api/websocket-connection.js";
+import { initiateWsAdminConnection } from "../scripts/api/admin/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 import { addDelayedEventListener } from "../shortcuts/dom-added-event-listener.js";
 import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickadd.js";
@@ -34,6 +34,7 @@ if (!authTokenId) {
                 //session initiated
                 sessionStorage.setItem("sessionToken", result.sessionTokenId)
                 initiateWsAdminConnection("start-admin-session", result.sessionTokenId, ip, apiRoot)
+
             }
         }).catch(error => {
             const loader = document.querySelector(".loader-main")

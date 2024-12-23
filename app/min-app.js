@@ -1,13 +1,5 @@
-//import { SwitchDesignPreference, ThemeGetter, ThemeSetter } from "../ui-scripts/darkmode.js";
-//import { DateToOutput } from "../ui-scripts/dates.js";
-//import { AccentClGetter, AccentClSetter } from "../ui-scripts/accent-cl.js";
-//import { ExpandSetting } from "../ui-scripts/expand-setting.js";
-//import { showPage } from "../ui-scripts/page-loading.js";
-//import { showNotification, showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js"
-//import { filterScheduleByRoom, resetFilter } from "../ui-scripts/filter-schedule.js";
-//import { components } from "../components/components.js";
 import { components } from "../components/components.js";
-import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/websocket-connection.js";
+import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
 

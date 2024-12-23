@@ -1,4 +1,4 @@
-import { sendAdminWsMessage } from "../../scripts/api/websocket-connection.js";
+import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
 
 const selectGroupNavigation = document.getElementById("main-group-select");
 

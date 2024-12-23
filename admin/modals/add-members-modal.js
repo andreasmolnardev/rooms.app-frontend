@@ -1,5 +1,5 @@
 import { components } from "../../components/components.js";
-import { sendAdminWsMessage } from "../../scripts/api/websocket-connection.js";
+import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
 import { addDelayedEventListener } from "../../shortcuts/dom-added-event-listener.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 
