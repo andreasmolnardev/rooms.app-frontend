@@ -25,7 +25,7 @@ if (!authTokenId) {
             },
             body: JSON.stringify({ timestamp: timestamp, authTokenId: authTokenId, ip: ip })
         }).then(response => response.json()).then(result => {
-            if (result.error == "neuer Login erforderlich") {
+            if (result.error == "neuer Login erforderlich" || result.error == "Token existiert nicht auf dem Server... - bitte neu anmelden.") {
                 localStorage.removeItem("api-authtoken")
                 alert(result.error)
                 window.location.replace("../")

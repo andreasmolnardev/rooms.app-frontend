@@ -3,16 +3,13 @@ p {
 }
 
 .app {
-    padding: 15px 15px 0px 15px;
     border-radius: 10px;
-    height: calc(100dvh - 30px);
-    width: calc(100vw - 30px);
+    height: 100dvh;
+    width: 100vw;
     background-color: var(--background-color);
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50px 1fr 80px;
     gap: 5px;
-    border: rgba(255, 255, 255, 0.416) solid 4px;
     overflow: hidden;
 }
 
@@ -27,37 +24,71 @@ p {
     border-radius: var(--border-radius);
 }
 
-header {
-    grid-column: 1 / -1;
-    grid-row: 1;
-}
-
-header input[type="checkbox"] {
-    display: none;
-}
-
-header i {
-    font-size: 25px;
-}
-
-header i:hover {
-    color: var(--accent-color);
-}
-
-header label {
+.navbar {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 5px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 5px;
+    background-color: var(--surface-color-group);
     position: relative;
+    width: calc(100% - 10px);
+    height: 80px;
+    grid-row: 3;
 }
 
-header .dot {
+.navbar.small {
+    width: 75px;
+}
+
+.navbar.small p {
     display: none;
-    position: absolute;
-    top: -10px;
-    right: 0px;
-    height: 10px;
-    width: 10px;
-    border-radius: 100%;
-    background-color: var(--accent-color);
-    outline: 3px var(--background-color) solid;
+}
+
+.navbar .fa-arrow-left {
+    transition: 500ms rotate;
+}
+
+.navbar.small .fa-arrow-left {
+    rotate: -180deg;
+
+}
+
+
+.navbar input {
+    display: none;
+}
+
+.navbar header .logo{
+    height: 64px;
+}
+
+
+.nav-el {
+    border-radius: 10px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 40vw;
+    background-color: var(--surface-color-inactive);
+    /* height: max-content; */
+    gap: 5px;
+}
+
+.nav-el:hover {
+    border-color: var(--accent-color);
+}
+
+.nav-el i {
+    font-size: 28px;
+    margin-inline: auto;
+}
+
+.nav-el p {
+    margin: 0;
 }
 
 .top-bar {
@@ -291,80 +322,14 @@ header .dot {
 
 
 
-.navbar {
-    display: flex;
-    gap: 10px;
-    justify-content: space-around;
-    padding: 5px;
-    border-radius: 20px 20px 0px 0px;
-    box-shadow: 5px;
-    background-color: var(--surface-color-primary);
-    position: relative;
-    width: calc(100% - 10px);
-    height: 80px;
-    grid-row: 3;
-}
-
-.navbar.small {
-    width: 75px;
-}
-
-.navbar.small p {
-    display: none;
-}
-
-.navbar .fa-arrow-left {
-    transition: 500ms rotate;
-}
-
-.navbar.small .fa-arrow-left {
-    rotate: -180deg;
-
-}
-
-
-.navbar input {
-    display: none;
-}
-
-
-
-
-.nav-el {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 3px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 40vw;
-    /* height: max-content; */
-    gap: 5px;
-}
-
-.nav-el:hover {
-    border-color: var(--accent-color);
-}
-
-.nav-el i {
-    font-size: 28px;
-    margin-inline: auto;
-}
-
-.nav-el p {
-    margin: 0;
-}
-
-
 
 #toggle-sidebar-label {
     display: none;
     margin-top: auto;
 }
 
-.nav-el.active i {
-    color: var(--accent-color);
+.nav-el.active {
+    background-color: var(--surface-color-selected);
 }
 
 .nav-el.active {
@@ -1195,11 +1160,7 @@ dialog#room-occupation-details #participants .item i:hover {
 
 @media screen and (min-width: 800px) {
     .app {
-        padding: 15px;
         position: relative;
-        height: max(50vh, 250px);
-        width: max(50vw, 768px);
-        grid-template-rows: 50px calc(max(50vh, 250px) - 80px);
         grid-template-columns: 260px calc(max(50vw, 768px) - 270px);
     }
 
@@ -1217,6 +1178,40 @@ dialog#room-occupation-details #participants .item i:hover {
 
     .app:has(.navbar.small) {
         grid-template-columns: 95px calc(max(50vw, 768px) - 105px);
+    }
+
+    .center:has(>.navbar) {
+        display: block;
+    }
+
+    .navbar {
+        width: 250px;
+        flex-direction: column;
+        grid-column: 1;
+        grid-row: 1;
+        border-radius: 10px;
+        justify-content: flex-start;
+        height: 100dvh;
+        border-radius: 0;
+    }
+
+
+
+    .nav-el {
+        flex-direction: row;
+        height: 55px;
+    }
+
+    .nav-el#toggle-sidebar-label {
+        display: flex;
+    }
+
+    .nav-el p {
+        margin: auto;
+    }
+
+    main#administration{
+        grid-column: 2;
     }
 
     #rooms-div {
@@ -1250,43 +1245,8 @@ dialog#room-occupation-details #participants .item i:hover {
         bottom: 10px;
     }
 
-    .center:has(>.navbar) {
-        display: block;
-    }
 
-    .navbar {
-        width: 250px;
-        height: calc(100% + 30px);
-        flex-direction: column;
-        grid-column: 1;
-        grid-row: 2;
-        border-radius: 10px;
-        justify-content: flex-start;
-        margin: -5px;
-    }
-
-
-
-    .nav-el {
-        flex-direction: row;
-        height: 55px;
-    }
-
-    .nav-el#toggle-sidebar-label {
-        display: flex;
-    }
-
-    .nav-el p {
-        margin: auto;
-    }
-
-    .settings,
-    main {
-        grid-column: 2;
-        grid-row: 2;
-        height: max(calc(45vh - 5px), 190px);
-    }
-
+  
     dialog#messages ul#messenger-tabs li label i {
         font-size: 15px;
     }

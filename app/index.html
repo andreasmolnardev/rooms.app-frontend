@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../ui-styles/loader.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/icons/font-awesome-6-pro-main/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
     <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
@@ -86,26 +86,46 @@
         </div>
     </div>
     <div class=" app">
-        <header>
-            <h1 id="heading">rooms.app</h1>
-            <div>
-                <section>
-                    <label for="notifications-toggle" title="Benachrichtigungen">
-                        <input type="checkbox" name="top-bar" id="notifications-toggle" data-target="notifications">
-                        <i class="fa-solid fa-bell"></i>
-                        <div class="dot"></div>
+        <nav class="navbar glass" id="navbar">
+            <header class="center">
+                <img src="../assets/logo.png" alt="" class="logo">
+                <h1>rooms.app</h1>
+            </header>
 
-                    </label>
+            <label class="space-between">
+                <h3>Belegungsplan</h3>
+                <i class="fa-regular fa-circle-caret-up"></i>
+            </label>
 
-                </section>
-                <section>
-                    <label for="all-apps-toggle">
-                        <input type="checkbox" id="all-apps-toggle" name="top-bar" data-target="launcher">
-                        <i class='bx bxs-grid-alt'></i>
-                    </label>
-                </section>
-            </div>
-        </header>
+            <label class="space-between">
+                <h3>Admin-Dashboard</h3>
+                <i class="fa-regular fa-circle-caret-up"></i>
+            </label>
+
+            <label class="space-between">
+                <h3>Raumgruppe hinzufügen</h3>
+                <i class="fa-regular fa-circle-caret-up"></i>
+            </label>
+
+            <label class="space-between">
+                <h3>Mein Account</h3>
+                <i class="fa-regular fa-circle-caret-up"></i>
+            </label>
+
+            <label class="nav-el" for="nav-settings" id="nav-settings-label" class="nav-tab-radio">
+                <input type="radio" name="nav" id="nav-settings" data-target="settings" class="nav-tab-radio">
+                <i class="fa-solid fa-gear round"></i>
+                <p>Einstellungen</p>
+            </label>
+
+            <label class="nav-el" for="nav-logout" id="nav-settings-label" class="nav-tab-radio">
+                <input type="radio" name="nav" id="nav-logout" class="nav-tab-radio">
+                <i class="fa-solid fa-gear round"></i>
+                <p>Ausloggen</p>
+            </label>
+
+
+        </nav>
 
 
         <main id="administration" class="item">
@@ -322,31 +342,6 @@
             </section>
             <div class="spacer fifty"></div>
         </div>
-        <nav class="navbar glass" id="navbar">
-
-            <label class="nav-el" for="nav-administration" id="nav-administration-label">
-                <input type="radio" name="nav" id="nav-administration" class="nav-tab-radio"
-                    data-target="administration" checked>
-                <i class="fa-solid fa-list-check"></i>
-                <p>Dashboard</p>
-            </label>
-
-            <label class="nav-el" for="nav-settings" id="nav-settings-label" class="nav-tab-radio">
-                <input type="radio" name="nav" id="nav-settings" data-target="settings" class="nav-tab-radio">
-                <i class="fa-solid fa-gear round"></i>
-                <p>Einstellungen</p>
-            </label>
-
-
-            <label for="toggle-sidebar" class="nav-el" id="toggle-sidebar-label">
-                <input type="checkbox" name="toggle-sidebar" id="toggle-sidebar">
-
-                <i class="fa-solid fa-arrow-left"></i>
-
-
-                <p>Sidebar einfahren</p>
-            </label>
-        </nav>
 
         <div class="modal-backdrop">
         </div>
@@ -460,7 +455,7 @@
                             </label>
                         </div>
                         <ul class="results" data-multi-select-id="invite-members-select">
-                           
+
                         </ul>
                     </div>
                 </div>

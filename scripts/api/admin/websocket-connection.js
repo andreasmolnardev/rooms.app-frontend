@@ -13,7 +13,6 @@ export function initiateWsAdminConnection(data, sessionTokenId, ip, apiRoot) {
     //open the connection
 
     adminWs.onopen = function () {
-        console.log('WebSocket connection opened');
         adminWs.send(JSON.stringify({ type: "connect-request", clientIp: ip, sessionTokenId: sessionTokenId }));
     };
 

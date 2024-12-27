@@ -26,15 +26,15 @@ if (!authTokenId) {
             },
             body: JSON.stringify({ timestamp: timestamp, authTokenId: authTokenId, ip: ip, sessionType: "admin" })
         }).then(response => response.json()).then(result => {
-            if (result.error == "neuer Login erforderlich") {
-                localStorage.removeItem("api-authtoken")
-                alert(result.error)
-                window.location.replace("../")
-            } else if (result.sessionTokenId) {
+            if (result.sessionTokenId) {
                 //session initiated
                 sessionStorage.setItem("sessionToken", result.sessionTokenId)
                 initiateWsAdminConnection("start-admin-session", result.sessionTokenId, ip, apiRoot)
 
+            } else if (result.error == "Token existiert nicht auf dem Server... - bitte neu anmelden." || result.error == "neuer Login erforderlich") {
+                localStorage.removeItem("api-authtoken")
+                alert("neuer Login erforderlich")
+                window.location.replace('../')
             }
         }).catch(error => {
             const loader = document.querySelector(".loader-main")
@@ -51,7 +51,9 @@ if (!authTokenId) {
                 </ul>
                 
                 `)
+
             console.log(error)
+            console.log("Hello")
         })
     })
 }
@@ -108,20 +110,6 @@ mutationObserverQuickadd(groupSelectNavigation, (mutationList, observer) => {
 }, { childList: true })
 
 
-const groupManagementSection = document.getElementById("group-management-section")
-
-mutationObserverQuickadd(groupManagementSection, (mutationList, observer) => {
-    for (const mutation of mutationList) {
-
-        let item = Object.values(mutation.addedNodes).find(entry => entry.classList && entry.classList.contains("item"))
-        if (!item) {
-            break;
-        }
-        const itemType = item.dataset.type;
-        item.addEventListener("click", () => { showComboModal("details", itemType, item.id) })
-    }
-}, { childList: true, subtree: true })
-
 document.getElementById('view-invitations-button').addEventListener('click', () => {
     document.getElementById('group-invitations-modal').showModal();
 })
@@ -154,7 +142,7 @@ selectMethodForm.addEventListener('submit', (e) => {
         //change titlebar text
         document.getElementById("room-group-name").innerText = "neue Raumgruppe erstellen"
     } else {
-        
+
     }
     document.getElementById(checkedAddRoomGroupMethodItem.id + '-group').classList.toggle("active");
     selectMethodForm.classList.remove("active")

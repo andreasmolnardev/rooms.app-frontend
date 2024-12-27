@@ -9,6 +9,9 @@ import { addUsergroupFormSubmit } from "./add-usergroup.js";
 const comboModal = document.getElementById("main-info-edit-modal");
 
 export function showComboModal(purpose, type, itemId) {
+
+  console.log("show combo modal executed")
+
   const globalGroupData = JSON.parse(sessionStorage.getItem("groups"));
   const activeGroupId = sessionStorage.getItem("opened-group");
 

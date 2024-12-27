@@ -1,15 +1,28 @@
-const navItems = document.getElementsByClassName('nav-tab-radio');
 
 tabSwitcher();
 
 function tabSwitcher() {
-    for (let i = 0; i < navItems.length; i++) {
-        if (navItems[i].checked == true) {
+    const navItems = document.getElementsByClassName('nav-tab-radio');
+    
+    window.navItems = navItems;
 
-            document.getElementById(navItems[i].dataset.target).style.display = "flex"
+    for (let i = 0; i < navItems.length; i++) {
+
+        let target;
+
+        if (navItems[i].dataset.target) {
+            target = document.getElementById(navItems[i].dataset.target)
+        }
+
+        if (navItems[i].checked) {
             navItems[i].parentElement.classList.add('active');
-        } else if (navItems[i].checked == false) {
+        } else {
             navItems[i].parentElement.classList.remove('active');
+        }
+
+        if (navItems[i].checked && target) {
+            target.style.display = "flex"
+        } else if (target) {
             document.getElementById(navItems[i].dataset.target).style.display = "none"
         }
 
@@ -20,19 +33,9 @@ function tabSwitcher() {
 document.getElementById('navbar').addEventListener('click', () => {
     tabSwitcher();
 
-    if (navItems[1].checked == true) {
+    if (window.navItems[1].checked == true) {
         document.getElementsByClassName('add-btn')[0].classList.remove("active");
     }
 
 })
 
-
-let toggleSidebarLabel = document.getElementById('toggle-sidebar-label');
-let toggleSidebarCb = document.getElementById('toggle-sidebar')
-toggleSidebarLabel.addEventListener('click', () => {
-    if (toggleSidebarCb.checked == true) {
-        document.getElementById('navbar').classList.add('small');
-    } else {
-        document.getElementById('navbar').classList.remove('small');
-    }
-})

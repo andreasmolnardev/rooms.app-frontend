@@ -237,7 +237,6 @@ ul {
     }
 }
 
-
 .notifications {
     position: fixed;
     top: 0px;
@@ -344,25 +343,6 @@ dialog :is(.close-modal, .close-topbar-modal) {
     position: absolute;
     right: 10px;
     top: 10px;
-}
-
-
-
-header {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header span i {
-    font-size: 25px;
-
-}
-
-header div {
-    display: flex;
-    gap: 10px;
 }
 
 i.format-icon {

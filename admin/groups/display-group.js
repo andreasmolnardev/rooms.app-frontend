@@ -1,4 +1,5 @@
 import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
+import { showComboModal } from "../modals/open-info-add-modal.js";
 
 const selectGroupNavigation = document.getElementById("main-group-select");
 
@@ -65,9 +66,17 @@ export function displayGroupInNavigation(adminPermissionBool, groupData, index) 
             `)
             })
 
+            //add Event listener for items
+
+            const items = document.querySelectorAll(".group-management .item:is([data-type = 'room'], [data-type = 'user-group'], [data-type = 'member'])")
+
+            for (let index = 0; index < items.length; index++) {
+                const item = items[index];
+                item.addEventListener("click", () => { showComboModal("details", item.dataset.type, item.id) })
+                
+            }
+
             setTimeout(() => { groupManagementSection.classList.remove('loading') }, 800);
-
-
         })
 
     }
