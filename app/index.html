@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../ui-styles/loader.css">
-    <link rel="stylesheet" href="../assets/icons/font-awesome-6-pro-main/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <link rel="shortcut icon" href="../assets/favico.ico" type="image/x-icon">
     <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
 
@@ -87,49 +85,71 @@
     </div>
     <div class=" app">
         <nav class="navbar glass" id="navbar">
-            <header class="center">
-                <img src="../assets/logo.png" alt="" class="logo">
+            <div class="logo-wrapper center">
+                <img src="../assets/logo.png" alt="" class="logo" loading="lazy">
                 <h1>rooms.app</h1>
-            </header>
+            </div>
 
-            <label class="space-between">
+            <label class="nav-header" id="group-schedule-nav-header" for="hide-group-schedule-nav">
+                <input type="checkbox" id="hide-group-schedule-nav" class="hide-nav-toggle" data-target="schedule-nav">
+                <i class="fa-solid fa-calendar-days"></i>
                 <h3>Belegungsplan</h3>
                 <i class="fa-regular fa-circle-caret-up"></i>
             </label>
 
-            <label class="space-between">
+            <label class="nav-header" for="hide-admin-tab-nav" id="group-admin-nav-header">
+                <input type="checkbox" id="hide-admin-tab-nav" class="hide-nav-toggle" data-target="admin-nav">
+                <i class='bx bxs-grid-alt'></i>
                 <h3>Admin-Dashboard</h3>
                 <i class="fa-regular fa-circle-caret-up"></i>
             </label>
 
-            <label class="space-between">
+            <label class="nav-header" for="hide-add-group-tab-nav">
+                <input type="checkbox" id="hide-add-group-tab-nav" class="hide-nav-toggle" data-target="add-group">
+                <i class="fa-solid fa-circle-plus"></i>
                 <h3>Raumgruppe hinzufügen</h3>
                 <i class="fa-regular fa-circle-caret-up"></i>
             </label>
 
-            <label class="space-between">
+            <label class="nav-el" for="nav-join-group" id="nav-join-group-label">
+                <input type="radio" name="nav" id="nav-join-group" data-target="add-group-section" class="add-group nav-tab-radio">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Raumgruppe beitreten</p>
+            </label>
+
+            <label class="nav-el" for="nav-create-group" id="nav-create-group-label">
+                <input type="radio" name="nav" id="nav-create-group" data-target="add-group-section" class="add-group nav-tab-radio">
+                <i class="fa-solid fa-plus"></i>
+                <p>Raumgruppe erstellen</p>
+            </label>
+
+            <label class="nav-header" for="hide-account-tab-nav">
+                <input type="checkbox" id="hide-account-tab-nav" class="hide-nav-toggle">
+                <i class="fa-solid fa-circle-user"></i>
                 <h3>Mein Account</h3>
                 <i class="fa-regular fa-circle-caret-up"></i>
             </label>
 
-            <label class="nav-el" for="nav-settings" id="nav-settings-label" class="nav-tab-radio">
+            <label class="nav-el" for="nav-settings" id="nav-settings-label">
                 <input type="radio" name="nav" id="nav-settings" data-target="settings" class="nav-tab-radio">
                 <i class="fa-solid fa-gear round"></i>
                 <p>Einstellungen</p>
             </label>
 
-            <label class="nav-el" for="nav-logout" id="nav-settings-label" class="nav-tab-radio">
+            <label class="nav-el" for="nav-logout" id="nav-settings-label">
                 <input type="radio" name="nav" id="nav-logout" class="nav-tab-radio">
-                <i class="fa-solid fa-gear round"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
                 <p>Ausloggen</p>
             </label>
 
 
         </nav>
-
-
-        <main id="administration" class="item">
-
+        <header>
+            <div class="chip">Belegungsplan</div>
+            <h2 id="group-name">Raumgruppenname</h2>
+        </header>
+        <main id="scheule-dashboard" class="item">
+           
             <div class="top-bar">
                 <div class="chips">
                     <div class="chip glass view">
@@ -197,7 +217,7 @@
 
                 <div id="rooms-div">
                     <section class="initial center">
-                        <img src="../assets/confused.png" alt="verwirrter Mensch">
+                        <img src="../assets/confused.png" alt="verwirrter Mensch" loading="lazy">
                         <p>keine Raumgruppe ausgewählt</p>
                     </section>
                 </div>
@@ -212,6 +232,156 @@
 
 
         </main>
+
+        <div class="group-admin-management item" id="group-admin-management-section">
+            <section id="room-management-section">
+                <div class="top-bar includes-gap">
+                    <h3>Räume</h3>
+                    <span title="Raum hinzufügen" class="center" id="add-room-button">
+                        <i class="fa-solid fa-plus">
+                        </i>
+                    </span>
+                </div>
+
+                <div class="content">
+
+                </div>
+            </section>
+            <section id="usergroup-management-section">
+                <div class="top-bar includes-gap">
+                    <h3>Nutzergruppen</h3> <span title="Eine neue Nutzergruppe erstellen" class="center"
+                        id="create-usergroup-button">
+                        <i class="fa-solid fa-plus">
+                        </i>
+                    </span>
+                </div>
+                <div class="content">
+
+                </div>
+            </section>
+            <section id="member-management-section">
+                <div class="top-bar includes-gap">
+                    <h3>Mitglieder</h3>
+                    <div class="expand"></div>
+                    <span title="laufende Einladungen" class="center" id="view-invitations-button">
+                        <i class="fa-solid fa-envelopes-bulk"></i>
+                    </span>
+                    <span title="Mitglied(er) hinzufügen" class="center" id="add-members-button">
+                        <i class="fa-solid fa-plus">
+                        </i>
+                    </span>
+
+                </div>
+                <div class="content">
+
+                </div>
+            </section>
+            <section id="license-management-section">
+                <h3>Lizenz</h3>
+                <div class="stack includes-gap">
+                    <div class="item center">
+                        <div class="center"><i class="fa-solid fa-bullseye"></i>
+                            <p>Status</p>
+                        </div>
+                        <div class="center">
+                            <p>gültig</p>
+                        </div>
+                    </div>
+                    <div class="item center">
+                        <div class="center"><i class="fa-solid fa-calendar-plus"></i>
+                            <p>Lizenz verlängern</p>
+                        </div>
+                        <div class="center"><i class="fa-solid fa-caret-right"></i></div>
+                    </div>
+                    <div class="item center">
+                        <div class="center">
+                            <i class="change-license-key">
+                                <i class="fa-solid fa-key"></i>
+                                <i class="fa-solid fa-rotate"></i>
+                            </i>
+                            <p>Lizenz ändern</p>
+                        </div>
+                        <div class="center">
+                            <i class="fa-solid fa-caret-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="group-loader center">
+                <p>Raumgruppe wird geöffnet</p>
+            </div>
+        </div>
+
+        <div class="add-group item" id="add-group-section">
+
+   
+            <form id="join-existing-group" class="includes-gap vertical">
+
+                <h3>Bitte die Einladungsdetails eingeben</h3>
+                <div class="manual-input-field includes-gap center">
+                    <i class="fa-solid fa-key"> </i>
+                    <input type="text" name="" id="code-input" placeholder="Code">
+                </div>
+                <div class="manual-input-field includes-gap center">
+                    <i class="fa-solid fa-lock"> </i>
+                    <input type="number" name="" id="pin-code-input" placeholder="Pin">
+                </div>
+                <div class="actions">
+                    <button class="secondary" id="upload-invitation-text" type="button"><i
+                            class="fa-solid fa-file-arrow-up"></i>
+                        <p>Hochladen</p>
+                    </button>
+
+                    <input type="file" name="invitation-fileupload" id="invitation-fileupload" accept=".txt"
+                        class="hidden">
+
+                    <button class="secondary" id="paste-invitation-text" type="button"><i class="fa-solid fa-paste"></i>
+                        <p>Einfügen</p>
+                    </button>
+                </div>
+
+
+                <input type="submit" value="Abschicken!" class="hidden">
+            </form>
+            <form id="create-new-group">
+                <section class="license">
+                    <h4>Schritt 1: Lizenzdetails eingeben</h4>
+                    <div class="manual-input-field includes-gap center">
+                        <i class="fa-solid fa-key"> </i>
+                        <input type="text" name="" id="code-input" placeholder="Lizenzcode">
+                    </div>
+                    <div class="manual-input-field includes-gap center">
+                        <i class="fa-solid fa-lock"> </i>
+                        <input type="number" name="" id="pin-code-input" placeholder="Prüfziffer">
+                    </div>
+                    <div class="actions">
+                        <button class="secondary" id="upload-invitation-text" type="button"><i
+                                class="fa-solid fa-file-arrow-up"></i>
+                            <p>Hochladen</p>
+                        </button>
+
+                        <input type="file" name="invitation-fileupload" id="invitation-fileupload" accept=".txt"
+                            class="hidden">
+
+                        <button class="secondary" id="paste-invitation-text" type="button"><i
+                                class="fa-solid fa-paste"></i>
+                            <p>Einfügen</p>
+                        </button>
+                    </div>
+                </section>
+
+            </form>
+            <section class="controls">
+                <button class="add-group-btn" id="back-btn">Zurück</button>
+                <button class="add-group-btn" id="proceed-btn"> <span class="text">Weiter</span>
+                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="37" cy="37" r="35.5" stroke="white" stroke-width="3"></circle>
+                        <path
+                            d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                            fill="white"></path>
+                    </svg></button>
+            </section>
+        </div>
 
         <span class="add-btn center">
             +
@@ -315,7 +485,7 @@
                 <h3>Über rooms.app</h3>
                 <div class="surface general">
                     <div class="app-info menu header-item">
-                        <img src="../assets/logo.png" alt="">
+                        <img src="../assets/logo.png" loading="lazy">
                         <h2>rooms.app</h2>
                         <p>Version:
                             <span id="room-organizer-version-text"></span>
@@ -614,7 +784,7 @@
     <script type="module" src="../ui-scripts/expand-setting.js"></script>
     <script src="../admin/tabs/group-management/section-expand.js" type="module"></script>
     <script src="modals/join-group-modal.js" type="module"></script>
-    <script src="modals/top-bar-modal.js"></script>
+    <script src="modals/top-bar-modal.js" type="module"></script>
     <script src="../ui-scripts/container-view/container-view.js"></script>
     <script src="../ui-scripts/scroll.js"></script>
     <script type="module" src="../components/components.js"></script>

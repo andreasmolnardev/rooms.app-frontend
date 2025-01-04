@@ -47,8 +47,7 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
-            displayGroup(returnedData.groupId, returnedData.data)
-
+            displayGroup(crypto.randomUUID(), returnedData.data)
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
 
         } else if (returnedData.type == "room-schedule-response") {

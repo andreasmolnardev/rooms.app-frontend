@@ -1,5 +1,4 @@
 import { components } from "../../components/components.js";
-import { addDelayedEventListener } from "../../shortcuts/dom-added-event-listener.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 import { applyTabControl } from "../tabs/tab-controls.js";
 import { addMembersFormSubmit } from "./add-members-modal.js";

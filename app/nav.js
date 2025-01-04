@@ -1,41 +1,45 @@
+import { addDelayedEventListener } from "../shortcuts/dom-added-event-listener";
 
 tabSwitcher();
 
 function tabSwitcher() {
     const navItems = document.getElementsByClassName('nav-tab-radio');
-    
     window.navItems = navItems;
 
     for (let i = 0; i < navItems.length; i++) {
 
         let target;
 
-        if (navItems[i].dataset.target) {
-            target = document.getElementById(navItems[i].dataset.target)
+        let item = navItems[i]
+
+        if (item.dataset.target) {
+            target = document.getElementById(item.dataset.target)
         }
 
-        if (navItems[i].checked) {
-            navItems[i].parentElement.classList.add('active');
+        if (item.checked) {
+            item.parentElement.classList.add('active');
         } else {
-            navItems[i].parentElement.classList.remove('active');
+            item.parentElement.classList.remove('active');
         }
 
-        if (navItems[i].checked && target) {
+        if (item.checked && target) {
             target.style.display = "flex"
         } else if (target) {
-            document.getElementById(navItems[i].dataset.target).style.display = "none"
+            document.getElementById(item.dataset.target).style.display = "none"
+        }
+
+        if (item.checked && target.id == "scheule-dashboard"){
+            console.log(item.dataset.groupId)
+            groupSelect.value = item.dataset.groupId
+            groupSelect.dispatchEvent(new Event("change"))
         }
 
     };
 
 }
 
-document.getElementById('navbar').addEventListener('click', () => {
-    tabSwitcher();
+document.getElementById('navbar').addEventListener('click', () => {tabSwitcher()})
 
-    if (window.navItems[1].checked == true) {
-        document.getElementsByClassName('add-btn')[0].classList.remove("active");
-    }
-
-})
-
+addDelayedEventListener("hide-nav-toggle", "change", (node) => {
+    
+}, "class")

@@ -2,6 +2,8 @@ import { components } from "../components/components.js";
 import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
+import { lazyLoadCSS } from "../ui-scripts/lazyload/lazy-load-css.js";
+import { showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js";
 
 localStorage.setItem("session", "app");
 
@@ -35,12 +37,21 @@ if (!authTokenId) {
                 initiateWsInitConnection("start-session", result.sessionTokenId, ip, apiRoot)
             }
         }).catch(error => {
-            console.log('Error:', error); alert(error)
-            showNotificationByTemplate(error, "error")
+            console.log('Error:', error); alert(error);
+            showNotificationByTemplate(error, "error");
+
         });
 
     });
 }
+
+lazyLoadCSS('/app/css/admin.css')
+lazyLoadCSS('/app/css/add-group.css')
+lazyLoadCSS('/app/css/settings.css')
+lazyLoadCSS('/app/css/modals.css')
+lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
+lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;

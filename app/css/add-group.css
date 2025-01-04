@@ -1,0 +1,181 @@
+
+
+.add-group :is(ul, li) {
+    display: flex;
+}
+
+.add-group> :is(section, form) {
+    display: none;
+}
+
+.add-group> :is(section, form).active {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.add-group>form :is(h4, label[for="method-tabs"], #method-tabs) {
+    grid-column: -1 / 1;
+}
+
+
+.add-group>section.controls {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: 15px;
+    gap: 10px;
+}
+
+.add-group>section.controls button {
+    width: fit-content;
+    margin-inline: 0;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: var(--accent-color);
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.add-group>section.controls button .text {
+    color: #fff;
+}
+
+.add-group>section.controls>svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.add-group>section.controls button:hover svg {
+    transform: translateX(5px);
+}
+
+.add-group>section.controls button:active {
+    transform: scale(0.95);
+}
+
+.add-group button#back-btn {
+    display: none;
+}
+
+.add-group:has(form:not(#select-method).active) button#back-btn {
+    display: flex;
+}
+
+.add-group ul#method-tabs {
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    width: calc(100% - 20px);
+}
+
+.add-group ul#method-tabs li label {
+    width: 100%;
+    height: 75px;
+    background-color: var(--surface-color-inactive);
+    border-radius: 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-inline: 15px;
+    gap: 10px;
+}
+
+.add-group ul#method-tabs li label:has(input:checked) {
+    background-color: var(--surface-color-selected);
+}
+
+.add-group ul#method-tabs li label:hover {
+    background-color: var(--surface-color-primary);
+}
+
+.add-group ul#method-tabs li label:hover .plus {
+    background-color: var(--surface-color-primary);
+}
+
+.add-group ul#method-tabs li label:has(input:checked) .plus {
+    background-color: var(--surface-color-selected);
+}
+
+.add-group ul#method-tabs li label :is(p, i) {
+    text-align: center;
+}
+
+.add-group ul#method-tabs li label input {
+    display: none;
+}
+
+.add-group ul#method-tabs li label i {
+    font-size: 22px;
+}
+
+.new-group-icon {
+    position: relative;
+    width: min-content;
+    margin-inline: auto;
+}
+
+.add-group ul#method-tabs li label .plus {
+    width: 18px;
+    height: 18px;
+    background-color: var(--surface-color-inactive);
+    position: absolute;
+    bottom: -8px;
+    right: -3px;
+    border-radius: 100%;
+}
+
+.add-group ul#method-tabs li label .plus .fa-circle-plus {
+    padding-top: 2px;
+    font-size: 10px;
+}
+
+.add-group :is(#join-existing-group, #create-new-group) {
+    grid-template-columns: 4fr 2fr;
+    margin: 5px;
+    column-gap: 10px;
+}
+
+.add-group form:is(#join-existing-group, #create-new-group) > :is(h3, p) {
+    grid-column: span 2;
+}
+
+.add-group :is(#join-existing-group, #create-new-group) .manual-input-field {
+    grid-column: 1;
+    background-color: var(--surface-color-inactive);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    margin: 2.5px;
+}
+
+.add-group :is(#join-existing-group, #create-new-group) .manual-input-field input {
+    width: 100%;
+    height: 100%;
+}
+
+.add-group :is(#join-existing-group, #create-new-group) .actions {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    position: relative;
+}
+
+.add-group :is(#join-existing-group, #create-new-group).actions::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 65%;
+    background-color: var(--accent-color);
+}
+
+.add-group  #create-new-group section.license{
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 2;
+}

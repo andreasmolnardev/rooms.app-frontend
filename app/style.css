@@ -14,13 +14,9 @@ p {
 }
 
 
-
-
-
-
 .app>.item {
+    display: none;
     overflow: scroll;
-
     border-radius: var(--border-radius);
 }
 
@@ -60,10 +56,27 @@ p {
     display: none;
 }
 
-.navbar header .logo{
+.navbar .logo-wrapper{
+    gap: 25px;
+}
+
+.navbar .logo{
     height: 64px;
 }
 
+.navbar h3{
+    font-weight: 600;
+}
+
+.navbar .nav-header{
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    align-items: center;
+}
+
+.navbar .nav-header i:not(.fa-circle-caret-up){
+    color: var(--accent-color);
+}
 
 .nav-el {
     border-radius: 10px;
@@ -90,6 +103,16 @@ p {
 .nav-el p {
     margin: 0;
 }
+
+.nav-el.active {
+    background-color: var(--surface-color-selected);
+}
+
+.nav-el.active {
+    font-weight: bold;
+}
+
+
 
 .top-bar {
     display: flex;
@@ -193,6 +216,8 @@ p {
 .top-bar .view-item input {
     display: none;
 }
+
+
 
 #default {
     border-radius: 5px 3px 3px 5px;
@@ -314,820 +339,17 @@ p {
 }
 
 
-
-.app #settings {
-    display: none;
-}
-
-
-
-
-
 #toggle-sidebar-label {
     display: none;
     margin-top: auto;
 }
 
-.nav-el.active {
-    background-color: var(--surface-color-selected);
-}
 
-.nav-el.active {
-    font-weight: bold;
-}
 
-main,
-#settings {
+main{
     flex-direction: column;
 }
 
-#settings {
-    padding: 5px;
-}
-
-#settings h3 {
-    margin: 0;
-}
-
-#settings .surface {
-    border: 2px solid #000000;
-    border-radius: var(--border-radius);
-
-    max-height: 500px;
-    overflow: hidden;
-    padding: 5px;
-    background-color: var(--surface-color);
-}
-
-#settings .account {
-    height: fit-content !important;
-    position: relative;
-}
-
-#settings .account .img {
-    padding: 5px;
-    border-radius: 100%;
-    height: 55px;
-    aspect-ratio: 1;
-    background-color: #000000;
-    color: var(--accent-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-#settings .account .img i {
-    font-size: 55px;
-}
-
-#settings .account h2 {
-    grid-column: 2;
-    width: 100%;
-    text-align: center;
-}
-
-
-
-#settings :is(.item, .header-item) {
-    padding: 2.5px 5px;
-    height: 25px;
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#settings .header-item i#user-info {
-    position: relative;
-    margin-inline-end: 5px;
-}
-
-#settings .header-item i.fa-solid.fa-circle-info {
-    padding: 1px;
-    position: absolute;
-    right: -5px;
-    bottom: -3px;
-    font-size: 10px;
-    background-color: var(--surface-color);
-    border-radius: 100%;
-}
-
-#settings .header-item i.fa-caret-right {
-    transition: rotate 200ms;
-}
-
-#settings .header-item.active i.fa-caret-right {
-    color: var(--accent-color);
-    rotate: 90deg;
-}
-
-#settings :is(.item, hr) {
-    overflow: hidden;
-    display: none;
-    height: 0;
-    transition: height 500ms ease;
-    transition-delay: 3ms;
-    align-items: center;
-}
-
-#settings .expanded {
-    display: flex;
-}
-
-#settings .wrapper .groups {
-    display: grid !important;
-    grid-template-columns: 45px 1fr min-content min-content;
-    grid-template-rows: auto;
-}
-
-#settings .wrapper .group {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: center;
-    justify-items: center;
-}
-
-#settings .wrapper .group .max {
-    width: 100%;
-}
-
-#settings .wrapper .group p {
-    margin: 0;
-    padding: 0;
-}
-
-#settings .item.expanded {
-
-    display: flex;
-    height: auto;
-}
-
-#settings :is(.item, .header-item) i {
-    font-size: 15px;
-}
-
-#settings :is(.item, .header-item):hover i:not(.pen-circle-icon) {
-    color: var(--accent-color);
-}
-
-#settings a#pen-circle {
-    background-color: var(--accent-color);
-    border-radius: 100%;
-    padding: 3px;
-    aspect-ratio: 1;
-    width: 20px;
-    z-index: 3;
-}
-
-#settings a#pen-circle:hover {
-    background-color: var(--background-color);
-    outline: 2px var(--accent-color) solid;
-}
-
-#settings .wrapper:hover span#pen-circle i {
-    color: #ffffff;
-}
-
-#settings .options {
-
-    display: flex;
-    gap: 10px;
-}
-
-#settings .option {
-    padding: 5px;
-    border-radius: var(--border-radius);
-}
-
-#settings .option input {
-    display: none;
-}
-
-#settings .option:has(input:checked) {
-    background-color: #dddddd;
-}
-
-#settings .app-info {
-    height: 50px;
-    position: relative;
-    flex-direction: column;
-    gap: 0px;
-}
-
-#settings .app-info img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 50px;
-}
-
-#settings .app-info h2 {
-    margin: 0px;
-}
-
-#settings .app-info p {
-    margin: 0px;
-}
-
-
-dialog#new-room-occ {
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-dialog#new-room-occ form {
-    display: grid;
-    grid-template-columns: repeat(5, min-content);
-    grid-template-rows: repeat(4, 25px) max-content repeat(2, min-content);
-    gap: 5px;
-}
-
-dialog#new-room-occ .full {
-    grid-column: span 4;
-}
-
-dialog#new-room-occ label:not(.time-label) {
-
-    grid-column: 1;
-}
-
-dialog#new-room-occ form input {
-    height: 20px;
-}
-
-dialog#new-room-occ form .custom-multi-select {
-    position: relative;
-    grid-column: -1 / 2;
-    width: calc(100% - 10px);
-
-}
-
-dialog#new-room-occ form :is(.search:has(input:focus) .results, .results:hover) {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background-color: var(--surface-color-inactive);
-}
-
-dialog#add-modal form {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: repeat(2, auto);
-}
-
-dialog#add-modal form input[type="text"] {
-    grid-column: span 3;
-}
-
-dialog#add-modal form :is(input[type="submit"], button) {
-    grid-column: span 2;
-}
-
-
-dialog#initial-setup .static {
-
-    display: block;
-    margin-inline: 10px;
-    width: 500px;
-    height: 250px;
-    overflow: hidden;
-    position: relative;
-}
-
-dialog#initial-setup .tabs {
-    padding: 0;
-
-    display: flex;
-    gap: 10px;
-    height: 350px;
-    width: 2000px;
-    position: absolute;
-    left: 0;
-}
-
-
-dialog#initial-setup .tab {
-    width: 500px;
-
-}
-
-dialog#initial-setup .tab input {
-    width: 50px;
-}
-
-dialog#initial-setup nav {
-    background-color: #cde5ff;
-    width: 500px;
-    height: 50px;
-    gap: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: var(--border-radius);
-
-}
-
-dialog#initial-setup nav i {
-    display: inline;
-    width: 50px;
-    font-size: 20px;
-    margin-inline: auto;
-    position: absolute;
-    right: 5px;
-    color: #000;
-}
-
-dialog#initial-setup .dot {
-    height: 10px;
-    aspect-ratio: 1;
-    border: 2px solid var(--accent-color);
-    border-radius: 100%;
-
-
-}
-
-dialog#initial-setup .dot:is(:hover, .active) {
-    background-color: var(--accent-color);
-}
-
-
-/*.account#feedback-modal {
-    height: 65vh;
-
-    overflow: scroll;
-}
-
-dialog#feedback-modal :is(label, input) {
-    display: block;
-} */
-
-dialog:is(#feedback-modal, #change-username-modal) h2 {
-    margin: 5px 0px;
-}
-
-
-
-dialog#change-username-modal :is(label, input[type="text"]) {
-    margin-block: 10px;
-}
-
-dialog#offline-modal {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    text-align: center;
-}
-
-dialog#offline-modal::backdrop {
-    opacity: 0.8;
-
-}
-
-dialog#offline-modal img {
-    height: 100px;
-    aspect-ratio: 1;
-    margin-inline: auto;
-}
-
-dialog#changelog-modal {
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-dialog#changelog-modal .version {
-    display: flex;
-    gap: 5px;
-}
-
-dialog#join-group-modal .surface {
-    border-radius: var(--border-radius);
-    padding: 5px;
-    background-color: var(--surface-color-primary);
-    display: grid;
-    column-gap: 5px;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-dialog#join-group-modal .surface h3 {
-    grid-column: span 2;
-    text-align: start;
-    font-weight: medium;
-    margin-bottom: 5px;
-}
-
-dialog#join-group-modal .surface .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: 2px solid #5e5e5e;
-    outline-offset: -1.5px;
-    border-radius: var(--border-radius);
-}
-
-dialog#join-group-modal .surface .wrapper:has(input:focus) {
-
-    outline-color: var(--accent-color);
-}
-
-
-dialog#join-group-modal .surface .wrapper i {
-
-    padding: 5px;
-
-}
-
-
-dialog#join-group-modal .surface .wrapper input {
-
-    width: calc(100% - 15px);
-    outline: none;
-    border: none;
-    height: calc(100% - 2px);
-    border-radius: var(--border-radius);
-    background-color: #dee7f4;
-
-
-}
-
-dialog#join-group-modal .surface .wrapper input:focus {
-
-    background-color: white;
-
-}
-
-
-dialog#join-group-modal .actions {
-
-    display: flex;
-    grid-column: span 2;
-
-}
-
-
-dialog#join-group-modal .surface button {
-    grid-column: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-}
-
-
-
-dialog#join-group-modal .surface button p {
-    text-align: start;
-    grid-column: span 2;
-    margin: 0;
-}
-
-
-dialog .close-topbar-modal:hover {
-    color: var(--accent-color);
-}
-
-dialog#messages {
-    height: 100dvh;
-    width: 100%;
-    overflow: hidden;
-}
-
-dialog#messages .dialog-body {
-    display: grid;
-    grid-template-columns: repeat(2, 100%);
-    grid-template-rows: min-content 1fr;
-    gap: 10px;
-    overflow: hidden;
-}
-
-dialog#messages form#recent-chats {
-    grid-row: 1 / -1;
-}
-
-dialog#messages ul#messenger-tabs {
-    padding: 10px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    background-color: var(--surface-color);
-    border-radius: 5px;
-}
-
-dialog#messages ul#messenger-tabs h2 {
-    margin-inline: 5px;
-}
-
-dialog#messages ul#messenger-tabs li label {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    align-items: center;
-    padding-block: 10px;
-    margin: 5px;
-    border-radius: var(--border-radius);
-    border: 2px solid var(--text-color);
-    height: 35px;
-}
-
-
-dialog#messages ul#messenger-tabs li label:hover {
-    border-color: var(--accent-color);
-}
-
-dialog#messages ul#messenger-tabs li label:has(input:checked) i {
-    color: var(--accent-color);
-}
-
-dialog#messages ul#messenger-tabs li label:has(input:checked) p {
-    font-weight: bold;
-}
-
-
-
-dialog#messages ul#messenger-tabs li label input {
-    display: none;
-}
-
-dialog#messages ul#messenger-tabs li label i {
-    font-size: 20px;
-    justify-self: center;
-    height: min-content;
-    width: min-content;
-}
-
-dialog#messages .dialog-body .select-conversation {
-    flex-direction: column;
-}
-
-dialog#messages .dialog-body .conversations {
-    overflow: scroll;
-    grid-column: 2;
-    grid-row: 2;
-}
-
-dialog#messages .dialog-body .conversations .item {
-    display: none;
-    height: 100%;
-}
-
-dialog#messages .dialog-body .conversation {
-    position: relative;
-    flex-direction: column;
-    overflow: scroll;
-
-}
-
-dialog#messages .dialog-body .conversation .conversation-header {
-    width: 100%;
-    position: relative;
-}
-
-dialog#messages .dialog-body .conversation .conversation-header span {
-    position: absolute;
-    right: 20px;
-    top: 5px;
-}
-
-
-dialog#messages .dialog-body .conversation .messages {
-    display: grid;
-    grid-template-columns: auto;
-    overflow-y: scroll;
-    gap: 10px;
-    width: 100%;
-}
-
-dialog#messages .dialog-body .conversation .date {
-    justify-self: center;
-}
-
-dialog#messages .dialog-body .conversation .message-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-dialog#messages .dialog-body .conversation .message-wrapper.sent {
-    justify-self: flex-end;
-    flex-direction: row-reverse;
-}
-
-dialog#messages .dialog-body .conversation .message-wrapper.received {
-    justify-self: flex-start;
-}
-
-
-dialog#messages .dialog-body .conversation .message {
-    all: unset;
-    width: fit-content;
-    background-color: var(--surface-color-inactive);
-    padding: 5px;
-    border-radius: var(--border-radius);
-}
-
-dialog#messages .dialog-body .conversation form.send-new-message {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    height: min-content;
-    gap: 5px;
-}
-
-dialog#messages .dialog-body .conversation form.send-new-message :is(.menu-chip, button) {
-    height: 25px;
-    width: 30px;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: var(--surface-color-inactive);
-}
-
-dialog#messages .dialog-body .conversation form.send-new-message .menu-chip input[type="checkbox"] {
-    display: none;
-}
-
-dialog#messages .dialog-body .conversation form.send-new-message textarea {
-    width: 100%;
-    border-radius: 10px;
-    padding: 5px;
-    font-family: Lexend;
-    font-size: 16px;
-}
-
-dialog#messages .dialog-body .conversation form.send-new-message button {
-    background-color: var(--accent-color);
-}
-
-
-dialog#messages .initial {
-    flex-direction: column;
-}
-
-dialog#messages img {
-
-    height: 100px;
-
-}
-
-
-
-dialog#messages .new-chat {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    width: calc(100% - 10px);
-}
-
-dialog#messages .new-chat .info {
-    all: unset;
-    display: gird;
-    background: var(--surface-color-inactive);
-    padding: 5px;
-    border-radius: 10px;
-    gap: 10px;
-    grid-template-columns: 35px auto;
-    justify-items: center;
-    align-items: center;
-}
-
-
-dialog#messages .new-chat .info p {
-    padding: 0;
-    margin: 0;
-}
-
-dialog#messages .new-chat .info .options {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    height: 15px;
-    width: 100%;
-}
-
-dialog#messages .new-chat .info .options label {
-    width: 100%;
-}
-
-dialog#messages .new-chat .info .options input[type="submit"] {
-    width: fit-content;
-    height: 1.5em;
-    margin: 2px;
-    padding: 2px;
-}
-
-dialog#messages .new-chat #new-conversation-form {
-    display: grid;
-    grid-template-columns: min-content auto;
-    gap: 5px;
-}
-
-dialog#messages .new-chat form input[type="submit"] {
-    grid-column: 1 / -1;
-    width: calc(100% - 5px);
-}
-
-
-
-dialog#launcher .apps {
-    display: flex;
-    gap: 5px;
-}
-
-dialog#launcher .app-shortcut {
-    padding: 5px;
-    background: var(--surface-color-inactive);
-    height: 100px;
-    border-radius: var(--border-radius);
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-
-dialog#launcher .app-shortcut:hover {
-    background: var(--surface-color-primary);
-}
-
-dialog#launcher .app-shortcut .center {
-    width: 100%;
-    height: 100%;
-}
-
-dialog#launcher .app-shortcut i {
-    font-size: 36px;
-}
-
-dialog#notifications .wrapper {
-    margin-block: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-dialog#notifications h3 {
-    background-color: var(--surface-color-inactive);
-    padding: 5px;
-    border-radius: var(--border-radius);
-    font-size: medium;
-    font-weight: bolder;
-    justify-content: flex-start;
-    width: fit-content;
-    gap: 5px;
-}
-
-dialog#notifications h3:hover {
-    font-weight: bold;
-}
-
-dialog#notifications h3:hover i {
-    color: var(--accent-color);
-}
-
-dialog#notifications section {
-    margin-block: 5px;
-    min-height: 25px;
-}
-
-dialog#room-occupation-details[open] {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    overflow-x: hidden;
-}
-
-dialog#room-occupation-details section {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 5px;
-}
-
-dialog#room-occupation-details section p {
-    margin-block: 5px;
-    align-self: flex-start;
-    width: fit-content;
-}
-
-
-
-dialog#room-occupation-details #participants .item {
-    display: flex;
-    min-width: 180px;
-    max-width: 100%;
-    width: fit-content;
-    background-color: var(--surface-color-inactive);
-    padding: 5px;
-    border-radius: var(--border-radius);
-    align-items: center;
-    gap: 5px;
-}
-
-dialog#room-occupation-details #participants .item i:hover {
-    color: var(--accent-color);
-}
 
 @media screen and (max-width: 300px) {
     nav {
@@ -1161,7 +383,8 @@ dialog#room-occupation-details #participants .item i:hover {
 @media screen and (min-width: 800px) {
     .app {
         position: relative;
-        grid-template-columns: 260px calc(max(50vw, 768px) - 270px);
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 50px 1fr;
     }
 
     .app.full {
@@ -1185,7 +408,7 @@ dialog#room-occupation-details #participants .item i:hover {
     }
 
     .navbar {
-        width: 250px;
+        width: 280px;
         flex-direction: column;
         grid-column: 1;
         grid-row: 1;
@@ -1210,7 +433,7 @@ dialog#room-occupation-details #participants .item i:hover {
         margin: auto;
     }
 
-    main#administration{
+    .app>.item {
         grid-column: 2;
     }
 

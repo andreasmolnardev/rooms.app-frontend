@@ -1,0 +1,142 @@
+.group-admin-management {
+    flex-direction: column;
+    overflow-y: scroll;
+    padding-right: 5px;
+    position: relative;
+}
+
+.group-admin-management.loading,
+.group-loader.center {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.group-admin-management.loading .group-loader.center {
+    display: flex;
+}
+
+.group-admin-management .group-loader.center {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--surface-color-inactive-glass);
+    backdrop-filter: blur(16px) saturate(180%);
+}
+
+.group-admin-management section {
+    padding-block: 2.5px;
+}
+
+.group-admin-management section .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 150px));
+    grid-auto-flow: row;
+    gap: 5px;
+}
+
+.group-admin-management section .stack {
+    flex-direction: column;
+}
+
+.group-admin-management section .top-bar {
+    align-items: center;
+    padding-right: 5px;
+    justify-content: space-between;
+}
+
+.group-admin-management section .top-bar:has(.expand) {
+    justify-content: initial;
+}
+
+.group-admin-management section .top-bar .expand {
+    width: 100%;
+}
+
+.group-admin-management section .top-bar span:hover {
+    color: var(--accent-color);
+}
+
+.group-admin-management section .item {
+    position: relative;
+    gap: 5px;
+    padding: 10px;
+    background-color: var(--surface-color-inactive);
+}
+
+.group-admin-management section .content>.item {
+    flex-direction: column;
+    min-width: 85px;
+    height: 75px;
+    border-radius: 10px;
+
+}
+
+.group-admin-management section .stack>.item {
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.group-admin-management section .stack>.item .center {
+    gap: 5px;
+}
+
+.group-admin-management section .stack>.item:nth-child(1) {
+    border-radius: 10px 10px 5px 5px;
+}
+
+.group-admin-management section .stack>.item:nth-last-child(1) {
+    border-radius: 5px 5px 10px 10px;
+}
+
+.group-admin-management section .item:hover {
+    background-color: var(--surface-color-primary);
+}
+
+.group-admin-management section .item:hover>i {
+    color: var(--accent-color);
+}
+
+.group-admin-management section .item:hover .toolbar {
+    display: flex;
+}
+
+.group-admin-management section .item .toolbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+
+.group-admin-management section .item .toolbar span {
+    width: 24px;
+    height: 24px;
+    background-color: var(--on-surface-color-primary);
+    border-radius: 100%;
+    font-size: 16px;
+}
+
+.group-admin-management section .item .toolbar span:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color)
+}
+
+.group-admin-management section .item>i {
+    font-size: 24px;
+}
+
+.group-admin-management section .item>i.fa-circle-user {
+    font-size: 28px;
+}
+
+.group-admin-management section .item:has(i.fa-circle-user)>p {
+    font-size: 14px;
+}
+
+.group-admin-management section .item>p {
+    text-align: center;
+    overflow-wrap: break-word;
+    max-width: 135px;
+}
