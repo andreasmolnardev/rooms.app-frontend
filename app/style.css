@@ -20,6 +20,18 @@ p {
     border-radius: var(--border-radius);
 }
 
+.app>.item.active{
+    display: flex;
+}
+
+.app header{
+    visibility: hidden;
+}
+
+.app:has(.item.active) header{
+    visibility: visible;
+}
+
 .navbar {
     display: flex;
     gap: 10px;
@@ -32,6 +44,7 @@ p {
     width: calc(100% - 10px);
     height: 80px;
     grid-row: 3;
+    user-select: none;
 }
 
 .navbar.small {
@@ -74,6 +87,14 @@ p {
     align-items: center;
 }
 
+.navbar .nav-header i.fa-circle-caret-up{
+    transition: 500ms rotate;
+}
+
+.navbar .nav-header:has(input[type="checkbox"]:checked) i.fa-circle-caret-up{
+    rotate: 180deg;
+}
+
 .navbar .nav-header i:not(.fa-circle-caret-up){
     color: var(--accent-color);
 }
@@ -87,8 +108,11 @@ p {
     justify-content: center;
     max-width: 40vw;
     background-color: var(--surface-color-inactive);
-    /* height: max-content; */
     gap: 5px;
+    transition: max-height 100ms ease-in-out;
+    transition-delay: 0ms;
+    max-height: 100%;
+    position: relative;
 }
 
 .nav-el:hover {
@@ -102,6 +126,15 @@ p {
 
 .nav-el p {
     margin: 0;
+}
+
+.nav-el.hidden{
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    display: flex;
+    padding: 0;
+    position: absolute;
 }
 
 .nav-el.active {

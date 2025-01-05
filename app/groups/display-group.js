@@ -33,7 +33,7 @@ export function displayGroup(groupId, groupData) {
     //retrieve group schedule
     groupScheduleNavHeader.insertAdjacentHTML('afterend', `
         <label class="nav-el" for="nav-group-${groupId}">
-                <input type="radio" name="nav" data-group-id="${groupId}" id="nav-group-${groupId}" class="schedule-nav nav-tab-radio">
+                <input type="radio" name="nav" data-group-id="${groupId}" id="nav-group-${groupId}" class="schedule-nav nav-tab-radio" data-target="schedule-dashboard">
                 <i class="fa-solid fa-user-group"></i>
                 <p>${groupData.name}</p>
             </label>
@@ -245,8 +245,8 @@ function addRoomgroupToAdminNav(groupId, groupName, adminPermissions) {
 
 
     adminDashboardNavHeader.insertAdjacentHTML("afterend", `  
-            <label class="nav-el" for="nav-group-${groupId}-admin" id="nav-group-${groupId}-admin-label" class="admin-nav nav-tab-radio ${labelClassList}">
-                <input type="radio" name="nav" id="nav-group-${groupId}-admin" data-target="group-admin-management-section" class="nav-tab-radio">
+            <label class="nav-el" for="nav-group-${groupId}-admin" id="nav-group-${groupId}-admin-label" class="nav-tab-radio ${labelClassList}">
+                <input type="radio" name="nav" id="nav-group-${groupId}-admin" data-target="group-admin-management-section" class="admin-nav nav-tab-radio">
                 <i class="fa-solid fa-user-group"></i>
                 <p>${groupName}</p>
                   <div class="text">
