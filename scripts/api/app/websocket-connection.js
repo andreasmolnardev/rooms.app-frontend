@@ -1,4 +1,5 @@
 import { displayGroup, displayGroupSchedule } from "../../../app/groups/display-group.js";
+import { showNotificationByTemplate } from "../../../ui-scripts/notifications/notifications.js";
 import { showPage } from "../../../ui-scripts/page-loading.js";
 import { setFrontendInfo } from "../../../ui-scripts/set-info.js";
 
@@ -15,6 +16,10 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
     appWs.onopen = function () {
         appWs.send(JSON.stringify({ type: "connect-request", clientIp: ip, sessionTokenId: sessionTokenId }));
     };
+
+    appWs.onclose = function () {
+        showNotificationByTemplate("Verbindung verloren", "fa-wifi-exclamation")
+    }
 
     appWs.onmessage = function (event) {
 
@@ -33,8 +38,10 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             showPage("app");
 
             Object.keys(accountInfo.groups).forEach(groupId => {
-                window.groups[groupId] = accountInfo.groups[groupId]
-                appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId, userGroup: accountInfo.groups[groupId]["user-group"] } }))
+                const groupId_frontend = crypto.randomUUID()
+                window.groups[groupId_frontend] = accountInfo.groups[groupId]
+                appWs.send(JSON.stringify({ type: "group-data-request", data: { groupId: groupId, userGroup: accountInfo.groups[groupId]["user-group"], groupId_frontend } }))
+                console.log("msg sent")
             });
 
             const dateInput = document.getElementById("date")
@@ -47,13 +54,11 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
         } else if (returnedData.type == "app-info") {
             // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
-            displayGroup(crypto.randomUUID(), returnedData.data)
+            displayGroup(returnedData.groupId_frontend, returnedData.data)
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
-
+            console.error(returnedData.error)
         } else if (returnedData.type == "room-schedule-response") {
             const roomSchedule = returnedData.data;
-
-            console.log(roomSchedule)
 
             if (roomSchedule) {
                 //display room schedule
@@ -61,16 +66,8 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
                 displayGroupSchedule(roomSchedule)
 
             } else {
-               
+                document.querySelectorAll('#rooms-div .room').forEach(element => element.classList.add('hidden'));
                 document.querySelector("#rooms-div .initial.center p").textContent = "Für das eingegebene Datum wurden noch keine Raumbesetzungen gespeichert"
-               
-                const rooms = document.querySelectorAll('#rooms-div .room');
-               
-                for (let index = 0; index < rooms.length; index++) {
-                    const element = rooms[index];
-                    element.style.display = "none";
-                }
-
                 document.querySelector("#rooms-div section.initial").style.display = "flex";
 
             }
@@ -85,8 +82,6 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
 
 
 export function sendWsClientMessage(msg) {
-    console.log("sending msg " + msg)
-
     const sessionTokenId = sessionStorage.getItem("sessionToken");
 
     if (appWs && appWs.readyState == WebSocket.OPEN && sessionTokenId) {

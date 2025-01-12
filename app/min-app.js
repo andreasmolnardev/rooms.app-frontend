@@ -1,9 +1,11 @@
 import { components } from "../components/components.js";
 import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
+import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickadd.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
 import { lazyLoadCSS } from "../ui-scripts/lazyload/lazy-load-css.js";
 import { showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js";
+import { showComboModal } from "./modals/open-add-info-modal.js";
 
 localStorage.setItem("session", "app");
 
@@ -45,15 +47,16 @@ if (!authTokenId) {
     });
 }
 
-lazyLoadCSS('/app/css/admin.css')
-lazyLoadCSS('/app/css/add-group.css')
-lazyLoadCSS('/app/css/settings.css')
-lazyLoadCSS('/app/css/modals.css')
-lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
-lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    lazyLoadCSS('/app/css/admin.css')
+    lazyLoadCSS('/app/css/add-group.css')
+    lazyLoadCSS('/app/css/settings.css')
+    lazyLoadCSS('/app/css/modals.css')
+    lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
+    lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');    
+
     const body = document.body;
     const backgroundSrc = body.dataset.backgroundSrc;
 
@@ -133,7 +136,5 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
 
 
 })
-
-
 
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

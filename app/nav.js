@@ -1,4 +1,5 @@
 const navbar = document.getElementById("navbar")
+let checkedItem;
 
 navbar.addEventListener('click', () => {
     tabSwitcher();
@@ -26,16 +27,20 @@ function tabSwitcher() {
             item.parentElement.classList.remove('active');
         }
 
-        if (item.checked && target) {
+        if (item.checked && target && target.id != "schedule-dashboard") {
             target.classList.add('active')
         } else if (target) {
             target.classList.remove('active')
         }
 
-        if (item.checked && target && target.id == "schedule-dashboard") {
-            console.log(item.dataset.groupId)
+        if (item.checked && target && target.id == "schedule-dashboard" && checkedItem != item) {
             groupSelect.value = item.dataset.groupId
             groupSelect.dispatchEvent(new Event("change"))
+            setTimeout(() => { target.classList.add('active') }, 185)
+        }
+
+        if (item.checked) {
+            checkedItem = item;
         }
 
     };

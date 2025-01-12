@@ -1,7 +1,7 @@
-import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
+import { sendWsClientMessage } from "../../scripts/api/app/websocket-connection.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 
-const comboModal = document.getElementById("main-info-edit-modal");
+const comboModal = document. getElementById("main-info-edit-modal");
 
 export function addRoomaddFormSubmit() {
     const addRoomForm = document.getElementById('new-room-form');
@@ -20,7 +20,7 @@ export function addRoomaddFormSubmit() {
             "name": roomName.value,
         }
 
-        sendAdminWsMessage({
+        sendWsClientMessage({
             type: "create-room",
             sessionTokenId: sessionStorage.getItem("sessionToken"),
             groupIndex: Object.keys(JSON.parse(sessionStorage.getItem("groups"))).indexOf(sessionStorage.getItem("opened-group")),

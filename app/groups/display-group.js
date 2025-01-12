@@ -1,8 +1,8 @@
 import { components } from "../../components/components.js";
 import { sendWsClientMessage } from "../../scripts/api/app/websocket-connection.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
+import { showComboModal } from "../modals/open-add-info-modal.js";
 import { emptyRoomOccSpaces } from "../sidescroll-roomsdiv.js";
-
 
 const groupScheduleNavHeader = document.getElementById('group-schedule-nav-header')
 const adminDashboardNavHeader = document.getElementById('group-admin-nav-header')
@@ -55,7 +55,7 @@ export function displayGroup(groupId, groupData) {
         // triggers when a roomgroup gets selected (admin)
 
         document.getElementById('nav-group-' + groupId + '-admin').addEventListener('change', () => {
-
+            sessionStorage.setItem("opened-group", groupId)
 
             emptyRoomgroupDataDOM();
 
@@ -92,13 +92,18 @@ export function displayGroup(groupId, groupData) {
 
             //add Event listener for items
 
-            const items = document.querySelectorAll(".group-management .item:is([data-type = 'room'], [data-type = 'user-group'], [data-type = 'member'])")
+            const items = document.querySelectorAll(".group-admin-management .item:is([data-type = 'room'], [data-type = 'user-group'], [data-type = 'member'])")
 
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
+                console.log(item)
                 item.addEventListener("click", () => { showComboModal("details", item.dataset.type, item.id) })
 
             }
+
+            //Add open roomsadd modal
+            const addRoomBtn = document.getElementById("add-room-button");
+            //Add open new room group modal
 
             setTimeout(() => { groupManagementSection.classList.remove('loading') }, 800);
         })
@@ -109,11 +114,19 @@ export function displayGroup(groupId, groupData) {
 
         groupSelect.addEventListener('change', () => {
 
+            let groupsStorage = JSON.parse(sessionStorage.getItem("groups"));
+
             if (groupsStorage[groupSelect.value].permissions.writeAll || groupsStorage[groupSelect.value].permissions.write.exceptions) {
                 document.querySelector(".add-btn").classList.add("active")
             }
 
             const roomsDivDOM = document.getElementById("rooms-div")
+
+            if (roomsDivDOM.querySelector) {
+                
+            } else {
+                
+            }
 
             groupsStorage[groupSelect.value].rooms.forEach(room => {
                 roomsDivDOM.insertAdjacentHTML(`beforeend`, /*html*/ `
@@ -126,7 +139,7 @@ export function displayGroup(groupId, groupData) {
 
 
             if (dateInput.value) {
-                sendWsClientMessage({ type: "room-schedule-request", data: { groupId: groupId, date: dateInput.value } })
+                sendWsClientMessage({ type: "room-schedule-request", data: {groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
             }
 
         })
@@ -134,7 +147,7 @@ export function displayGroup(groupId, groupData) {
         dateInput.addEventListener('change', () => {
             if (groupSelect.value) {
                 emptyRoomOccSpaces();
-                sendWsClientMessage({ type: "room-schedule-request", data: { groupId: groupId, date: dateInput.value } })
+                sendWsClientMessage({ type: "room-schedule-request", data: {groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
             } else {
                 showNotificationByTemplate('bitte eine Raumgruppe auswählen', 'warning')
             }

@@ -677,6 +677,24 @@
                 <i class="fa-solid fa-caret-right" id="increase-tab-index"></i>
             </nav>
         </dialog>
+        <dialog id="main-info-edit-modal" data-type="">
+            <span class="close-modal" data-target="main-info-edit-modal"><i class="fa-solid fa-xmark"></i></span>
+            <section id="info-section"></section>
+            <section id="add-section">
+            </section>
+            <div class="toolbar">
+                <button class="option editor-mode proceed center tertiary" id="info-add-modal-submit-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <p>Weiter</p>
+                </button>
+                <button class="option item-details delete-button center tertiary" title="Element bearbeiten">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="option item-details delete-button center tertiary" title="Element löschen">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </dialog>
         <dialog id="first-login-modal">
             <h2>Es ist kein Beutzer angemeldet</h2>
             <p>Sie werden nun zur Anmeldeseite weierleitet</p>
@@ -782,12 +800,12 @@
     <script src="nav.js"></script>
     <script src="../ui-scripts/darkmode.js" type="module"></script>
     <script type="module" src="../ui-scripts/expand-setting.js"></script>
-    <script src="../admin/tabs/group-management/section-expand.js" type="module"></script>
     <script src="modals/join-group-modal.js" type="module"></script>
     <script src="modals/top-bar-modal.js" type="module"></script>
     <script src="../ui-scripts/container-view/container-view.js"></script>
     <script src="../ui-scripts/scroll.js"></script>
     <script type="module" src="../components/components.js"></script>
+    <script type="module" src="modals/modal-controls.js"></script>
     <script src="../testing-scripts/app.js" type="module"></script>
 
 </body>

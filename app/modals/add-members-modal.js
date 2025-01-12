@@ -1,6 +1,8 @@
 import { components } from "../../components/components.js";
-import { sendAdminWsMessage } from "../../scripts/api/admin/websocket-connection.js";
+import { sendWsClientMessage } from "../../scripts/api/app/websocket-connection.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
+
+
 
 export function addMembersFormSubmit() {
     document.getElementById("invite-users-form").addEventListener("submit", (event) => {
@@ -26,7 +28,7 @@ export function addMembersFormSubmit() {
               `);
 
 
-            sendAdminWsMessage(
+            sendWsClientMessage(
                 {
                     type: "create-invitation", data:
                     {

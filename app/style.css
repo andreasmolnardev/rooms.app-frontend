@@ -290,7 +290,7 @@ p {
     overflow: scroll;
     align-items: center;
     overflow: scroll;
-
+    justify-content: center;
 }
 
 .interaction-wrapper>div {
