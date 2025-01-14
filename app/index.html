@@ -112,13 +112,15 @@
             </label>
 
             <label class="nav-el" for="nav-join-group" id="nav-join-group-label">
-                <input type="radio" name="nav" id="nav-join-group" data-target="add-group-section" class="add-group nav-tab-radio">
+                <input type="radio" name="nav" id="nav-join-group" data-target="add-group-section"
+                    class="add-group nav-tab-radio">
                 <i class="fa-solid fa-envelope"></i>
                 <p>Raumgruppe beitreten</p>
             </label>
 
             <label class="nav-el" for="nav-create-group" id="nav-create-group-label">
-                <input type="radio" name="nav" id="nav-create-group" data-target="add-group-section" class="add-group nav-tab-radio">
+                <input type="radio" name="nav" id="nav-create-group" data-target="add-group-section"
+                    class="add-group nav-tab-radio">
                 <i class="fa-solid fa-plus"></i>
                 <p>Raumgruppe erstellen</p>
             </label>
@@ -131,7 +133,8 @@
             </label>
 
             <label class="nav-el" for="nav-settings" id="nav-settings-label">
-                <input type="radio" name="nav" id="nav-settings" data-target="settings" class="account-nav nav-tab-radio">
+                <input type="radio" name="nav" id="nav-settings" data-target="settings"
+                    class="account-nav nav-tab-radio">
                 <i class="fa-solid fa-gear round"></i>
                 <p>Einstellungen</p>
             </label>
@@ -149,7 +152,7 @@
             <h2 id="group-name">Raumgruppenname</h2>
         </header>
         <main id="schedule-dashboard" class="item">
-           
+
             <div class="top-bar">
                 <div class="chips">
                     <div class="chip glass view">
@@ -314,7 +317,7 @@
 
         <div class="add-group item" id="add-group-section">
 
-   
+
             <form id="join-existing-group" class="includes-gap vertical">
 
                 <h3>Bitte die Einladungsdetails eingeben</h3>
@@ -682,7 +685,7 @@
             <section id="info-section"></section>
             <section id="add-section">
             </section>
-            <div class="toolbar">
+            <div class="toolbar flex-end">
                 <button class="option editor-mode proceed center tertiary" id="info-add-modal-submit-btn">
                     <i class="fa-solid fa-arrow-right"></i>
                     <p>Weiter</p>
@@ -767,21 +770,31 @@
         </dialog>
         <dialog id="changelog-modal">
             <div class="modal-header">
-                <h2><i class="fa-solid fa-clock-rotate-left"></i>Changelog</h2>
-                <span class="close-modal" data-target="changelog-modal">
-                    <i class="fa-solid fa-xmark"></i>
-                </span>
+
 
             </div>
-            <div class="version">
-                <p>geupdatete Version:</p>
-                <p id="version-database">X.XX</p>
+
+            <div class="decoration center modal-header">
+                <h2 id="version" class="center"></h2>
+
+                <div class="blob" id="main"></div>
+                <div class="blob" id="secondary"></div>
             </div>
 
             <h3>Das ist neu seit dem letzten Update:</h3>
             <ul id="changes-ul">
 
             </ul>
+            <div class="flex-end includes-gap">
+                <button class="tertiary">
+                    <i class="fa-solid fa-message-exclamation"></i>
+                    Feedback
+                </button>
+                <button class="close-modal tertiary" data-target="changelog-modal">
+                    <i class="fa-solid fa-xmark"></i>
+                    Changelog schließen
+                </button>
+            </div>
 
         </dialog>
         <dialog id="room-details">

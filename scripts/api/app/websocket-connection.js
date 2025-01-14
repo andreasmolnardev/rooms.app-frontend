@@ -1,4 +1,5 @@
 import { displayGroup, displayGroupSchedule } from "../../../app/groups/display-group.js";
+import { showChangelogModal } from "../../../app/modals/changelog.js";
 import { showNotificationByTemplate } from "../../../ui-scripts/notifications/notifications.js";
 import { showPage } from "../../../ui-scripts/page-loading.js";
 import { setFrontendInfo } from "../../../ui-scripts/set-info.js";
@@ -27,7 +28,14 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
 
         if (returnedData.type == "account-info") {
             // fill out account details
+            const appInfo = returnedData.appInfo;
             const accountInfo = returnedData.data;
+
+            if (!accountInfo["latestDashboardVersionTag"] || 
+                appInfo.version.indexOf(appInfo.version.find(item => item.tag == accountInfo["latestDashboardVersionTag"])) 
+                != appInfo.version.length - 1) {
+                showChangelogModal(appInfo.version[appInfo.version.length - 1])
+            } 
 
             window.groups = [];
 
@@ -51,8 +59,6 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
 
             window.dateInput = dateInput;
 
-        } else if (returnedData.type == "app-info") {
-            // fill out app details
         } else if (returnedData.type == "group-data-response" && !returnedData.error) {
             displayGroup(returnedData.groupId_frontend, returnedData.data)
         } else if (returnedData.type == "group-data-response" && returnedData.error) {

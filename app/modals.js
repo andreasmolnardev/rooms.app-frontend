@@ -33,6 +33,9 @@ window.addEventListener('offline', () => {
 function addCloseEventListener(element) {
     element.addEventListener('click', () => {
         document.getElementById(element.dataset.target).close();
+        if (element.dataset.target == "changelog-modal") {
+        document.getElementById(element.dataset.target).classList.add("hidden");
+        }
     });
 }
 

@@ -103,8 +103,16 @@ export function displayGroup(groupId, groupData) {
 
             //Add open roomsadd modal
             const addRoomBtn = document.getElementById("add-room-button");
+            addRoomBtn.addEventListener('click', () => { showComboModal("add", "room")})
             //Add open new room group modal
-
+            const createNewUsergroupBtn = document.getElementById("create-usergroup-button");
+            createNewUsergroupBtn.addEventListener('click', () => { showComboModal("add", "user-group")})
+            
+            //Add open invite members modal
+            const addMembersBtn = document.getElementById("add-members-button");
+            addMembersBtn.addEventListener('click', () => { showComboModal("add", "member")})
+           
+            
             setTimeout(() => { groupManagementSection.classList.remove('loading') }, 800);
         })
     }
@@ -123,9 +131,9 @@ export function displayGroup(groupId, groupData) {
             const roomsDivDOM = document.getElementById("rooms-div")
 
             if (roomsDivDOM.querySelector) {
-                
+
             } else {
-                
+
             }
 
             groupsStorage[groupSelect.value].rooms.forEach(room => {
@@ -139,7 +147,7 @@ export function displayGroup(groupId, groupData) {
 
 
             if (dateInput.value) {
-                sendWsClientMessage({ type: "room-schedule-request", data: {groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
+                sendWsClientMessage({ type: "room-schedule-request", data: { groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
             }
 
         })
@@ -147,7 +155,7 @@ export function displayGroup(groupId, groupData) {
         dateInput.addEventListener('change', () => {
             if (groupSelect.value) {
                 emptyRoomOccSpaces();
-                sendWsClientMessage({ type: "room-schedule-request", data: {groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
+                sendWsClientMessage({ type: "room-schedule-request", data: { groupIndex: Object.keys(groups).indexOf(groupSelect.value), date: dateInput.value } })
             } else {
                 showNotificationByTemplate('bitte eine Raumgruppe auswählen', 'warning')
             }

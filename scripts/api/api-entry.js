@@ -13,5 +13,7 @@ export function pingAPIforInternalServerError(callback) {
     });
 }
 
+window.pingAPIforInternalServerError = pingAPIforInternalServerError(() => {console.log("success")});
+
 
 export { apiURL };

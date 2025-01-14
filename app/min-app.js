@@ -1,4 +1,5 @@
 import { components } from "../components/components.js";
+import { pingAPIforInternalServerError } from "../scripts/api/api-entry.js";
 import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickadd.js";
@@ -16,6 +17,8 @@ let authTokenId = localStorage.getItem('api-authtoken')
 
 const apiRoot = localStorage.getItem("apiRoot") ?? "urban-space-barnacle-v56xj9q7vp7cw95v-3000.app.github.dev"
 
+pingAPIforInternalServerError(() => {console.log("success")})
+
 if (!authTokenId) {
     alert("Login erforderlich")
     window.location.replace("../")
@@ -32,6 +35,7 @@ if (!authTokenId) {
             if (result.error == "neuer Login erforderlich" || result.error == "Token existiert nicht auf dem Server... - bitte neu anmelden.") {
                 localStorage.removeItem("api-authtoken")
                 alert(result.error)
+                console.log(result.error)
                 window.location.replace("../")
             } else if (result.sessionTokenId) {
                 //session initiated
@@ -71,6 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     observer.observe(body);
 });
+
+document.addEventListener("", () => {
+    
+})
 
 const addRoomOccupationForm = document.getElementById("new-room-occ-form")
 

@@ -1,3 +1,7 @@
+dialog:focus-visible{
+    border: none;
+    outline: none;
+}
 
 dialog#new-room-occ {
     background-color: var(--background-color);
@@ -159,9 +163,17 @@ dialog#offline-modal img {
     margin-inline: auto;
 }
 
-dialog#changelog-modal {
+dialog#changelog-modal:open {
     background-color: var(--background-color);
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+dialog#changelog-modal #version{
+    margin-inline: 1rem;
+    text-align: center;
 }
 
 dialog#changelog-modal .version {

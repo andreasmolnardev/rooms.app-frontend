@@ -12,7 +12,6 @@
     display: flex;
     min-height: 150px;
     align-items: center;
-    padding-inline: 15px;
     margin: 10px;
 }
 
@@ -28,32 +27,6 @@
     padding: 0;
     align-self: self-end;
     font-size: 16px;
-}
-
-.blob {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: repeat;
-}
-
-.blob#main {
-    position: absolute;
-    z-index: 0;
-    width: 250px;
-    height: 250px;
-    left: -150px;
-    bottom: -150px;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-}
-
-.blob#secondary {
-    position: absolute;
-    z-index: 0;
-    width: 180px;
-    height: 120px;
-    right: -100px;
-    top: -60px;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
 
 .container:is(.login, .signup) .text {
