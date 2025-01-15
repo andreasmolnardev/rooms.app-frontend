@@ -15,7 +15,7 @@ sessionStorage.clear();
 const timestamp = new Date();
 let authTokenId = localStorage.getItem('api-authtoken')
 
-const apiRoot = localStorage.getItem("apiRoot") ?? "urban-space-barnacle-v56xj9q7vp7cw95v-3000.app.github.dev"
+const apiRoot = localStorage.getItem("apiRoot") ?? "rooms-app-api.prairiedog-stargazer.ts.net"
 
 pingAPIforInternalServerError(() => {console.log("success")})
 
@@ -75,10 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     observer.observe(body);
 });
-
-document.addEventListener("", () => {
-    
-})
 
 const addRoomOccupationForm = document.getElementById("new-room-occ-form")
 

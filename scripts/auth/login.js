@@ -7,6 +7,19 @@ if (!root_prefix) {
     localStorage.setItem("root", window.location.href)
 }
 
+savePublicIpV4().then(ip => {
+    console.info("public IP v4: " + ip + " saved")
+});
+
+let apiRoot = localStorage.getItem("apiRoot") 
+
+if(!apiRoot){
+    apiRoot = "rooms-app-api.prairiedog-stargazer.ts.net"
+    localStorage.setItem("apiRoot", apiRoot)
+}
+
+console.log(apiRoot)
+
 const apiAuthTokenId = localStorage.getItem('api-authtoken')
 const lastActiveSession = localStorage.getItem('session')
 
@@ -21,19 +34,6 @@ pingAPIforInternalServerError(() => {
         }
     }
 });
-
-savePublicIpV4().then(ip => {
-    console.info("public IP v4: " + ip + " saved")
-});
-
-let apiRoot = localStorage.getItem("apiRoot") 
-
-if(!apiRoot){
-    apiRoot = "urban-space-barnacle-v56xj9q7vp7cw95v-3000.app.github.dev"
-    localStorage.setItem("apiRoot", apiRoot)
-}
-
-console.log(apiRoot)
 
 const loginForm = document.getElementById('login-form');
 
