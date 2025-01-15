@@ -9,9 +9,32 @@
   <link rel="stylesheet" href="ui-styles/auth.css">
   <link rel="shortcut icon" href="assets/favico.ico" type="image/x-icon">
   <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+  <style>
+    .dev-options {
+      display: none;
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      z-index: 15;
+      margin: 10px;
+    }
+
+    .dev-options span {
+      background-color: var(--surface-color);
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    .dev-options span:hover {
+      color: var(--accent-color);
+    }
+  </style>
 </head>
 
 <body onload="" data-background-src="assets/office.webp">
+  <div class="dev-options">
+    <span class="switch-backend" id="switch-backend"><i class="fa-solid fa-server"></i></span>
+  </div>
   <div class="notifications">
     <div class="wrapper center">
       <div id="template-notification" class="item glass">
@@ -72,6 +95,20 @@
   <script src="ui-scripts/darkmode.js"></script>
   <script src="ui-scripts/lazyload/lazy-load-background.js"></script>
   <script>
+    if (localStorage.getItem("dev-mode")) {
+      document.getElementsByClassName('dev-options')[0].style.display = "flex";
+    }
+
+    const switchBackendSpan = document.getElementById("switch-backend")
+    switchBackendSpan.addEventListener('click', () => {
+      const newBackend = window.prompt("neue API-Adresse eingeben:")
+
+      if (newBackend) {
+        localStorage.setItem('apiRoot', newBackend)
+        window.location.reload();
+      }
+    })
+
     function lazyLoadCSS(href) {
       const link = document.createElement('link');
       link.href = href;

@@ -26,6 +26,8 @@ export function showNotificationByTemplate(text, type) {
         notificationTemplateIcon.classList.values("fa-solid", "fa-circle-info")
     } else if (type == "success"){
         notificationTemplateIcon.classList.values("fa-solid", "fa-circle-check")
+    } else {
+        notificationTemplateIcon.classList.values("fa-solid", type)
     }
 
     notificationTemplate.classList.add("active")

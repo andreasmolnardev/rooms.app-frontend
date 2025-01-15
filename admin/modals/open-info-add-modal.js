@@ -1,5 +1,4 @@
 import { components } from "../../components/components.js";
-import { addDelayedEventListener } from "../../shortcuts/dom-added-event-listener.js";
 import { showNotificationByTemplate } from "../../ui-scripts/notifications/notifications.js";
 import { applyTabControl } from "../tabs/tab-controls.js";
 import { addMembersFormSubmit } from "./add-members-modal.js";
@@ -9,6 +8,9 @@ import { addUsergroupFormSubmit } from "./add-usergroup.js";
 const comboModal = document.getElementById("main-info-edit-modal");
 
 export function showComboModal(purpose, type, itemId) {
+
+  console.log("show combo modal executed")
+
   const globalGroupData = JSON.parse(sessionStorage.getItem("groups"));
   const activeGroupId = sessionStorage.getItem("opened-group");
 

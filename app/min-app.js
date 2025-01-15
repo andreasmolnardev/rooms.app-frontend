@@ -1,15 +1,12 @@
-//import { SwitchDesignPreference, ThemeGetter, ThemeSetter } from "../ui-scripts/darkmode.js";
-//import { DateToOutput } from "../ui-scripts/dates.js";
-//import { AccentClGetter, AccentClSetter } from "../ui-scripts/accent-cl.js";
-//import { ExpandSetting } from "../ui-scripts/expand-setting.js";
-//import { showPage } from "../ui-scripts/page-loading.js";
-//import { showNotification, showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js"
-//import { filterScheduleByRoom, resetFilter } from "../ui-scripts/filter-schedule.js";
-//import { components } from "../components/components.js";
 import { components } from "../components/components.js";
-import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/websocket-connection.js";
+import { pingAPIforInternalServerError } from "../scripts/api/api-entry.js";
+import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
+import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickadd.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
+import { lazyLoadCSS } from "../ui-scripts/lazyload/lazy-load-css.js";
+import { showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js";
+import { showComboModal } from "./modals/open-add-info-modal.js";
 
 localStorage.setItem("session", "app");
 
@@ -18,7 +15,9 @@ sessionStorage.clear();
 const timestamp = new Date();
 let authTokenId = localStorage.getItem('api-authtoken')
 
-const apiRoot = localStorage.getItem("apiRoot") ?? "urban-space-barnacle-v56xj9q7vp7cw95v-3000.app.github.dev"
+const apiRoot = localStorage.getItem("apiRoot") ?? "rooms-app-api.prairiedog-stargazer.ts.net"
+
+pingAPIforInternalServerError(() => {console.log("success")})
 
 if (!authTokenId) {
     alert("Login erforderlich")
@@ -33,9 +32,10 @@ if (!authTokenId) {
             },
             body: JSON.stringify({ timestamp: timestamp, authTokenId: authTokenId, ip: ip })
         }).then(response => response.json()).then(result => {
-            if (result.error == "neuer Login erforderlich") {
+            if (result.error == "neuer Login erforderlich" || result.error == "Token existiert nicht auf dem Server... - bitte neu anmelden.") {
                 localStorage.removeItem("api-authtoken")
                 alert(result.error)
+                console.log(result.error)
                 window.location.replace("../")
             } else if (result.sessionTokenId) {
                 //session initiated
@@ -43,14 +43,24 @@ if (!authTokenId) {
                 initiateWsInitConnection("start-session", result.sessionTokenId, ip, apiRoot)
             }
         }).catch(error => {
-            console.log('Error:', error); alert(error)
-            showNotificationByTemplate(error, "error")
+            console.log('Error:', error); alert(error);
+            showNotificationByTemplate(error, "error");
+
         });
 
     });
 }
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
+    lazyLoadCSS('/app/css/admin.css')
+    lazyLoadCSS('/app/css/add-group.css')
+    lazyLoadCSS('/app/css/settings.css')
+    lazyLoadCSS('/app/css/modals.css')
+    lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
+    lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');    
+
     const body = document.body;
     const backgroundSrc = body.dataset.backgroundSrc;
 
@@ -130,7 +140,5 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
 
 
 })
-
-
 
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

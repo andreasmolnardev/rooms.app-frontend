@@ -102,6 +102,12 @@ ul {
     align-items: center;
 }
 
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .unclickable {
     pointer-events: none;
 }
@@ -237,7 +243,6 @@ ul {
     }
 }
 
-
 .notifications {
     position: fixed;
     top: 0px;
@@ -340,29 +345,10 @@ dialog span i.fa-xmark {
 
 }
 
-dialog :is(.close-modal, .close-topbar-modal) {
+dialog :is(.close-modal:not(button), .close-topbar-modal) {
     position: absolute;
     right: 10px;
     top: 10px;
-}
-
-
-
-header {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header span i {
-    font-size: 25px;
-
-}
-
-header div {
-    display: flex;
-    gap: 10px;
 }
 
 i.format-icon {
@@ -519,6 +505,39 @@ h3 {
 
 .multi-select .results li:hover {
     background-color: var(--on-surface-color-group);
+}
+
+.blob {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    z-index: -2;
+}
+
+.blob#main {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: -150px;
+    bottom: -150px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M793.5 717Q641 934 414 831T160.5 481q-26.5-247 213-288.5t406 133Q946 500 793.5 717Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.blob#secondary {
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    right: -100px;
+    top: -60px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%231b7fbf%22 d=%22M831 651.5Q741 803 587.5 797t-334-49Q73 705 63 495t171.5-286Q416 133 540 213.5T792.5 397Q921 500 831 651.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.decoration{
+    position: relative;
+    min-height: 80px;
+    padding-inline: 15px;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .container #success-message {

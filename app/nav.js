@@ -1,38 +1,62 @@
-const navItems = document.getElementsByClassName('nav-tab-radio');
+const navbar = document.getElementById("navbar")
+let checkedItem;
+
+navbar.addEventListener('click', () => {
+    tabSwitcher();
+})
 
 tabSwitcher();
 
 function tabSwitcher() {
-    for (let i = 0; i < navItems.length; i++) {
-        if (navItems[i].checked == true) {
+    const navItems = document.getElementsByClassName('nav-tab-radio');
+    window.navItems = navItems;
 
-            document.getElementById(navItems[i].dataset.target).style.display = "flex"
-            navItems[i].parentElement.classList.add('active');
-        } else if (navItems[i].checked == false) {
-            navItems[i].parentElement.classList.remove('active');
-            document.getElementById(navItems[i].dataset.target).style.display = "none"
+    for (let i = 0; i < navItems.length; i++) {
+
+        let target;
+
+        let item = navItems[i]
+
+        if (item.dataset.target) {
+            target = document.getElementById(item.dataset.target)
+        }
+
+        if (item.checked) {
+            item.parentElement.classList.add('active');
+        } else {
+            item.parentElement.classList.remove('active');
+        }
+
+        if (item.checked && target && target.id != "schedule-dashboard") {
+            target.classList.add('active')
+        } else if (target) {
+            target.classList.remove('active')
+        }
+
+        if (item.checked && target && target.id == "schedule-dashboard" && checkedItem != item) {
+            groupSelect.value = item.dataset.groupId
+            groupSelect.dispatchEvent(new Event("change"))
+            setTimeout(() => { target.classList.add('active') }, 185)
+        }
+
+        if (item.checked) {
+            checkedItem = item;
         }
 
     };
 
 }
 
-document.getElementById('navbar').addEventListener('click', () => {
-    tabSwitcher();
+let hideNavToggles = document.querySelectorAll('.hide-nav-toggle')
 
-    if (navItems[1].checked == true) {
-        document.getElementsByClassName('add-btn')[0].classList.remove("active");
-    }
+for (let index = 0; index < hideNavToggles.length; index++) {
+    const toggle = hideNavToggles[index];
 
-})
+    toggle.addEventListener("change", () => {
+        const targetCollection = navbar.querySelectorAll("." + toggle.dataset.target);
 
-
-let toggleSidebarLabel = document.getElementById('toggle-sidebar-label');
-let toggleSidebarCb = document.getElementById('toggle-sidebar')
-toggleSidebarLabel.addEventListener('click', () => {
-    if (toggleSidebarCb.checked == true) {
-        document.getElementById('navbar').classList.add('small');
-    } else {
-        document.getElementById('navbar').classList.remove('small');
-    }
-})
+        targetCollection.forEach(item => {
+            item.parentElement.classList.toggle("hidden")
+        })
+    })
+}

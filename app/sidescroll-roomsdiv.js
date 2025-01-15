@@ -1,7 +1,7 @@
-let dateInput = document.getElementById('date');
+const dateInput = document.getElementById('date');
+const container = document.getElementById('rooms-div');
 
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById('rooms-div');
     const TOUCH_THRESHOLD = 80; // Minimum distance in pixels from the left edge
     let touchStartX = null;
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Calculate horizontal movement
             const horizontalMovement = Math.abs(touch.clientX - touchStartX);
 
-      
+
             // Reset touchStartX
             touchStartX = null;
         }
@@ -39,13 +39,23 @@ function increaseDate() {
     let currentDate = new Date(dateInput.value);
     currentDate.setDate(currentDate.getDate() + 1);
     dateInput.value = currentDate.toISOString().slice(0, 10);
-    dateInput.dispatchEvent(new Event("change")); 
+    dateInput.dispatchEvent(new Event("change"));
 }
 
 function decreaseDate() {
     let currentDate = new Date(dateInput.value);
     currentDate.setDate(currentDate.getDate() - 1);
     dateInput.value = currentDate.toISOString().slice(0, 10);
-    dateInput.dispatchEvent(new Event("change")); 
+    dateInput.dispatchEvent(new Event("change"));
 
+}
+
+export function emptyRoomOccSpaces() {
+    const roomOccSpaces = container.querySelectorAll('p.room-occ-space')
+
+    for (let index = 0; index < roomOccSpaces.length; index++) {
+        const element = roomOccSpaces[index];
+
+        element.innerHTML = "Keine Besetzungen"
+    }
 }
