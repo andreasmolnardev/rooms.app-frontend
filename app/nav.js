@@ -1,50 +1,47 @@
+import { addDelayedEventListener } from "../shortcuts/dom-added-event-listener.js";
+
 const navbar = document.getElementById("navbar")
-let checkedItem;
 
-navbar.addEventListener('click', () => {
+const navItems = document.getElementsByClassName('nav-tab-radio');
+window.navItems = navItems;
+
+for (let index = 0; index < navItems.length; index++) {
+    const element = navItems[index];
+    element.addEventListener('change', () => { tabSwitcher() });
+}
+
+addDelayedEventListener("nav-tab-radio", "change", () => {
     tabSwitcher();
-})
-
-tabSwitcher();
+}, "class", true)
 
 function tabSwitcher() {
-    const navItems = document.getElementsByClassName('nav-tab-radio');
-    window.navItems = navItems;
+    //remove class active for all items which are not checked
+    const uncheckedItems = document.querySelectorAll('.nav-tab-radio')
 
-    for (let i = 0; i < navItems.length; i++) {
-
-        let target;
-
-        let item = navItems[i]
-
-        if (item.dataset.target) {
-            target = document.getElementById(item.dataset.target)
+    Array.from(uncheckedItems).forEach(item => {
+        if (item.dataset.target && document.getElementById(item.dataset.target).classList) {
+            document.getElementById(item.dataset.target).classList.remove("active");
         }
+        item.parentElement.classList.remove("active");
+    })
 
-        if (item.checked) {
-            item.parentElement.classList.add('active');
-        } else {
-            item.parentElement.classList.remove('active');
-        }
+    //get checked item
+    const checkedItem = document.querySelector('.nav-tab-radio:checked')
 
-        if (item.checked && target && target.id != "schedule-dashboard") {
-            target.classList.add('active')
-        } else if (target) {
-            target.classList.remove('active')
-        }
+    //add active class to checked item
+    const target = document.getElementById(checkedItem.dataset.target)
 
-        if (item.checked && target && target.id == "schedule-dashboard" && checkedItem != item) {
-            groupSelect.value = item.dataset.groupId
-            groupSelect.dispatchEvent(new Event("change"))
-            setTimeout(() => { target.classList.add('active') }, 185)
-        }
+    if (target && target.id != "schedule-dashboard") {
+        document.getElementById(checkedItem.dataset.target).classList.add("active");
+    } else  if (target) {
+        groupSelect.value = checkedItem.dataset.groupId
+        groupSelect.dispatchEvent(new Event("change"))
+        setTimeout(() => { target.classList.add('active') }, 185)
+    }
 
-        if (item.checked) {
-            checkedItem = item;
-        }
+    checkedItem.parentElement.classList.add("active")
 
-    };
-
+   
 }
 
 let hideNavToggles = document.querySelectorAll('.hide-nav-toggle')

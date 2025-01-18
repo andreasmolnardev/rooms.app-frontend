@@ -1,3 +1,7 @@
+import { downloadAsTxt } from "../../scripts/download/txt-dl.js"
+
+window.downloadAsTxt = downloadAsTxt;
+
 const groupInvitationsModal = document.getElementById("group-invitations-modal")
 
 export function addInvitationToModal(invitation, state_active) {
@@ -12,7 +16,7 @@ export function addInvitationToModal(invitation, state_active) {
                     <span id="key-output">${invitation.invitationData.code.toString().replaceAll(',', '')}</span>
                </div>
                <div class="output center">
-                   <i class="pin-code-icon"></i>
+                   <i class="fa-solid fa-input-numeric"></i>
                     <span id="pin-output">${invitation.invitationData.pin.toString().replaceAll(',', '')}</span>     
                </div>
                <div class="share-panel includes-gap">

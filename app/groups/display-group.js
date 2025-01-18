@@ -96,7 +96,6 @@ export function displayGroup(groupId, groupData) {
 
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
-                console.log(item)
                 item.addEventListener("click", () => { showComboModal("details", item.dataset.type, item.id) })
 
             }
@@ -107,17 +106,17 @@ export function displayGroup(groupId, groupData) {
             //Add open new room group modal
             const createNewUsergroupBtn = document.getElementById("create-usergroup-button");
             createNewUsergroupBtn.addEventListener('click', () => { showComboModal("add", "user-group")})
-            
+
             //Add open invite members modal
             const addMembersBtn = document.getElementById("add-members-button");
             addMembersBtn.addEventListener('click', () => { showComboModal("add", "member")})
-           
-            
+
+
             setTimeout(() => { groupManagementSection.classList.remove('loading') }, 800);
         })
     }
 
-    //add group select change and date change event listener   
+    //add group select change and date change event listener
     if (groups.indexOf(groupId) == groups.length - 1) {
 
         groupSelect.addEventListener('change', () => {
@@ -175,13 +174,13 @@ export function displayGroup(groupId, groupData) {
                     addRoomOccupationRoomSelect.insertAdjacentHTML(`beforeend`, `<option value="${room.id}">${room["name-seperated"]}</option>`)
                 });
             } else if (selectedGroup.permissions.write.type == "exclude-items-from-read-access") {
-                // add every room except those as defined in selectedGroup.permissions.write.exceptions 
+                // add every room except those as defined in selectedGroup.permissions.write.exceptions
                 const roomsWithWriteAccess = selectedGroup.rooms.filter(room => (selectedGroup.permissions.write.exceptions.indexOf(room) == -1))
                 roomsWithWriteAccess.forEach(room => {
                     addRoomOccupationRoomSelect.insertAdjacentHTML(`beforeend`, `<option value="${room.id}">${room["name-seperated"]}</option>`)
                 });
             } else if (selectedGroup.permissions.write.type == "limited-read-access") {
-                // add every room defined in selectedGroup.permissions.write.exceptions 
+                // add every room defined in selectedGroup.permissions.write.exceptions
                 const roomsWithWriteAccess = selectedGroup.rooms.filter(room => (selectedGroup.permissions.write.exceptions.indexOf(room) > -1))
                 roomsWithWriteAccess.forEach(room => {
                     addRoomOccupationRoomSelect.insertAdjacentHTML(`beforeend`, `<option value="${room.id}">${room["name-seperated"]}</option>`)
@@ -245,7 +244,7 @@ export function displayGroupSchedule(schedule) {
         const creatorName = JSON.parse(sessionStorage.getItem('groups'))[groupSelect.value]["members"].find(member => (member.memberId == occupation.creatorId)).name
 
         targetRoom.querySelector("p.room-occ-space").insertAdjacentHTML(`beforeend`, /*html*/`
-            <div class="room-occupation" data-title="${occupation.title}" data-room-id="${occupation.targetRoom}" data-date="${occupation.date}" data-time-from="${occupation.timespan[0]}" data-time-to="${occupation.timespan[1]}" data-notes="${occupation.notes}" data-creator="${occupation.creatorId}"> 
+            <div class="room-occupation" data-title="${occupation.title}" data-room-id="${occupation.targetRoom}" data-date="${occupation.date}" data-time-from="${occupation.timespan[0]}" data-time-to="${occupation.timespan[1]}" data-notes="${occupation.notes}" data-creator="${occupation.creatorId}">
             ${occupation.timespan[0]} bis ${occupation.timespan[1]} : ${creatorName} <span class="invited-users-scheduled center" title="Eingeladene Nutzer: ${"invited user names"}"><p class="center">+${"invitedUsersCount"}</p>
             <span class="center"> <i class="fa-solid fa-user"></i></span></span>  ${occupation.title} </div>
         `)
@@ -265,7 +264,7 @@ function addRoomgroupToAdminNav(groupId, groupName, adminPermissions) {
     }
 
 
-    adminDashboardNavHeader.insertAdjacentHTML("afterend", `  
+    adminDashboardNavHeader.insertAdjacentHTML("afterend", `
             <label class="nav-el" for="nav-group-${groupId}-admin" id="nav-group-${groupId}-admin-label" class="nav-tab-radio ${labelClassList}">
                 <input type="radio" name="nav" id="nav-group-${groupId}-admin" data-target="group-admin-management-section" class="admin-nav nav-tab-radio">
                 <i class="fa-solid fa-user-group"></i>

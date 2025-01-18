@@ -1,5 +1,6 @@
 import { displayGroup, displayGroupSchedule } from "../../../app/groups/display-group.js";
 import { showChangelogModal } from "../../../app/modals/changelog.js";
+import { addInvitationToModal } from "../../../app/modals/show-invitations-modal.js";
 import { showNotificationByTemplate } from "../../../ui-scripts/notifications/notifications.js";
 import { showPage } from "../../../ui-scripts/page-loading.js";
 import { setFrontendInfo } from "../../../ui-scripts/set-info.js";
@@ -63,6 +64,8 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             displayGroup(returnedData.groupId_frontend, returnedData.data)
         } else if (returnedData.type == "group-data-response" && returnedData.error) {
             console.error(returnedData.error)
+        } else if (returnedData.type == "invitation-data") {
+            addInvitationToModal(returnedData.data, returnedData.data.active)
         } else if (returnedData.type == "room-schedule-response") {
             const roomSchedule = returnedData.data;
 

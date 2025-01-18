@@ -511,7 +511,7 @@ h3 {
     background-size: cover;
     background-position: center center;
     background-repeat: repeat;
-    z-index: -2;
+    /*z-index: -2;*/
 }
 
 .blob#main {

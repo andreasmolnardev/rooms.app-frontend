@@ -141,4 +141,9 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
 
 })
 
+document.getElementById('view-invitations-button').addEventListener('click', () => {
+    document.getElementById('group-invitations-modal').showModal();
+})
+
+
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

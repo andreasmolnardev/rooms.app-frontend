@@ -3,12 +3,10 @@
 
 import { mutationObserverQuickadd } from "./mutation-observer.quickadd.js";
 
-export function addDelayedEventListener(nodeId, eventType, callback, nodeIdentifierType) {
+export function addDelayedEventListener(nodeId, eventType, callback, nodeIdentifierType, persistentObserver) {
     mutationObserverQuickadd(document.body, (mutationsList, observer) => {
         for (const mutation of mutationsList) {
             for (const node of mutation.addedNodes) {
-                console.log(node)
-
                 let selectorType;
 
                 if (nodeIdentifierType && nodeIdentifierType == "id" || !nodeIdentifierType) {
@@ -17,14 +15,16 @@ export function addDelayedEventListener(nodeId, eventType, callback, nodeIdentif
                     selectorType = "."
                 }
 
-                if (node.nodeType === Node.ELEMENT_NODE && ((nodeIdentifierType == "id" && node.id == nodeId || !nodeIdentifierType && node.id == nodeId) || nodeIdentifierType == "class" && node.classList.includes(nodeId))) {
+                if (node.nodeType === Node.ELEMENT_NODE && ((nodeIdentifierType == "id" && node.id == nodeId || !nodeIdentifierType && node.id == nodeId) || nodeIdentifierType == "class" && node.classList && node.classList.contains(nodeId))) {
                     //element has been added directly
                     console.warn('Adding delayed event listener for element with id: ' + nodeId)
 
                     const objectNode = node;
                     console.log("added event listener")
                     objectNode.addEventListener(eventType, () => callback(objectNode))
-                    observer.disconnect();
+                    if (!persistentObserver) {
+                        observer.disconnect();
+                    }
                 } else if (node.nodeType === Node.ELEMENT_NODE) {
                     //element may have been added as a child
 
@@ -34,7 +34,10 @@ export function addDelayedEventListener(nodeId, eventType, callback, nodeIdentif
                         objectNode.addEventListener(eventType, () => callback(objectNode))
                         console.log("added event listener")
                     }
-                    observer.disconnect();
+
+                    if (!persistentObserver) {
+                        observer.disconnect();
+                    }
                 }
 
             }
