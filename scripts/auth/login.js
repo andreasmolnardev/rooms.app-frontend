@@ -16,9 +16,9 @@ let apiRoot = localStorage.getItem("apiRoot")
 if(!apiRoot){
     apiRoot = "rooms-app-api.prairiedog-stargazer.ts.net"
     localStorage.setItem("apiRoot", apiRoot)
+    location.reload();
 }
 
-console.log(apiRoot)
 
 const apiAuthTokenId = localStorage.getItem('api-authtoken')
 const lastActiveSession = localStorage.getItem('session')

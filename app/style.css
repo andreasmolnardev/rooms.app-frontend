@@ -83,26 +83,27 @@ p {
 
 .navbar .nav-header{
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
+    grid-template-columns: 26px 1fr 20px;
+    gap: 5px;
     align-items: center;
 }
 
-.navbar .nav-header i.fa-circle-caret-up{
+.navbar .nav-header i.caret-up{
     transition: 500ms rotate;
 }
 
-.navbar .nav-header:has(input[type="checkbox"]:checked) i.fa-circle-caret-up{
+.navbar .nav-header:has(input[type="checkbox"]:checked) i.caret-up{
     rotate: 180deg;
 }
 
-.navbar .nav-header i:not(.fa-circle-caret-up){
+.navbar .nav-header i:not(.caret-up){
     color: var(--accent-color);
 }
 
 .nav-el {
     border-radius: 10px;
     padding: 3px;
-    display: flex;
+    display: grid;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -120,7 +121,7 @@ p {
 }
 
 .nav-el i {
-    font-size: 28px;
+    font-size: 38px;
     margin-inline: auto;
 }
 
@@ -144,6 +145,19 @@ p {
 .nav-el.active {
     font-weight: bold;
 }
+
+.nav-el .text{
+    display: none;
+}
+
+.nav-el:has(.text-visible) .text{
+    display: flex;
+}
+
+.navbar .nav-header i{
+    font-size: 24px;
+}
+
 
 
 
@@ -416,7 +430,7 @@ main{
 @media screen and (min-width: 800px) {
     .app {
         position: relative;
-        grid-template-columns: 300px 1fr;
+        grid-template-columns: 320px 1fr;
         grid-template-rows: 50px 1fr;
     }
 
@@ -441,7 +455,7 @@ main{
     }
 
     .navbar {
-        width: 280px;
+        width: 310px;
         flex-direction: column;
         grid-column: 1;
         grid-row: 1;
@@ -451,11 +465,21 @@ main{
         border-radius: 0;
     }
 
-
-
+   
     .nav-el {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        justify-content: center;
+        align-content: center;
         height: 55px;
+    }
+
+    .nav-el:not(:has(.text-visible)) p{
+        grid-row: -1 / 1;
+    }
+
+    .nav-el:has(.text-visible){
+        grid-template-rows: auto auto;
     }
 
     .nav-el#toggle-sidebar-label {
@@ -464,6 +488,10 @@ main{
 
     .nav-el p {
         margin: auto;
+    }
+
+    .nav-el i{
+        grid-row: -1 / 1;
     }
 
     .app>.item {

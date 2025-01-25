@@ -19,13 +19,13 @@ export function showNotificationByTemplate(text, type) {
     if (!type) {
         throw new Error("Notification type is null!")
     } else if (type == "error"){
-        notificationTemplateIcon.classList.values("fa-solid", "fa-xmark")
+        notificationTemplateIcon.classList.values("vf-ic_fluent_dismiss_circle_24_filled")
     }  else if (type == "warning"){
-        notificationTemplateIcon.classList.values("fa-solid", "fa-triangle-exclamation")
+        notificationTemplateIcon.classList.values("vf-ic_fluent_warning_24_filled")
     } else if (type == "info"){
-        notificationTemplateIcon.classList.values("fa-solid", "fa-circle-info")
+        notificationTemplateIcon.classList.values("vf-ic_fluent_info_24_filled")
     } else if (type == "success"){
-        notificationTemplateIcon.classList.values("fa-solid", "fa-circle-check")
+        notificationTemplateIcon.classList.values("vf-ic_fluent_checkmark_circle_24_filled")
     } else {
         notificationTemplateIcon.classList.values("fa-solid", type)
     }

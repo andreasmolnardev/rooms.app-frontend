@@ -199,7 +199,7 @@ export function showComboModal(purpose, type, itemId) {
                             <input type="text" placeholder="nach einem Raum suchen" id="${item.id}-search-item">
                              <label for="${item.id}-show-items-checkbox" class="center">
                             <input type="checkbox" id="${item.id}-show-items-checkbox">
-                            <span class="caret-round center"><i class="fa-solid fa-caret-down"></i></span>
+                            <span class="caret-round center"><i class="vf-ic_fluent_caret_down_24_filled"></i></i></span>
                             </label>
                         </div>
                         <ul class="results"  data-multi-select-id="${item.id}-rooms-select">

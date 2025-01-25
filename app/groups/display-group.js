@@ -34,7 +34,7 @@ export function displayGroup(groupId, groupData) {
     groupScheduleNavHeader.insertAdjacentHTML('afterend', `
         <label class="nav-el" for="nav-group-${groupId}">
                 <input type="radio" name="nav" data-group-id="${groupId}" id="nav-group-${groupId}" class="schedule-nav nav-tab-radio" data-target="schedule-dashboard">
-                <i class="fa-solid fa-user-group"></i>
+             <i class="vf-ic_fluent_people_24_filled center"></i>
                 <p>${groupData.name}</p>
             </label>
         `)
@@ -81,10 +81,10 @@ export function displayGroup(groupId, groupData) {
                     <div class="item center" data-type="member" id="${'member-' + member.id}">
                                     <div class="toolbar">
                                         <span class="center" title="Bentuzer bearbeiten">
-                                            <i class="fa-solid fa-pen"></i>
+                                           <i class="vf-ic_fluent_pen_24_filled"></i>
                                         </span>
                                     </div>
-                                    <i class="fa-solid fa-circle-user"></i>
+                                    <i class="vf-ic_fluent_person_circle_24_filled"></i>
                                     <p class="title">${member.name}</p>
                                 </div>
                     `)
@@ -246,7 +246,7 @@ export function displayGroupSchedule(schedule) {
         targetRoom.querySelector("p.room-occ-space").insertAdjacentHTML(`beforeend`, /*html*/`
             <div class="room-occupation" data-title="${occupation.title}" data-room-id="${occupation.targetRoom}" data-date="${occupation.date}" data-time-from="${occupation.timespan[0]}" data-time-to="${occupation.timespan[1]}" data-notes="${occupation.notes}" data-creator="${occupation.creatorId}">
             ${occupation.timespan[0]} bis ${occupation.timespan[1]} : ${creatorName} <span class="invited-users-scheduled center" title="Eingeladene Nutzer: ${"invited user names"}"><p class="center">+${"invitedUsersCount"}</p>
-            <span class="center"> <i class="fa-solid fa-user"></i></span></span>  ${occupation.title} </div>
+            <span class="center"> <i class="vf-ic_fluent_person_24_filled"></i></span></span>  ${occupation.title} </div>
         `)
     })
 }
@@ -260,14 +260,14 @@ function addRoomgroupToAdminNav(groupId, groupName, adminPermissions) {
 
     } else {
         labelClassList = "group-label item inactive";
-        labelTextContent = `<p>Adminrechte nicht erteilt</p>`
+        labelTextContent = `<p class="text-visible">Adminrechte nicht erteilt</p>`
     }
 
 
     adminDashboardNavHeader.insertAdjacentHTML("afterend", `
             <label class="nav-el" for="nav-group-${groupId}-admin" id="nav-group-${groupId}-admin-label" class="nav-tab-radio ${labelClassList}">
                 <input type="radio" name="nav" id="nav-group-${groupId}-admin" data-target="group-admin-management-section" class="admin-nav nav-tab-radio">
-                <i class="fa-solid fa-user-group"></i>
+                <i class="vf-ic_fluent_people_24_filled center"></i>
                 <p>${groupName}</p>
                   <div class="text">
                         ${labelTextContent}
@@ -291,10 +291,10 @@ export function addRoomToDOM(roomId, roomName) {
         <div class="item center" data-type="room" id="room-${roomId}">
         <div class="toolbar">
                             <span class="center" title="Raum bearbeiten">
-                                <i class="fa-solid fa-pen"></i>
+                                <i class="vf-ic_fluent_pen_24_filled"></i>
                             </span>
                         </div>
-                        <i class="fa-solid fa-cube"></i>
+                       <i class="vf-ic_fluent_cube_24_filled"></i>
                         <p class="title">${roomName}</p>
                         </div>`)
 }
@@ -303,10 +303,10 @@ export function addUsergroupToDOM(usergroupName) {
     userGroupsSection.querySelector(".content").insertAdjacentHTML('beforeend', `      <div class="item center" data-type="user-group" id="user-group-${usergroupName}">
         <div class="toolbar">
             <span class="center" title="Nutzergruppe bearbeiten">
-                <i class="fa-solid fa-pen"></i>
+                <i class="vf-ic_fluent_pen_24_filled"></i>
             </span>
         </div>
-        <i class="fa-solid fa-user-group"></i>
+        <i class="vf-ic_fluent_people_24_filled"></i>
         <p class="title">${usergroupName}</p>
     </div>`)
 }

@@ -59,18 +59,18 @@
 
 @media screen and (min-width: 700px) {
     .container:is(.signup) {
-        height: 470px;
+        height: min-content;
         padding-block: 5px;
     }
 
     .container:is(.signup)> :is(div, form) {
-        height: 450px;
-
+        height: min-content;
     }
 
     .container {
         width: 600px;
         display: grid;
+        align-items: center;
         grid-template-columns: 295px 295px;
     }
 

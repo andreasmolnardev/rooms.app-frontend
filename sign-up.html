@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="ui-styles/auth.css">
     <link rel="shortcut icon" href="assets/favico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.fluenticon.com/icon.min.css" />
     <style>
        
         .wrapper#indicators {
@@ -122,7 +123,7 @@
 
 </head>
 
-<body onload="">
+<body onload="" data-background-src="/assets/office.webp">
     <div class="container signup">
         <div class="decoration center">
             <img src="assets/logo.png" alt="" class="logo">
@@ -130,11 +131,11 @@
                 <h1 id="heading">Registrieren</h1>
             </div>
 
-            <div class="blob" id="secondary">
+            <div class="blob small" id="secondary">
 
             </div>
 
-            <div class="blob" id="main">
+            <div class="blob small" id="main">
 
 
             </div>
@@ -142,66 +143,54 @@
         <form class="sign-up-tabs main" id="sign-up-form" return false;>
             <div class="wrapper" id="indicators">
                 <span class="tab-indicator active" data-tab-target="1" title="Persönliche Daten">1<p>Persönliche Daten</p></span>
-                <span class="tab-indicator" data-tab-target="2" title="Lizensierung">2 <p> Lizensierung</p></span>
+                <span class="tab-indicator" data-tab-target="2" title="Anmeldedate">2 <p> Anmeldedaten</p></span>
                 <span class="tab-indicator" data-tab-target="3" title="Letzte Schritte">3 <p>Letzte Schritte</p></span>
             </div>
 
-            <div class="tab active" data-tab-index="1">
+            <div class="tab active" data-tab-index="1">        
+            
+                <label for="sign-up-name">Name</label>
+                <input type="text" id="sign-up-name" placeholder="Foo Bar" required>
 
-             
+                <label for="workplace"><i class="vf-ic_fluent_building_24_filled"></i>Unternehmen</label>
+                <input type="text" id="workplace" placeholder="" required>
 
+                <button class="increase-tab-index"><i class="vf-ic_fluent_arrow_right_24_filled"></i>Weiter</button>
+
+            </div>
+            <div class="tab" data-tab-index="2">
                 <label for="sign-up-email">E-Mail Addresse</label>
                 <span id="check-sign-up-email" class="check">
+                    <!--xmark icon here-->
                     <i class="fa-solid fa-xmark" id="check-sign-up-email-icon"></i> Gültig
                 </span>
-                <input type="text" placeholder="foo@mail.com" id="sign-up-email">
+                <input type="email" id="sign-up-email" placeholder="email@placeholder.com" required>
                 <label for="sign-up-username">Benutzername</label>
                 <span id="check-username" class="check">
+                    <!--xmark icon here-->
                     <i class="fa-solid fa-xmark" id="check-username-icon"></i> eindeutig
                 </span>
+                   
                 <input type="text" placeholder="Foo123" id="sign-up-username">
-                <label for="sign-up-name">Name</label>
-                <input type="text" id="sign-up-name" placeholder="Foo Bar">
+
                 <label for="sign-up-password">Passwort</label>
 
                 <div class="chip-group"> 
                     <span id="check-password-strenght" class="check">
-                        <i class="fa-solid fa-xmark" id="check-password-strenght-icon"></i> stark
+                        <i class="vf-ic_fluent_dismiss_circle_24_filled" id="check-password-strenght-icon"></i> stark
                     </span>
                     <label for="toggle-strong-password-modal" class="check" id="help">
                         <input type="checkbox" name="" id="toggle-strong-password-modal">
-                        <i class="fa-solid fa-question"></i>
+                        <i class="vf-ic_fluent_question_circle_24_filled"></i>
                     </label>
                 </div>
                 <input type="password" placeholder="empfohlen: min. 8 Zeichen" id="sign-up-password">
                 <label for="repeat-password">Passwort wiederholen</label>
                 <span id="check-paswords-identical" class="check">
-                    <i class="fa-solid fa-xmark" id="repeat-password-icon"></i> übereinstimmend
+                    <i class="vf-ic_fluent_dismiss_circle_24_filled" id="repeat-password-icon"></i> übereinstimmend
                 </span>
                 <input type="password" placeholder="Passwort, unverändert" id="repeat-password">
 
-                <button class="increase-tab-index"><i class="fa-solid fa-arrow-right"></i>Weiter</button>
-
-            </div>
-            <div class="tab" data-tab-index="2">
-                <p onclick="alert('Lizenzen werden nur zum Erstellen und Verwalten einer neuen Raumgruppe benötigt.')">
-                    <i class="fa-solid fa-circle-info"></i>Wofür brauche ich eine Lizenz?
-                </p>
-                <div class="license-radio-div">
-                    <input type="radio" name="license" value="license-none" id="license-none" checked><label for="license-none">Ich habe noch keine Lizenz</label>
-                    <input type="radio" name="license" value="license-yes" id="license-yes"><label for="license-yes">Ich habe bereits eine Lizenz</label>
-                    <input type="radio" name="license" value="license-unnecesary" id="license-unnecesary"> <label for="license-unnecesary">Ich brauche keine Lizenz</label>
-                </div>
-
-
-                <label for="license-code" class="license inactive">Lizenz</label>
-                <input type="text" placeholder="A0000" id="license-code" class="license inactive">
-
-
-                <label for="expires-when" class="license inactive">Ablaufdatum</label>
-                <input type="text" placeholder="Foo Bar" id="expires-when" class="license inactive">
-
-                <p>Es ist möglich, eine Lizenz im nachhinein hinzuzufügen</p>
 
                 <div class="controls"> <button class="decrease-tab-index">Zurück</button>
                     <button class="increase-tab-index">Weiter</button>
@@ -223,14 +212,14 @@
                 <div class="messages">
                     <div class="message" id="success-message">
 
-                        <i class="fa-solid fa-envelope-circle-check"></i>
+                        <i class="vf-ic_fluent_mail_checkmark_24_filled"></i>
                         <p>Überprüfungslink gesendet</p>
                         <p>Sie können ihren Account nutzen, sobald er über den Link aktiviert wurde.</p>
                  <a href="">Keinen Aktivierungslink bekommen?</a>
                     </div>
                     <div class="message" id="error-message">
                         <h2>Registrierung fehlgeschlagen</h2>
-                        <i class="fa-solid fa-circle-xmark"></i>
+                        <i class="vf-ic_fluent_dismiss_circle_24_filled"></i>
                         <div id="output-txt">
 
                         </div>
@@ -256,12 +245,9 @@
 
 
     </div>
-
-    <script src="ui-scripts/tab-controls.js" type="module"></script>
-    <script type="module" src="db-scripts/config.js"></script>
-    <script src="db-scripts/auth/sign-up.js" type="module"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-
+    <script type="module" src="ui-scripts/lazyload/lazy-load-background.js"></script>
+    <script src="/ui-scripts/tab-controls.js" type="module"></script>
+    <script src="/scripts/auth/signup.js" type="module"></script>
 </body>
 
 </html>

@@ -1,12 +1,11 @@
 import { components } from "../components/components.js";
 import { pingAPIforInternalServerError } from "../scripts/api/api-entry.js";
 import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/app/websocket-connection.js";
+import { logOut } from "../scripts/auth/logout.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
-import { mutationObserverQuickadd } from "../shortcuts/mutation-observer.quickadd.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
 import { lazyLoadCSS } from "../ui-scripts/lazyload/lazy-load-css.js";
 import { showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js";
-import { showComboModal } from "./modals/open-add-info-modal.js";
 
 localStorage.setItem("session", "app");
 
@@ -145,5 +144,8 @@ document.getElementById('view-invitations-button').addEventListener('click', () 
     document.getElementById('group-invitations-modal').showModal();
 })
 
+const logOutNavBtn = document.getElementById("nav-logout");
+
+logOutNavBtn.addEventListener("click", () => {logOut();})
 
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds

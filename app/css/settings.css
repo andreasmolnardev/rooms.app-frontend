@@ -59,19 +59,9 @@
     justify-content: space-between;
 }
 
-#settings .header-item i#user-info {
-    position: relative;
-    margin-inline-end: 5px;
-}
-
-#settings .header-item i.fa-solid.fa-circle-info {
-    padding: 1px;
-    position: absolute;
-    right: -5px;
-    bottom: -3px;
-    font-size: 10px;
-    background-color: var(--surface-color);
-    border-radius: 100%;
+#settings :is(.item, .header-item) > a{
+    display: flex;
+    gap: 5px;
 }
 
 #settings .header-item i.fa-caret-right {
@@ -126,7 +116,7 @@
 }
 
 #settings :is(.item, .header-item) i {
-    font-size: 15px;
+    font-size: 22px;
 }
 
 #settings :is(.item, .header-item):hover i:not(.pen-circle-icon) {
