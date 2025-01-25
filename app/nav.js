@@ -1,4 +1,5 @@
 import { addDelayedEventListener } from "../shortcuts/dom-added-event-listener.js";
+import { getPreviousSiblingWithClass } from "../shortcuts/previous-sibling.js";
 
 const navbar = document.getElementById("navbar")
 
@@ -33,15 +34,17 @@ function tabSwitcher() {
 
     if (target && target.id != "schedule-dashboard") {
         document.getElementById(checkedItem.dataset.target).classList.add("active");
-    } else  if (target) {
+    } else if (target) {
         groupSelect.value = checkedItem.dataset.groupId
         groupSelect.dispatchEvent(new Event("change"))
         setTimeout(() => { target.classList.add('active') }, 185)
     }
 
     checkedItem.parentElement.classList.add("active")
+    
+    document.querySelector('h2#group-name').textContent = checkedItem.parentElement.querySelector('p').textContent;
+    document.querySelector('#page-type').textContent = getPreviousSiblingWithClass(checkedItem.parentElement, "nav-header").querySelector('h3').textContent
 
-   
 }
 
 let hideNavToggles = document.querySelectorAll('.hide-nav-toggle')

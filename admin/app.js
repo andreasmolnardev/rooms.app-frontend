@@ -53,7 +53,6 @@ if (!authTokenId) {
                 `)
 
             console.log(error)
-            console.log("Hello")
         })
     })
 }

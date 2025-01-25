@@ -16,7 +16,7 @@ let authTokenId = localStorage.getItem('api-authtoken')
 
 const apiRoot = localStorage.getItem("apiRoot") ?? "rooms-app-api.prairiedog-stargazer.ts.net"
 
-pingAPIforInternalServerError(() => {console.log("success")})
+pingAPIforInternalServerError(() => { console.log("success") })
 
 if (!authTokenId) {
     alert("Login erforderlich")
@@ -42,7 +42,24 @@ if (!authTokenId) {
                 initiateWsInitConnection("start-session", result.sessionTokenId, ip, apiRoot)
             }
         }).catch(error => {
-            console.log('Error:', error); alert(error);
+            
+            const loader = document.querySelector(".loader-main")
+            loader.querySelector("p").textContent = "Verbidung zum Server fehlgeschlagen"
+            loader.querySelector(".spinner").style.display = "none"
+            loader.querySelector("img").src = "../assets/custom-icons/server-error.png"
+            loader.insertAdjacentHTML(`beforeend`, /*html*/`
+                    <p id="error-desciption"> dies ist nur ein temporärer Fehler. Mögliche Vorgehensweisen sind:`)
+            loader.insertAdjacentHTML(`beforeend`, /*html*/`
+                    <ul class="measures">
+                        <li> <a href=""><i class="fa-solid fa-rotate-right"></i><p>Seite neu laden</p></a></li>
+                        <li><a href=""> <i class="fa-solid fa-user-tie"></i><p>Admin kontaktieren</p></a></li>
+                        <li><a href="https://github.com/andreasmolnardev/rooms.app-frontend/issues/new/choose"> <i class="fa-solid fa-bug"></i><p>Fehler melden</p></a></li>
+                    </ul>
+                    
+                    `)
+
+
+            console.log('Error:', error);
             showNotificationByTemplate(error, "error");
 
         });
@@ -58,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     lazyLoadCSS('/app/css/settings.css')
     lazyLoadCSS('/app/css/modals.css')
     lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
-    lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');    
+    lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
     const body = document.body;
     const backgroundSrc = body.dataset.backgroundSrc;
@@ -118,8 +135,8 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
             !notesTextField || notesTextField
             && titleRegex.test(notesTextField)
         )) {
-        
-        
+
+
 
         sendWsClientMessage({
             type: "register-room-occupation",
@@ -146,6 +163,6 @@ document.getElementById('view-invitations-button').addEventListener('click', () 
 
 const logOutNavBtn = document.getElementById("nav-logout");
 
-logOutNavBtn.addEventListener("click", () => {logOut();})
+logOutNavBtn.addEventListener("click", () => { logOut(); })
 
 //The old code has been moved to /more/archive/app/min-app-onlyfrontend.js in order to optimize loading speeds
