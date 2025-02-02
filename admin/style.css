@@ -703,7 +703,7 @@ dialog#main-info-edit-modal .tabs .item {
     align-items: center;
 }
 
-dialog#main-info-edit-modal .tabs .item:hover:not(:has(input:checked)) i.fa-solid {
+dialog#main-info-edit-modal .tabs .item:hover:not(:has(input:checked)) i {
     color: var(--accent-color);
 }
 

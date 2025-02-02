@@ -40,7 +40,7 @@ export function addInvitationToModal(invitation, state_active) {
                     <p class="invitation-creation-datetime">${invitation.invitationData.creationData.date}</p>
                 </div>
                 <div class="creator item">
-                <i class="fa-solid fa-circle-user"></i>
+               <i class="vf-ic_fluent_person_24_filled"></i>
                     <h4 class="description">von</h4>
                     <p class="invitation-creator">${invitation.invitationData.creationData.user.name}</p>
                 </div>
@@ -91,7 +91,7 @@ export function addInvitationToModal(invitation, state_active) {
                     <p class="invitation-creation-datetime">${invitation.invitationData.creationData.date}</p>
                 </div>
                 <div class="creator item">
-                <i class="fa-solid fa-circle-user"></i>
+               <i class="vf-ic_fluent_person_24_filled"></i>
                     <h4 class="description">von</h4>
                     <p class="invitation-creator">${invitation.invitationData.creationData.user.name}</p>
                 </div>

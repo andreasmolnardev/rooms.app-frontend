@@ -36,7 +36,7 @@ export class customMultiSelect {
                                 document.querySelector('#${self.id} .results li[data-id = &quot;${node.dataset.id}&quot;]').style.display = &quot;block&quot;;
                                 console.log('test')
                                  self.options.find(option => option.option_id == '${node.dataset.id}').deselect();
-                                 "><i class="fa-solid fa-xmark"></i></span></li>`);
+                                 "><i class="vf-ic_fluent_dismiss_circle_24_fille"></i></span></li>`);
 
                             node.dataset.availableForSelect = "false";
                             node.style.display = "none";

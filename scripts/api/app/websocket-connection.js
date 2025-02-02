@@ -84,6 +84,7 @@ export function initiateWsInitConnection(data, sessionTokenId, ip, apiRoot) {
             //close add room occupations modal
             // if date equals dateInput.value, add it.
             console.log(returnedData)
+            showNotificationByTemplate("Raumbesetzung erfolgreich hinzugefügt", "success")
         }
     };
 }
@@ -99,7 +100,9 @@ export function sendWsClientMessage(msg) {
         try {
             appWs.send(JSON.stringify(msg));
         } catch (error) {
-            console.error('Error sending message to admin WebSocket:', error);
+            console.error('Error sending message via WebSocket:', error);
         }
+    } else {
+        console.error('Error sending message to admin WebSocket');
     }
 }

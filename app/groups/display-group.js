@@ -21,9 +21,6 @@ export function displayGroup(groupId, groupData) {
     // verify whether the group with id groupId is set as standard
     // display it accordingly
     // add it to the overview in settigs
-
-    console.log(groupData)
-
     addGroupToSessionStorage(groupId, groupData)
 
     const addRoomOccupationGroupSelect = document.getElementById("select-group-for-add-form");

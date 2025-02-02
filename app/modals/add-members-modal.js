@@ -66,8 +66,8 @@ export function addMembersFormSubmit() {
                     <div class="output-wrapper">
                         <p>${invitationData["pinCode"].toString().replaceAll(',', '')}</p>
                     </div>
-                    <button class="secondary" id="download-invitation-text"><i class="fa-solid fa-file-arrow-down"></i>Download</button>
-                    <button class="secondary" id="copy-invitation-text"><i class="fa-solid fa-clipboard"></i>Kopieren</button>
+                    <button class="secondary" id="download-invitation-text"><i class="vf-ic_fluent_arrow_download_24_filled"></i>Download</button>
+                    <button class="secondary" id="copy-invitation-text"><i class="vf-ic_fluent_copy_24_filled"></i>Kopieren</button>
                 </div>
                     
                     `)

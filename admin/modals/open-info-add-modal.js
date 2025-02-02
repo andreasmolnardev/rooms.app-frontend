@@ -199,7 +199,7 @@ export function showComboModal(purpose, type, itemId) {
                             <input type="text" placeholder="nach einem Raum suchen" id="${item.id}-search-item">
                              <label for="${item.id}-show-items-checkbox" class="center">
                             <input type="checkbox" id="${item.id}-show-items-checkbox">
-                            <span class="caret-round center"><i class="vf-ic_fluent_caret_down_24_filled"></i></i></span>
+                            <span class="caret-round center"><i class="vf-ic_fluent_caret_down_24_filled"></i></span>
                             </label>
                         </div>
                         <ul class="results"  data-multi-select-id="${item.id}-rooms-select">
@@ -238,7 +238,7 @@ export function showComboModal(purpose, type, itemId) {
               console.log('${roomItem.parentNode.dataset.multiSelectId}')
               document.querySelector('#${roomItem.parentNode.dataset.multiSelectId} .results li[data-id = &quot;${roomItem.dataset.id}&quot;]').dataset.availableForSelect = 'true';
               document.querySelector('#${roomItem.parentNode.dataset.multiSelectId} .results li[data-id = &quot;${roomItem.dataset.id}&quot;]').style.display = &quot;block&quot;;
-               "><i class="fa-solid fa-xmark"></i></span></li>`);
+               "><i class="vf-ic_fluent_dismiss_circle_24_filled"></i></span></li>`);
 
             roomItem.dataset.availableForSelect = "false";
             roomItem.style.display = "none";
@@ -267,15 +267,15 @@ export function showComboModal(purpose, type, itemId) {
             <div class="tabs center">
                 <label class="item tab">
                     <input type="radio" name="add-method" id="invite-users" data-target="invite-users-form" checked>
-                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <i class="vf-ic_fluent_mail_template_24_filled"></i>
                     <p>Einladung erstellen</p>
-                    <span><i class="fa-regular fa-circle-question"></i></span>
+                    <span><i class="vr-ic_fluent_question_circle_24_regular"></i></span>
                 </label>
                 <label class="item tab">
                     <input type="radio" name="add-method" id="add-user-manually" data-target="add-user-manually-form">
-                    <i class="fa-solid fa-user-plus"></i>
+                    <i class="vf-ic_fluent_person_add_24_filled"></i>
                     <p>Manuell hinzufügen</p>
-                    <span><i class="fa-regular fa-circle-question"></i></span>
+                    <span><i class="vr-ic_fluent_question_circle_24_regular"></i></span>
                 </label>
             </div>
             <form id="invite-users-form">
@@ -285,7 +285,7 @@ export function showComboModal(purpose, type, itemId) {
                 <div class="input-wrapper">
                     <div class="custom-select" id="select-user-group-invitation-form" data-item-div="select-usergroup-grouplist">
                         <label class="select-box" for="select-usergrouop-visible">
-                            <i class="fa-solid fa-caret-down center"></i>
+                            <i class="vf-ic_fluent_caret_down_24_filled"></i>
                             <input type="checkbox" name="" id="select-usergrouop-visible">
                             <p class="select-label">Nutzergruppe auswählen</p>
                         </label>
@@ -341,7 +341,7 @@ export function showComboModal(purpose, type, itemId) {
                 <div class="input-wrapper">
                     <div class="custom-select" id="select-user-group" data-item-div="select-usergroup-grouplist">
                         <label class="select-box" for="select-usergrouop-visible">
-                            <i class="fa-solid fa-caret-down center"></i>
+                            <i class="vf-ic_fluent_caret_down_24_filled center"></i>
                             <input type="checkbox" name="" id="select-usergrouop-visible">
                             <p class="select-label">Nutzergruppe auswählen</p>
                         </label>

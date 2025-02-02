@@ -8,7 +8,7 @@ export function openRoomOccupationDetailsModal(completionEl, userId) {
 
   roomOccModal.innerHTML = `<h2 title="Titel der Raumbesetzung">Titel</h2>
             <span class="close-modal" data-target="room-occupation-details">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="vf-ic_fluent_dismiss_circle_24_fille"></i>
             </span>
             <p id="occupation-datetime">Datum, von 14:00 bis 15:00</p>
             <section id="participants">  
@@ -47,7 +47,7 @@ export function openRoomOccupationDetailsModal(completionEl, userId) {
       getUser(id).then(user => {
         participantsContainer.insertAdjacentHTML('beforeend', `
                     <div class="item">
-                        <i class="fa-solid fa-circle-user"></i>
+                       <i class="vf-ic_fluent_person_24_filled"></i>
                         <a class="name link center">${user.name}</a>
                         <div class="tools">
                             <span> <i class="fa-solid fa-comment"></i></span>
@@ -58,7 +58,7 @@ export function openRoomOccupationDetailsModal(completionEl, userId) {
     } else if (id == userId) {
       participantsContainer.insertAdjacentHTML('beforeend', `
         <div class="item">
-            <i class="fa-solid fa-circle-user"></i>
+           <i class="vf-ic_fluent_person_24_filled"></i>
             <a class="name link center">ich</a>
         </div>`);
 

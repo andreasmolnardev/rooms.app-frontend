@@ -42,7 +42,7 @@ if (!authTokenId) {
                 initiateWsInitConnection("start-session", result.sessionTokenId, ip, apiRoot)
             }
         }).catch(error => {
-            
+
             const loader = document.querySelector(".loader-main")
             loader.querySelector("p").textContent = "Verbidung zum Server fehlgeschlagen"
             loader.querySelector(".spinner").style.display = "none"
@@ -51,9 +51,9 @@ if (!authTokenId) {
                     <p id="error-desciption"> dies ist nur ein temporärer Fehler. Mögliche Vorgehensweisen sind:`)
             loader.insertAdjacentHTML(`beforeend`, /*html*/`
                     <ul class="measures">
-                        <li> <a href=""><i class="fa-solid fa-rotate-right"></i><p>Seite neu laden</p></a></li>
-                        <li><a href=""> <i class="fa-solid fa-user-tie"></i><p>Admin kontaktieren</p></a></li>
-                        <li><a href="https://github.com/andreasmolnardev/rooms.app-frontend/issues/new/choose"> <i class="fa-solid fa-bug"></i><p>Fehler melden</p></a></li>
+                        <li> <a href=""><i class="vf-ic_fluent_arrow_clockwise_24_filled"></i><p>Seite neu laden</p></a></li>
+                        <li><a href=""> <i class="vf-ic_fluent_person_chat_24_filled"></i><p>Admin kontaktieren</p></a></li>
+                        <li><a href="https://github.com/andreasmolnardev/rooms.app-frontend/issues/new/choose"> <i class="vf-ic_fluent_bug_24_filled"></i><p>Fehler melden</p></a></li>
                     </ul>
                     
                     `)
@@ -137,12 +137,14 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
         )) {
 
 
+        console.log("Requesting new room occupation, target group:", targetGroup)
 
         sendWsClientMessage({
             type: "register-room-occupation",
             data: {
                 title: roomOccupationTitle,
-                groupId: targetGroup,
+                includesGroupIndex: true,
+                groupIndex: Object.keys(groups).indexOf(groupSelect.value),
                 room: targetRoom,
                 date: dateValue,
                 invitedUsers: invitedMembers,
