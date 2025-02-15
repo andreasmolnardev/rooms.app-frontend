@@ -4,6 +4,7 @@ import { initiateWsInitConnection, sendWsClientMessage } from "../scripts/api/ap
 import { logOut } from "../scripts/auth/logout.js";
 import { savePublicIpV4 } from "../scripts/public-ip/get-public-ipv4.js";
 import { isDate1Later } from "../ui-scripts/compare-dates.js";
+import { getTheme, setTheme, switchTheme } from "../ui-scripts/darkmode.js";
 import { lazyLoadCSS } from "../ui-scripts/lazyload/lazy-load-css.js";
 import { showNotificationByTemplate } from "../ui-scripts/notifications/notifications.js";
 
@@ -74,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
     lazyLoadCSS('/app/css/add-group.css')
     lazyLoadCSS('/app/css/settings.css')
     lazyLoadCSS('/app/css/modals.css')
-    lazyLoadCSS('/assets/icons/font-awesome-6-pro-main/css/all.min.css');
     lazyLoadCSS('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
     const body = document.body;
@@ -162,6 +162,15 @@ addRoomOccupationForm.addEventListener('submit', (e) => {
 document.getElementById('view-invitations-button').addEventListener('click', () => {
     document.getElementById('group-invitations-modal').showModal();
 })
+
+//dark mode
+const body = document.body
+
+Array.from(document.getElementsByName("theme-switcher")).forEach(item => {
+    item.addEventListener('change', () => {switchTheme()})
+})
+
+setTheme((getTheme() == "true", body));
 
 const logOutNavBtn = document.getElementById("nav-logout");
 

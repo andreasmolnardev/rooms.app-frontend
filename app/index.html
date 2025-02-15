@@ -458,11 +458,11 @@
                         <div class="options" id="select-theme">
 
                             <label class="option" for="theme-light">
-                                <input type="radio" name="theme-switcher" id="theme-light">🌞 Hell
+                                <input type="radio" name="theme-switcher" id="theme-light" data-dark-mode="false">🌞 Hell
                             </label>
 
                             <label class="option" for="theme-dark">
-                                <input type="radio" name="theme-switcher" id="theme-dark">🌛 Dunkel
+                                <input type="radio" name="theme-switcher" id="theme-dark" data-dark-mode="true">🌛 Dunkel
                             </label>
                         </div>
                     </div>
@@ -821,7 +821,6 @@
     <script type="module" src="../ui-scripts/page-loading.js"></script>
     <script src="modals.js" type="module"></script>
     <script src="nav.js" type="module"></script>
-    <script src="../ui-scripts/darkmode.js" type="module"></script>
     <script type="module" src="../ui-scripts/expand-setting.js"></script>
     <script src="modals/join-group-modal.js" type="module"></script>
     <script src="modals/top-bar-modal.js" type="module"></script>

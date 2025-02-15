@@ -1,11 +1,11 @@
-export function setTheme(darkModeBool) {
+export function setTheme(darkModeBool, body) {
     localStorage.setItem("dark-theme", darkModeBool);
-    
-    if (darkModeBool == true) {
-        console.log("yess")
-        document.body.classList.add("dark");
+    console.log(darkModeBool)
+
+    if (darkModeBool) {
+        body.classList.add("dark");
     } else {
-        document.body.classList.remove("dark");
+        body.classList.remove("dark");
     }
 }
 

@@ -50,7 +50,7 @@ export function openRoomOccupationDetailsModal(completionEl, userId) {
                        <i class="vf-ic_fluent_person_24_filled"></i>
                         <a class="name link center">${user.name}</a>
                         <div class="tools">
-                            <span> <i class="fa-solid fa-comment"></i></span>
+                            <span> <i class="vf-ic_fluent_comment_multiple_24_filled"></i></span>
                         </div>
                     </div>
                 `);
