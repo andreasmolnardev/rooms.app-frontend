@@ -1,19 +1,21 @@
 {
-  "name": "rooms.app",
-  "version": "1.0.0",
-  "description": "An app for organizing appointment schedules, grouped into different rooms",
-  "main": "service-worker.js",
+  "name": "rooms.app-frontend",
+  "version": "2.0.0",
+  "private": true,
+  "description": "rooms.app frontend rebuilt with Next.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andreasmolnardev/rooms.app.git"
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andreasmolnardev/rooms.app/issues"
-  },
-  "homepage": "https://github.com/andreasmolnardev/rooms.app#readme"
+  "devDependencies": {
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5"
+  }
 }
