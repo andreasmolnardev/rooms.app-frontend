@@ -7,12 +7,15 @@ export default function KontaktPage() {
       <Head>
         <title>Kontakt | rooms.app</title>
       </Head>
-      <main className="container">
-        <h1>Kontakt</h1>
-        <p>Für Fragen bitte ein Issue im Repository eröffnen.</p>
-        <nav className="links">
-          <Link href="/">Zur Anmeldung</Link>
-        </nav>
+      <main className="auth-layout">
+        <section className="panel auth-panel">
+          <h1>Kontakt</h1>
+          <p className="muted">Für Fragen oder Feedback bitte ein GitHub Issue im Repository erstellen.</p>
+          <div className="links">
+            <Link href="/app">Zum Dashboard</Link>
+            <Link href="/">Zur Anmeldung</Link>
+          </div>
+        </section>
       </main>
     </>
   );

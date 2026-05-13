@@ -7,12 +7,15 @@ export default function ServerErrorPage() {
       <Head>
         <title>Serverfehler | rooms.app</title>
       </Head>
-      <main className="container">
-        <h1>Serverfehler</h1>
-        <p>Die Verbindung zum Backend ist aktuell nicht verfügbar.</p>
-        <nav className="links">
-          <Link href="/">Zur Anmeldung</Link>
-        </nav>
+      <main className="auth-layout">
+        <section className="panel auth-panel">
+          <h1>Serverfehler</h1>
+          <p className="status">Der lokale Server konnte die Anfrage nicht verarbeiten.</p>
+          <div className="links">
+            <Link href="/">Zur Anmeldung</Link>
+            <Link href="/app">Zum Dashboard</Link>
+          </div>
+        </section>
       </main>
     </>
   );

@@ -1,30 +1,31 @@
-# rooms.app-frontend (Next.js)
+# rooms.app-frontend
 
-This repository has been migrated to a Next.js frontend.
+Rebuilt from scratch as a full Next.js app with a local SQLite database and a responsive dashboard UI.
 
-## Run locally
+## Features
+
+- Local authentication (sign up, login, logout, password change)
+- Room groups (create group, join by invitation code + PIN)
+- Admin area in the dashboard for:
+  - room management
+  - user-group management
+  - invitation management
+  - member overview
+- Schedule dashboard with booking filters and overlap validation
+- Settings and info routes (`/kontakt`, `/nutzungsbedingungen`, `/server-error`)
+
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Environment
+SQLite database file is created automatically at `data/rooms.sqlite`.
 
-The frontend talks to the backend using `NEXT_PUBLIC_API_ROOT`.
-If omitted, it defaults to:
+## Scripts
 
-- `rooms-app-api.prairiedog-stargazer.ts.net`
-
-You can still override the backend host in browser storage through `localStorage.apiRoot`.
-
-## Routes
-
-- `/` login
-- `/sign-up` sign-up placeholder route
-- `/app` app session initialization
-- `/admin` admin session initialization
-- `/kontakt`
-- `/nutzungsbedingungen`
-- `/change-password`
-- `/server-error`
+- `npm run dev`
+- `npm run lint`
+- `npm run build`
+- `npm run start`
