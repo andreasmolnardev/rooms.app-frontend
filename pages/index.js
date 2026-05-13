@@ -2,6 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { api, getSessionToken, setSessionToken } from '../lib/api';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/input';
 
 export default function LoginPage() {
   const [identifier, setIdentifier] = useState('');
@@ -37,37 +40,41 @@ export default function LoginPage() {
         <title>Login | rooms.app</title>
       </Head>
       <main className="auth-layout">
-        <section className="panel auth-panel">
-          <h1>rooms.app</h1>
-          <p className="muted">Local-first dashboard with SQLite</p>
+        <Card className="auth-panel">
+          <CardHeader>
+            <CardTitle>rooms.app</CardTitle>
+            <CardDescription>Local-first dashboard with SQLite</CardDescription>
+          </CardHeader>
 
-          <form onSubmit={onSubmit} className="stack">
-            <input
-              placeholder="Username oder E-Mail"
-              value={identifier}
-              onChange={(event) => setIdentifier(event.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Passwort"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
-            <button type="submit" disabled={submitting}>
-              {submitting ? 'Anmeldung…' : 'Anmelden'}
-            </button>
-          </form>
+          <CardContent className="stack">
+            <form onSubmit={onSubmit} className="stack">
+              <Input
+                placeholder="Username oder E-Mail"
+                value={identifier}
+                onChange={(event) => setIdentifier(event.target.value)}
+                required
+              />
+              <Input
+                type="password"
+                placeholder="Passwort"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+              <Button type="submit" disabled={submitting}>
+                {submitting ? 'Anmeldung…' : 'Anmelden'}
+              </Button>
+            </form>
 
-          {status && <p className="status">{status}</p>}
+            {status && <p className="status">{status}</p>}
 
-          <div className="links">
-            <Link href="/sign-up">Registrieren</Link>
-            <Link href="/change-password">Passwort ändern</Link>
-            <Link href="/kontakt">Kontakt</Link>
-          </div>
-        </section>
+            <div className="links">
+              <Link href="/sign-up">Registrieren</Link>
+              <Link href="/change-password">Passwort ändern</Link>
+              <Link href="/kontakt">Kontakt</Link>
+            </div>
+          </CardContent>
+        </Card>
       </main>
     </>
   );

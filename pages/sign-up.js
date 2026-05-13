@@ -2,6 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import { api, setSessionToken } from '../lib/api';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/input';
 
 export default function SignUpPage() {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
@@ -30,41 +33,45 @@ export default function SignUpPage() {
         <title>Registrierung | rooms.app</title>
       </Head>
       <main className="auth-layout">
-        <section className="panel auth-panel">
-          <h1>Registrierung</h1>
-          <form onSubmit={onSubmit} className="stack">
-            <input
-              placeholder="Benutzername"
-              value={form.username}
-              onChange={(event) => setForm((old) => ({ ...old, username: event.target.value }))}
-              required
-            />
-            <input
-              type="email"
-              placeholder="E-Mail"
-              value={form.email}
-              onChange={(event) => setForm((old) => ({ ...old, email: event.target.value }))}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Passwort (mind. 8 Zeichen)"
-              value={form.password}
-              onChange={(event) => setForm((old) => ({ ...old, password: event.target.value }))}
-              required
-              minLength={8}
-            />
-            <button type="submit" disabled={submitting}>
-              {submitting ? 'Wird erstellt…' : 'Konto erstellen'}
-            </button>
-          </form>
+        <Card className="auth-panel">
+          <CardHeader>
+            <CardTitle>Registrierung</CardTitle>
+          </CardHeader>
+          <CardContent className="stack">
+            <form onSubmit={onSubmit} className="stack">
+              <Input
+                placeholder="Benutzername"
+                value={form.username}
+                onChange={(event) => setForm((old) => ({ ...old, username: event.target.value }))}
+                required
+              />
+              <Input
+                type="email"
+                placeholder="E-Mail"
+                value={form.email}
+                onChange={(event) => setForm((old) => ({ ...old, email: event.target.value }))}
+                required
+              />
+              <Input
+                type="password"
+                placeholder="Passwort (mind. 8 Zeichen)"
+                value={form.password}
+                onChange={(event) => setForm((old) => ({ ...old, password: event.target.value }))}
+                required
+                minLength={8}
+              />
+              <Button type="submit" disabled={submitting}>
+                {submitting ? 'Wird erstellt…' : 'Konto erstellen'}
+              </Button>
+            </form>
 
-          {status && <p className="status">{status}</p>}
+            {status && <p className="status">{status}</p>}
 
-          <div className="links">
-            <Link href="/">Zur Anmeldung</Link>
-          </div>
-        </section>
+            <div className="links">
+              <Link href="/">Zur Anmeldung</Link>
+            </div>
+          </CardContent>
+        </Card>
       </main>
     </>
   );

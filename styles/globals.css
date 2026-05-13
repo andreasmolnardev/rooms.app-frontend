@@ -33,16 +33,16 @@ a:hover {
   text-decoration: underline;
 }
 
+button,
 input,
-textarea,
 select,
-button {
+textarea {
   font: inherit;
 }
 
-input,
-textarea,
-select {
+.ui-input,
+.ui-textarea,
+.ui-select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -51,26 +51,128 @@ select {
   padding: 0.65rem 0.75rem;
 }
 
-textarea {
+.ui-textarea {
   min-height: 90px;
   resize: vertical;
 }
 
-button {
+.ui-button {
   border: 1px solid transparent;
   border-radius: 10px;
-  background: var(--accent);
   color: white;
-  padding: 0.65rem 0.9rem;
   cursor: pointer;
+  transition: filter 0.15s ease;
 }
 
-button:hover {
+.ui-button:hover {
   filter: brightness(1.06);
 }
 
-button.danger {
+.ui-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ui-button--size-default {
+  padding: 0.65rem 0.9rem;
+}
+
+.ui-button--size-sm {
+  padding: 0.45rem 0.65rem;
+}
+
+.ui-button--size-lg {
+  padding: 0.8rem 1rem;
+}
+
+.ui-button--size-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-grid;
+  place-items: center;
+}
+
+.ui-button--default {
+  background: var(--accent);
+}
+
+.ui-button--secondary {
+  background: #0d1830;
+  border-color: var(--line);
+}
+
+.ui-button--destructive {
   background: var(--danger);
+}
+
+.ui-button--ghost {
+  background: transparent;
+  border-color: var(--line);
+}
+
+.ui-button--link {
+  background: transparent;
+  color: #8ab2ff;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.ui-card {
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+.ui-card-header {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.ui-card-title {
+  margin: 0;
+}
+
+.ui-card-description {
+  margin: 0;
+  color: var(--muted);
+}
+
+.ui-card-content {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.8rem;
+}
+
+.ui-badge--default {
+  background: var(--accent);
+  color: white;
+}
+
+.ui-badge--secondary {
+  background: #1c2e50;
+  color: #cfe0ff;
+}
+
+.ui-badge--destructive {
+  background: rgba(220, 79, 109, 0.24);
+  color: #ffb3c0;
+}
+
+.ui-badge--outline {
+  border-color: var(--line);
+  color: var(--muted);
 }
 
 .auth-layout {
@@ -90,14 +192,6 @@ button.danger {
   min-height: 100vh;
   gap: 1rem;
   padding: 1rem;
-}
-
-.panel {
-  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 1rem;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
 }
 
 .nav-panel {
@@ -146,15 +240,8 @@ button.danger {
   gap: 0.5rem;
 }
 
-.tab-buttons button {
+.tab-button {
   text-align: left;
-  background: #0d1830;
-  border-color: var(--line);
-}
-
-.tab-buttons button.active {
-  background: var(--accent);
-  border-color: var(--accent);
 }
 
 .collection {
@@ -220,5 +307,9 @@ button.danger {
   .grid.two,
   .grid.three {
     grid-template-columns: 1fr;
+  }
+
+  .inline-controls {
+    flex-direction: column;
   }
 }

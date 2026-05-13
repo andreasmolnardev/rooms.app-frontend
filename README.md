@@ -1,6 +1,6 @@
 # rooms.app-frontend
 
-Rebuilt from scratch as a full Next.js app with a local SQLite database and a responsive dashboard UI.
+Rebuilt from scratch as a full Next.js app with a local SQLite database and a responsive dashboard UI using shadcn-style components.
 
 ## Features
 
